@@ -18,7 +18,8 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbar">
                     <a href="/" class="navbar-brand">
-                        <img src="/assets/logo.png" alt="Rafa Events">
+                        <img src="/assets/logo.png" width="40px" height="40px" alt="Rafa Events">
+                        Rafa Events
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
