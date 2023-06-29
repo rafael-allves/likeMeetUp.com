@@ -5,8 +5,8 @@
 @section('style', "/css/produto/produto.css")
 
 @section('content')
-    @if($id != null)
-        <h1>Exibindo produto {{$id}}</h1>
+    @if($busca != '')
+        <h1>Você buscou: {{$busca}}</h1>
     @endif
 @endsection
 

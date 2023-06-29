@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos/{id?}', function ($id = null) {
-    return view('produto', ["id" => $id]);
+Route::get('/produtos', function () {
+
+    $busca = request('search');
+    if($busca !== null)return view('produto', ['busca' => $busca]);
+    return view('produto', ['busca' => $busca]);
 });
