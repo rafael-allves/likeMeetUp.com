@@ -14,6 +14,18 @@
 
     </head>
     <body >
-
+        <?php
+            $i = 0
+            ?>
+        @while($i < 5)
+            <p>Re-rendering</p>
+            <?php
+            ++$i;
+            ?>
+        @endwhile
+        @if(10 < 15)
+            <p>Teste</p>
+        @endif
+        <p>{{$nome}}</p>
     </body>
 </html>
