@@ -28,7 +28,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">
+                            <a href="/events/create" class="nav-link">
                                 Criar Eventos
                             </a>
                         </li>
@@ -52,5 +52,6 @@
         <footer>RAFA Events &copy; 2023</footer>
 
         <script type="module" src=@yield('script')></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     </body>
 </html>
