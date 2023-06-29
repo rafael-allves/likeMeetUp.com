@@ -4,13 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yeld('title')</title>
-        <link rel="stylesheet" href="@yeld('style')">
+        <title>@yield('title')</title>
+        <link rel="stylesheet" href=@yield('style')>
     </head>
     <body >
-        @yeld('content')
+        @yield('content')
         <footer>RAFA Events &copy; 2023</footer>
 
-        <script type="module" src="@yeld('script')"></script>
+        <script type="module" src=@yield('script')></script>
     </body>
 </html>
