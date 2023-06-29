@@ -5,27 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-
+        <link rel="stylesheet" href="css/welcome/welcome.css">
     </head>
     <body >
-        <?php
-            $i = 0
-            ?>
-        @while($i < 5)
-            <p>Re-rendering</p>
-            <?php
-            ++$i;
-            ?>
-        @endwhile
-        @if(10 < 15)
-            <p>Teste</p>
-        @endif
-        <p>{{$nome}}</p>
+        <h1>OLA MUNDO</h1>
     </body>
 </html>
