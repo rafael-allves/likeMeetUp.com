@@ -5,7 +5,9 @@
 @section('style', "/css/produto/produto.css")
 
 @section('content')
-    <h1>Exibindo produto {{$id}}</h1>
+    @if($id != null)
+        <h1>Exibindo produto {{$id}}</h1>
+    @endif
 @endsection
 
 @section('script', "/js/produto/main.js")
