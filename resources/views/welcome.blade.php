@@ -9,5 +9,6 @@
     </head>
     <body >
         <h1>OLA MUNDO</h1>
+        <script src="js/welcome/main.js"></script>
     </body>
 </html>
