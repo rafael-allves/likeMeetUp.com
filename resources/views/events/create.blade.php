@@ -52,5 +52,3 @@
 
 
 @endsection
-
-@section('script', '/js/events/create/main.js')

@@ -9,7 +9,7 @@
             <input type="text" name="search" id="search" class="form-control" placeholder="Procure um Evento">
         </form>
     </section>
-    <main id="events-container" class="col-md-12">
+    <section id="events-container" class="col-md-12">
         <h2>Próximos Eventos</h2>
         <p class="subtitle">Veja os eventos dos próximos dias</p>
         <section id="cards-container" class="row">
@@ -26,13 +26,11 @@
                     <p class="card-participants">
                         X Participantes
                     </p>
-                    <a href="#" class="btn btn-primary">Saber Mais</a>
+                    <a href="/events/{{$event->id}}" class="btn btn-primary">Saber Mais</a>
                 </div>
             </div>
             @endforeach
         </section>
-    </main>
+    </section>
 
 @endsection
-
-@section('script', "/js/welcome/main.js")
