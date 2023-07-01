@@ -42,6 +42,7 @@ class EventController extends Controller
             return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem é obrigatório.']);
         }
         $event->title = $request->title;
+        $event->date = $request->date;
         $event->city = $request->city;
         $event->private = $request->private;
         $event->description = $request->description;

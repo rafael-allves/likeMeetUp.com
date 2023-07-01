@@ -10,6 +10,10 @@
             </div>
             <div id="info-container" class="col-md-6">
                 <h1>{{$event->title}}</h1>
+                <h2>
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    {{ date('d/m/Y', strtotime($event->date)) }}
+                </h2>
                 <p class="event-city">
                     <ion-icon name="location-outline">
                     </ion-icon>
