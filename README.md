@@ -7,15 +7,13 @@ In mosts commits u'll se something like a test of an attribute working!
 If u're not familiar with backend development and by some reason are seeing this repo please note that read about connection and sensible data with .env (dotenv)
 
 ## techonologies
-<font color="blue">
-    PHP Laravel 
-     HTML  
-     CSS  
-     BootStrap CSS 
-     ION-ICONS 
-     Vanilla JS
-</font>
 
+### PHP Laravel ###
+### HTML ### 
+### CSS ### 
+### BootStrap CSS ###
+### ION-ICONS ###
+### Vanilla JS ###
 
 The HTML, CSS, JS aren't the main focus here! So this project design is simple and at this point has'nt responsive model and has just a large CSS page to every page link it but i'm proud to myself because the focus is backend development and i CAN DO IT !!!
 
