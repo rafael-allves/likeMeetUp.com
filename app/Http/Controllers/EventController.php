@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Event;
 
+use Exception;
+
 class EventController extends Controller
 {
     public function index(){
@@ -27,17 +29,18 @@ class EventController extends Controller
 
             $extension = $requestImage->extension();
 
-            $imageName = md5($requestImage->getClientOriginalName() + strtotime('now') + '.' + $extension);
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now'));
 
             //adicionando a questão do timestamp pra ter maior certeza de q esse nome de imagem será único! E não será sobrescrita por esse ou outro usuário!
             //Função md5 criptografa o path da imagem pra salvar na db
 
 
-            $request->image->move(public_path('img/events'), $imageName);
+            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
-            $event->image = $imageName; //Salvando a imagem como uma string encriptografada
+            $event->image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+        }else{
+            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem é obrigatório.']);
         }
-
         $event->title = $request->title;
         $event->city = $request->city;
         $event->private = $request->private;

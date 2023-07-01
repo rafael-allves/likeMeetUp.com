@@ -14,7 +14,7 @@
             <label for="image">
                 Imagem do Evento:
             </label>
-            <input type="file" id="image" class="from-control-fill">
+            <input type="file" id="image" name="image" class="from-control-fill" required>
         </div>
 
         <div class="form-group">
