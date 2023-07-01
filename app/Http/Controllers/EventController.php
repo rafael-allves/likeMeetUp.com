@@ -27,7 +27,7 @@ class EventController extends Controller
 
             $extension = $requestImage->extension();
 
-            $imageName = md5($requestImage->image->getClientOriginalName() + strtotime('now') + '.' + $extension);
+            $imageName = md5($requestImage->getClientOriginalName() + strtotime('now') + '.' + $extension);
 
             //adicionando a questão do timestamp pra ter maior certeza de q esse nome de imagem será único! E não será sobrescrita por esse ou outro usuário!
             //Função md5 criptografa o path da imagem pra salvar na db
