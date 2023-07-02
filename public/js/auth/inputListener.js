@@ -10,7 +10,8 @@ function checkCamp(evt, controler){
     icon.innerText = '';
 
     const typeData = controler.type.login ? controler.login : controler.register;
-    const controlData = id.split('login')[0] === '' ? id.split('login')[1] :  id.split('register')[1]
+    const controlData = id === 'confirmpassword' ? 'confirmpassword' :
+     id.split('login')[0] === '' ? id.split('login')[1] :  id.split('register')[1];//Se o id não for confirmpassword ele vai checar qual campo é
 
     if(id == "loginemail" || id == "registeremail"){
         const error = emailValidation(camp.value);

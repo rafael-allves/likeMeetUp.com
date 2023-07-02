@@ -23,19 +23,19 @@ class UserController extends Controller
                 'username' => 'required',
             ]);
 
-            if($validUsername->fails())return response()->json(['registerusername' => 'Campo não preenchido corretamente'], 400);
+            if($validUsername->fails())return response()->json(['error' => ['registerusername', 'Campo não preenchido corretamente']], 400);
 
             $validEmail = Validator::make($data, [
                 'email' => 'required|email|unique:users,email',
             ]);
 
-            if($validEmail->fails())return response()->json(['registeremail' => 'email já cadastrado'], 400);
+            if($validEmail->fails())return response()->json(['error' => ['registeremail', 'email já cadastrado']], 400);
 
             $validPassword = Validator::make($data, [
                 'password' => 'required',
             ]);
 
-            if($validPassword->fails())return response()->json(['registerpassword' => 'Campo não preenchido corretamente'], 400);
+            if($validPassword->fails())return response()->json(['error' => ['registerpassword', 'Campo não preenchido corretamente']], 400);
             //SE TODOS OS CAMPOS ESTIVEREM DEVIDAMENTE PREENCHIDOS EU VOU CONECTAR COM A TABELA users ENCRIPTOGRAFAR A SENHA E SALVAR O NOVO USUÁRIO
 
             $hash = Hash::make($data['password']);//Encriptografando a senha por padrão ele faz 1024 iterações
