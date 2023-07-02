@@ -1,0 +1,8 @@
+DB table_User = {
+    username: string,
+    email: string,
+    password: string,
+    events: {
+        id_event: owner:boolean,
+    }
+}
