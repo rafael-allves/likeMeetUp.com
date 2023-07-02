@@ -1,7 +1,8 @@
-import inputListener from "./inputListener.js";
-import register  from "./register.js";
 import setAuthType from "./setAuthType.js";
+import inputListener from "./inputListener.js";
 import toggleShowPass from "./toggleShowPass.js";
+import register  from "./register.js";
+import login from "./login.js";
 
 const controler = {
     type:{
@@ -43,4 +44,8 @@ Array.from(document.querySelectorAll('.showpassbtn')).map((showPassBtn) => {
 
 document.getElementById('formRegister').addEventListener('click', (evt) => {
     register(evt, controler.register);
+});
+
+document.getElementById('formLogin').addEventListener('click', (evt) => {
+    login(evt, controler.login);
 });

@@ -86,7 +86,7 @@
                                 </span>
                                 <div class="input__text">
                                     <label for="loginemail">Email</label>
-                                    <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required>
+                                    <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required maxlength="64">
                                     <span class="material-symbols-outlined">
 
                                     </span>
@@ -100,7 +100,7 @@
                                 </span>
                                 <div class="input__text">
                                     <label for="loginpassword">Senha</label>
-                                    <input type="password" name="loginpassword" id="loginpassword" class="input__camp_input" required>
+                                    <input type="password" name="loginpassword" id="loginpassword" class="input__camp_input" required minlength="8">
                                     <button class="showpassbtn" type="button">
                                         <span class="material-symbols-outlined">
                                             visibility_off
@@ -134,8 +134,8 @@
                                     person
                                 </span>
                                 <div class="input__text">
-                                    <label for="registerusername">Username</label>
-                                    <input type="username" name="registerusername" id="registerusername" class="input__camp_input" required>
+                                    <label for="registerusername">Nome</label>
+                                    <input type="username" name="registerusername" id="registerusername" class="input__camp_input" required minlength="4">
                                     <span class="material-symbols-outlined">
 
                                     </span>
@@ -148,7 +148,7 @@
                                 </span>
                                 <div class="input__text">
                                     <label for="registeremail">Email</label>
-                                    <input type="email" name="registeremail" id="registeremail" class="input__camp_input" required>
+                                    <input type="email" name="registeremail" id="registeremail" class="input__camp_input" required maxlength="64">
                                     <span class="material-symbols-outlined">
 
                                     </span>
@@ -161,7 +161,7 @@
                                 </span>
                                 <div class="input__text">
                                     <label for="registerpassword">Senha</label>
-                                    <input type="password" name="registerpassword" id="registerpassword" class="input__camp_input" required>
+                                    <input type="password" name="registerpassword" id="registerpassword" class="input__camp_input" required minlength="8">
                                     <button class="showpassbtn" type="button">
                                         <span class="material-symbols-outlined">
                                             visibility_off

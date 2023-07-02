@@ -3,8 +3,10 @@ import toggleError from './campvalidations/toggleError.js'
 
 function checkCamp(evt, controler){
     const camp = evt.target;
+    const validityState = camp.validity;
     const id = camp.getAttribute('id');
     const icon = camp.nextElementSibling.classList == "material-symbols-outlined" ? camp.nextElementSibling : undefined;
+
 
     if(icon)icon.classList.remove('checkedCamp');
     if(icon)icon.innerText = '';
@@ -13,6 +15,10 @@ function checkCamp(evt, controler){
     const controlData = id === 'confirmpassword' ? 'confirmpassword' :
      id.split('login')[0] === '' ? id.split('login')[1] :  id.split('register')[1];//Se o id não for confirmpassword ele vai checar qual campo é
 
+    if(validityState.tooShort){
+        toggleError(camp, `Esse campo deve ter no mínimo ${camp.getAttribute('minlength')} caracteres`)
+    }
+
     if(id == "loginemail" || id == "registeremail"){
         const error = emailValidation(camp.value);
         if(error){
@@ -20,7 +26,6 @@ function checkCamp(evt, controler){
             return;
         }
     }
-
 
     if(id == 'confirmpassword'){
         const password = document.getElementById('registerpassword').value;

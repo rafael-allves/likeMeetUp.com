@@ -36,9 +36,12 @@ export default function register (event, controler){
         if(response.sucesso){
             location.href = response.sucesso; //MEU BACKEND VAI ME ENTREGAR UMA URL PARA REDIRECIONAR O USUÁRIO APÓS O REGISTRO CONCLUIDO CORRETAMENTE
         }else{
-            addError(document.getElementById(response.error[0]), response.error[1]);
+            addError(document.getElementById(response.campid), response.message);
             //Dê uma olhada na user controler e veja que eu estou retornando o ID do campo incorreto e a mensagem por meio de um array!
             //Por isso escrevi dessa forma
+            const wrongData = campid.split('register')[1];
+            controler[wrongData];
+            //Isso previne que o usuário envie mais requests incorretas consecutivamente ele vai ter que mudar o campo errado primeiro para revalidá-lo
         }
     })
 }

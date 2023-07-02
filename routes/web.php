@@ -22,4 +22,5 @@ Route::get('/events/{id}', [EventController::class, 'show']);
 Route::post('/events', [EventController::class, 'store']);
 
 Route::get('/auth', [UserController::class, 'create']);
-Route::post('/auth/register', [UserController::class, 'store']);
+Route::post('/auth/register', [UserController::class, 'register']);
+Route::post('/auth/login', [UserController::class, 'login']);
