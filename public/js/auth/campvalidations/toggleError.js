@@ -1,11 +1,11 @@
 export default function addError(camp, messageError){
     const graphicalMessage = camp.parentNode.parentNode.nextElementSibling;
-    const icon =  camp.parentNode.nextElementSibling;
+    const icon = camp.nextElementSibling.classList == "material-symbols-outlined" ? camp.nextElementSibling : undefined;
 
     graphicalMessage.innerText = messageError;
 
-    icon.classList.add('refusedCamp')
-    icon.innerText = "cancel";
+    if(icon)icon.classList.add('refusedCamp')
+    if(icon)icon.innerText = "cancel";
 
     camp.addEventListener('focusin', function(){
         removeError(camp, graphicalMessage, icon);
@@ -15,8 +15,8 @@ export default function addError(camp, messageError){
 function removeError(camp, graphicalMessage, icon){
     graphicalMessage.innerText = "";
 
-    icon.classList.remove('refusedCamp');
-    icon.innerText = "";
+    if(icon)icon.classList.remove('refusedCamp');
+    if(icon)icon.innerText = "";
 
     camp.removeEventListener('focusin', removeError);
 }

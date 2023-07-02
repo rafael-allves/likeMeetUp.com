@@ -43,6 +43,17 @@
     width: 100%;
 }
 
+.input__text > label{
+    position: absolute;
+    left: 1rem;
+
+    font-size: 1.2rem;
+
+    color: var(--text-muted-color);
+
+    transition: 0.5s all ease;
+}
+
 .input__text > input{
     outline: none;
     border: none;
@@ -55,19 +66,41 @@
     background-color: transparent;
     color: var(--text-color);
 
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
-.input__text > label{
+.input__text > input + span{
     position: absolute;
-    left: 1rem;
-    top: 5px;
+    right: 0;
+    top: 0;
 
-    font-size: 1.3rem;
+    height: 100%;
 
-    color: var(--text-muted-color);
+    display: flex;
+    align-items: center;
+}
 
-    transition: 0.5s all ease;
+
+.checkedCamp{
+    color: #0f0;
+}
+
+.refusedCamp{
+    color: #f00;
+}
+
+.showpassbtn{
+    position: absolute;
+    right: 5px;
+    top: 0;
+
+    height: 100%;
+
+    border: none;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
 }
 
 #registerform{

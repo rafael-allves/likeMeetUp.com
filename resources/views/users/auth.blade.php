@@ -85,26 +85,28 @@
                                     mail
                                 </span>
                                 <div class="input__text">
-                                    <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required>
                                     <label for="loginemail">Email</label>
-                                </div>
-                                <span class="material-symbols-outlined">
+                                    <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required>
+                                    <span class="material-symbols-outlined">
 
-                                </span>
+                                    </span>
+                                </div>
                             </div>
                             <p class="errorMessage">
                             </p>
                             <div class="input__camp">
                                 <span class="material-symbols-outlined input__camp_icon">
-                                    visibility
+                                    lock
                                 </span>
                                 <div class="input__text">
-                                    <input type="password" name="loginpassword" id="loginpassword" class="input__camp_input" required>
                                     <label for="loginpassword">Senha</label>
+                                    <input type="password" name="loginpassword" id="loginpassword" class="input__camp_input" required>
+                                    <button class="showpassbtn" type="button">
+                                        <span class="material-symbols-outlined">
+                                            visibility_off
+                                        </span>
+                                    </button>
                                 </div>
-                                <span class="material-symbols-outlined">
-
-                                </span>
                             </div>
                             <p class="errorMessage"></p>
                             <button id="formLogin" class="authButton" type="submit">LOGIN</button>
@@ -132,12 +134,12 @@
                                     person
                                 </span>
                                 <div class="input__text">
-                                    <input type="username" name="registerusername" id="registerusername" class="input__camp_input" required>
                                     <label for="registerusername">Username</label>
-                                </div>
-                                <span class="material-symbols-outlined">
+                                    <input type="username" name="registerusername" id="registerusername" class="input__camp_input" required>
+                                    <span class="material-symbols-outlined">
 
-                                </span>
+                                    </span>
+                                </div>
                             </div>
                             <p class="errorMessage"></p>
                             <div class="input__camp">
@@ -145,40 +147,43 @@
                                     mail
                                 </span>
                                 <div class="input__text">
-                                    <input type="email" name="registeremail" id="registeremail" class="input__camp_input" required>
                                     <label for="registeremail">Email</label>
-                                </div>
-                                <span class="material-symbols-outlined">
+                                    <input type="email" name="registeremail" id="registeremail" class="input__camp_input" required>
+                                    <span class="material-symbols-outlined">
 
-                                </span>
+                                    </span>
+                                </div>
                             </div>
                             <p class="errorMessage"></p>
                             <div class="input__camp">
                                 <span class="material-symbols-outlined input__camp_icon">
-                                    visibility
+                                    lock
                                 </span>
                                 <div class="input__text">
-                                    <input type="password" name="registerpassword" id="registerpassword" class="input__camp_input" required>
                                     <label for="registerpassword">Senha</label>
+                                    <input type="password" name="registerpassword" id="registerpassword" class="input__camp_input" required>
+                                    <button class="showpassbtn" type="button">
+                                        <span class="material-symbols-outlined">
+                                            visibility_off
+                                        </span>
+                                    </button>
                                 </div>
-                                <span class="material-symbols-outlined">
-
-                                </span>
                             </div>
                             <p class="errorMessage"></p>
 
                             <div class="input__camp">
                                 <span class="material-symbols-outlined input__camp_icon">
-                                    visibility
+                                    lock
                                 </span>
                                 <div class="input__text">
-                                    <input type="password" name="confirmpassword" id="confirmpassword" class="input__camp_input" required>
                                     <label for="confirmpassword">Confirmar Senha</label>
+                                    <input type="password" name="confirmpassword" id="confirmpassword" class="input__camp_input" required>
+                                    <button class="showpassbtn" type="button">
+                                        <span class="material-symbols-outlined">
+                                            visibility_off
+                                        </span>
+                                    </button>
                                 </div>
-                                <span class="material-symbols-outlined">
-
-                                </span>
-
                             </div>
                             <p class="errorMessage"></p>
 

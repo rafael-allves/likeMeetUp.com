@@ -1,6 +1,7 @@
 import inputListener from "./inputListener.js";
 import register  from "./register.js";
 import setAuthType from "./setAuthType.js";
+import toggleShowPass from "./toggleShowPass.js";
 
 const controler = {
     type:{
@@ -33,6 +34,11 @@ inputs.forEach((input) => {
     input.addEventListener('input', (evt) => {
         inputListener(evt, controler)
     });
+});
+
+Array.from(document.querySelectorAll('.showpassbtn')).map((showPassBtn) => {
+    showPassBtn.addEventListener('click', toggleShowPass);
+    showPassBtn.addEventListener('touchstart', toggleShowPass);
 })
 
 document.getElementById('formRegister').addEventListener('click', (evt) => {

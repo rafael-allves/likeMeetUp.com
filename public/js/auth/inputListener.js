@@ -4,10 +4,10 @@ import toggleError from './campvalidations/toggleError.js'
 function checkCamp(evt, controler){
     const camp = evt.target;
     const id = camp.getAttribute('id');
-    const icon = camp.parentNode.nextElementSibling;
+    const icon = camp.nextElementSibling.classList == "material-symbols-outlined" ? camp.nextElementSibling : undefined;
 
-    icon.classList.remove('checkedCamp');
-    icon.innerText = '';
+    if(icon)icon.classList.remove('checkedCamp');
+    if(icon)icon.innerText = '';
 
     const typeData = controler.type.login ? controler.login : controler.register;
     const controlData = id === 'confirmpassword' ? 'confirmpassword' :
@@ -36,8 +36,8 @@ function checkCamp(evt, controler){
 
     typeData[controlData] = true;
 
-    icon.classList.add('checkedCamp');
-    icon.innerText = 'check_circle';
+    if(icon)icon.classList.add('checkedCamp');
+    if(icon)icon.innerText = 'check_circle';
 
     camp.removeEventListener('focusout', (evt) =>{
         checkCamp(evt, controler)
@@ -45,11 +45,11 @@ function checkCamp(evt, controler){
 }
 
 export default function inputListener(evt, controler){
-    const transformValue = evt.target.value !== "" ? "0" : "5px";
-    const fontSizeValue = evt.target.value !== "" ? "1rem" : "1.3rem";
+    const transformValue = evt.target.value !== "" ? "-3px" : "0";
+    const fontSizeValue = evt.target.value !== "" ? "0.8rem" : "1.2rem";
 
-    evt.target.nextElementSibling.style.top = transformValue;
-    evt.target.nextElementSibling.style.fontSize = fontSizeValue;
+    evt.target.previousElementSibling.style.top = transformValue;
+    evt.target.previousElementSibling.style.fontSize = fontSizeValue;
 
     evt.target.addEventListener('focusout', (evt) => {
         checkCamp(evt, controler)

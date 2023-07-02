@@ -43,14 +43,6 @@ body{
     align-items: center;
 }
 
-.checkedCamp{
-    color: #0f0;
-}
-
-.refusedCamp{
-    color: #f00;
-}
-
 main{
     display: flex;
     align-items: center;
