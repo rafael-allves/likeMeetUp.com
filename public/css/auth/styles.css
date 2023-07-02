@@ -1,0 +1,69 @@
+@import url('./header.css');
+@import url('./authType.css');
+@import url('./auth.css');
+
+
+:root{
+    --background: rgb(222, 225, 231);
+    --color-white: #FFF;
+    --text-color: rgb(6, 6, 6);
+    --background-gradient: rgb(224, 224, 224);
+    --text-muted-color: rgb(121, 120, 123);
+    --main-font-family: 'Roboto', sans-serif;
+    --interact-color: rgb(2, 102, 255);
+}
+
+body{
+    min-height: 100vh;
+}
+
+#navbar{
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 5px 0;
+}
+
+#navbar img {
+    width: 40px;
+}
+
+#navbar a{
+    font-size: 14px;
+    color: #757575;
+}
+
+#navbar a:hover{
+    color: #f2a340;
+}
+
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+footer{
+    text-align: center;
+    color: #FFF;
+
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+
+    padding: 30px;
+
+    background-color: #353E48;
+}
+
+footer p{
+    margin-bottom: 0;
+}

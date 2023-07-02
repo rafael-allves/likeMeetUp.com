@@ -41,5 +41,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'events' => 'array', //MANDANDO O LARAVEL ENTENDER ISSO COMO UM JSON
     ];
 }

@@ -33,13 +33,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                Entrar
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                Cadastrar
+                            <a href="/auth" class="nav-link">
+                                Entrar/cadastrar
                             </a>
                         </li>
                     </ul>
