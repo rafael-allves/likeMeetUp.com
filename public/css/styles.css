@@ -232,6 +232,11 @@ header{
     margin: 20px 0;
 }
 
+#description-container{
+    margin-top: 30px;
+}
+
+
 footer{
     text-align: center;
     color: #FFF;

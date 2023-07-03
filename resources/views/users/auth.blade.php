@@ -25,19 +25,9 @@
                     Rafa Events
                 </a>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    <li class="nav-item" style="margin-right: 10px;">
                         <a href="/" class="nav-link">
                             Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">
-                            Eventos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/events/create" class="nav-link">
-                            Criar Eventos
                         </a>
                     </li>
                 </ul>

@@ -41,6 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'events' => 'array', //MANDANDO O LARAVEL ENTENDER ISSO COMO UM JSON
     ];
+
+    public function events(){
+        return $this->hasMany('App\Models\Event');
+    }
 }
