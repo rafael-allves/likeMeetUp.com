@@ -32,11 +32,30 @@
                                 Criar Eventos
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/auth" class="nav-link">
-                                Entrar/cadastrar
-                            </a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a href="/auth" class="nav-link">
+                                    Entrar/cadastrar
+                                </a>
+                            </li>
+                        @endguest
+                        @auth
+                            <li class="nav-item">
+                                <a href="/auth" class="nav-link">
+                                    Meus Eventos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <a class="nav-link"
+                                    onclick="this.closest('form').submit();"
+                                    style="cursor: pointer;">
+                                        Sair
+                                    </a>
+                                </form>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
             </nav>
