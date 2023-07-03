@@ -22,7 +22,10 @@ Route::get('/events/create', [EventController::class, 'create'])
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::post('/events', [EventController::class, 'store']);
 
+Route::get('/user', [UserController::class, 'index'])
+->middleware('auth');
 Route::get('/auth', [UserController::class, 'create'])->name('auth');
 Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])
+->middleware('auth');

@@ -12,6 +12,11 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+    public function index(){
+        $user = auth::user();
+
+    }
     public function create(){
         return view('users.auth');
     }

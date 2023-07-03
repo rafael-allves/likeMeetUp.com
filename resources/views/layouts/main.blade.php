@@ -40,21 +40,34 @@
                             </li>
                         @endguest
                         @auth
-                            <li class="nav-item">
-                                <a href="/auth" class="nav-link">
+                        <li class="nav-item">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-expanded="false">
+                                <img src="{{Auth::user()->profile_pic}}" id="user-pic" alt="{{Auth::user()->name}}">
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <h2 class="dropdowntitle">
+                                    <img src="{{Auth::user()->profile_pic}}" id="user-pic" alt="{{Auth::user()->name}}">
+                                    {{Auth::user()->name}}
+                                </h2>
+                                <a class="dropdown-item" href="#">
+                                    <ion-icon name="person-circle-outline"></ion-icon>
+                                    Editar Perfil
+                                </a>
+                                <a href="/user" class="dropdown-item">
+                                    <ion-icon name="people-circle-outline"></ion-icon>
                                     Meus Eventos
                                 </a>
-                            </li>
-                            <li class="nav-item">
                                 <form action="/logout" method="POST">
                                     @csrf
-                                    <a class="nav-link"
+                                    <a class="dropdown-item"
                                     onclick="this.closest('form').submit();"
                                     style="cursor: pointer;">
+                                        <ion-icon name="log-out-outline"></ion-icon>
                                         Sair
                                     </a>
                                 </form>
-                            </li>
+                            </div>
+                        </li>
                         @endauth
                     </ul>
                 </div>
@@ -74,6 +87,7 @@
 
         <footer>RAFA Events &copy; 2023</footer>
 
+        <script src="js/dropdownUserPic.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     </body>
 </html>
