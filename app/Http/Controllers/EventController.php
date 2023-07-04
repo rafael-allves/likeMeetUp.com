@@ -19,7 +19,7 @@ class EventController extends Controller
 
             $events = Event::where([
                 ['title', 'like', '%' . $search . '%'],
-            ])->orWhere('date', 'like', '%' . $search . '%')->get();
+            ])->get();
 
         }else{
             $events = Event::all();

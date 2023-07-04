@@ -46,16 +46,11 @@ class UserController extends Controller
             //SE TODOS OS CAMPOS ESTIVEREM DEVIDAMENTE PREENCHIDOS EU VOU CONECTAR COM A TABELA users ENCRIPTOGRAFAR A SENHA E SALVAR O NOVO USUÁRIO
 
             $hash = Hash::make($data['password']);//Encriptografando a senha por padrão ele faz 1024 iterações
-            $user = new User;
 
-            $user->name = $data['username'];
-            $user->email = $data['email'];
-            $user->password = $hash;
-
-            $user->save();
+            $user = User::create(array_merge($data, ['password' => $hash]));
 
             // FAÇA O LOGIN AUTOMÁTICO APÓS O REGISTRO
-            Auth::login($user);
+            Auth::login($user); //  REFATORAR PARA MANDAR O USUÁRIO LOGAR COM USER CRIADO AQUI!
 
             return response()->json(['sucesso' => '/'], 200);
         }
