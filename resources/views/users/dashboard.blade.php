@@ -41,7 +41,7 @@
                             0
                         </td>
                         <td>
-                            <a class="btn btn-info edit-btn"href="#">
+                            <a class="btn btn-info edit-btn"href="/events/edit/{{$event->id}}">
                                 <ion-icon name="create-outline"></ion-icon>
                                 Editar
                             </a>

@@ -77,6 +77,19 @@ class EventController extends Controller
         return view('events.show', ['event' => $event, 'dono' => $eventOwner]);
     }
 
+    public function edit($id){
+        $event = Event::findOrFail($id);
+
+        return view('events.edit', ['event' => $event]);
+    }
+
+    public function update(Request $request){
+        Event::findOrFail($request->id)->update($request->all());
+
+        return redirect('/dashboard')
+        ->with('msg', 'Evento Editado Com Sucesso!');
+    }
+
     public function destroy($id){
         Event::findOrFail($id)
         ->delete();
