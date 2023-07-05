@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', [EventController::class, 'index']);
+Route::get('/', [EventController::class, 'index'])->name('home');
 Route::get('/events/create', [EventController::class, 'create'])
 ->middleware('auth');
 Route::get('/events/{id}', [EventController::class, 'show']);
@@ -35,7 +35,8 @@ Route::get('/user', [UserController::class, 'index'])
 ->middleware('auth');
 Route::get('/dashboard', [UserController::class, 'dashboard'])
 ->middleware('auth');
-Route::get('/auth', [UserController::class, 'create'])->name('auth');
+Route::get('/auth', [UserController::class, 'create'])->name('auth')
+->middleware('guest');
 Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])
