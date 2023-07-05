@@ -22,7 +22,8 @@
                 <p class="evenrrs-participants">
                     <ion-icon name="people-outline">
                     </ion-icon>
-                    X-participantes
+                    {{count($event->users)}}
+                    Participantes
                 </p>
                 <p class="event-owner">
                     <ion-icon name="star-outline">

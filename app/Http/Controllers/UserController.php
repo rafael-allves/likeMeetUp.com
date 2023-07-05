@@ -19,7 +19,7 @@ class UserController extends Controller
     }
     public function dashboard(){
         $user = Auth::user();
-        $events = $user->events();
+        $events = $user->events;
 
         return view('users.dashboard', ['events' => $events]);
 

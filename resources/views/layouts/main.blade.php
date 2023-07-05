@@ -24,7 +24,7 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="/" class="nav-link">
-                                Eventos
+                                Home
                             </a>
                         </li>
                         <li class="nav-item">
@@ -55,7 +55,7 @@
                                     </a>
                                     <a href="/dashboard" class="dropdown-item">
                                         <ion-icon name="people-circle-outline"></ion-icon>
-                                        Meus Eventos
+                                        Eventos
                                     </a>
                                     <form action="/logout" method="POST">
                                         @csrf

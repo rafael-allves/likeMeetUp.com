@@ -38,7 +38,7 @@
                             </a>
                         </td>
                         <td>
-                            0
+                            {{count($event->users)}}
                         </td>
                         <td>
                             <a class="btn btn-info edit-btn"href="/events/edit/{{$event->id}}">

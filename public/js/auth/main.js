@@ -49,3 +49,9 @@ document.getElementById('formRegister').addEventListener('click', (evt) => {
 document.getElementById('formLogin').addEventListener('click', (evt) => {
     login(evt, controler.login);
 });
+
+window.addEventListener('load', ()=>{
+    inputs.forEach((input) =>{
+        input.value = "";
+    })
+})
