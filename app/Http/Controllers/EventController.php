@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Event;
 use App\Models\User;
@@ -62,7 +63,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->items = $request->items;
 
-        $user = auth()->user(); //Pegando o usuário logado que fez a request pelo browser
+        $user = Auth::user(); //Pegando o usuário logado que fez a request pelo browser
         $event->user_id = $user->id; //mandando armazenar o dono do evento
 
         $event->save();
