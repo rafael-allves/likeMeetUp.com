@@ -49,11 +49,11 @@
                                     <img src="{{Auth::user()->profile_pic}}" id="user-pic" alt="{{Auth::user()->name}}">
                                     {{Auth::user()->name}}
                                 </h2>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/user">
                                     <ion-icon name="person-circle-outline"></ion-icon>
                                     Editar Perfil
                                 </a>
-                                <a href="/user" class="dropdown-item">
+                                <a href="/dashboard" class="dropdown-item">
                                     <ion-icon name="people-circle-outline"></ion-icon>
                                     Meus Eventos
                                 </a>

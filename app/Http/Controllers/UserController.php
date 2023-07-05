@@ -14,9 +14,17 @@ class UserController extends Controller
 {
 
     public function index(){
-        $user = auth::user();
+        $user = Auth::user();
 
     }
+    public function dashboard(){
+        $user = Auth::user();
+        $events = $user->events;
+
+        return view('users.dashboard', ['events' => $events]);
+
+    }
+
     public function create(){
         return view('users.auth');
     }
@@ -27,7 +35,7 @@ class UserController extends Controller
 
         try{
             $validUsername = Validator::make($data, [
-                'username' => 'required',
+                'name' => 'required',
             ]);
 
             if($validUsername->fails())return response()->json(['campid' => 'registerusername', 'message' =>'Campo não preenchido corretamente'], 400);
@@ -50,7 +58,7 @@ class UserController extends Controller
             $user = User::create(array_merge($data, ['password' => $hash]));
 
             // FAÇA O LOGIN AUTOMÁTICO APÓS O REGISTRO
-            Auth::login($user); //  REFATORAR PARA MANDAR O USUÁRIO LOGAR COM USER CRIADO AQUI!
+            Auth::login($user);
 
             return response()->json(['sucesso' => '/'], 200);
         }

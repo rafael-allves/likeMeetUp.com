@@ -18,7 +18,7 @@ export default function register (event, controler){
 
 
     const data = {
-        username: username.value,
+        name: username.value,
         email: email.value,
         password: password.value,
     }

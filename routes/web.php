@@ -21,8 +21,12 @@ Route::get('/events/create', [EventController::class, 'create'])
 ->middleware('auth');
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::post('/events', [EventController::class, 'store']);
+Route::delete('/events/{id}', [EventController::class, 'destroy']);
+
 
 Route::get('/user', [UserController::class, 'index'])
+->middleware('auth');
+Route::get('/dashboard', [UserController::class, 'dashboard'])
 ->middleware('auth');
 Route::get('/auth', [UserController::class, 'create'])->name('auth');
 Route::post('/auth/register', [UserController::class, 'register']);
