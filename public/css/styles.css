@@ -293,6 +293,10 @@ header{
     width: 25%;
 }
 
+.dashboard-events-container form{
+    display: inline-block;
+}
+
 footer{
     text-align: center;
     color: #FFF;
