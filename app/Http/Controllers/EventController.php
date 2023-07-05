@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Event;
 use App\Models\User;
@@ -52,7 +53,7 @@ class EventController extends Controller
 
             $event->image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }else{
-            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem é obrigatório.']);
+            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
         }
         $event->title = $request->title;
         $event->date = $request->date;
@@ -84,15 +85,37 @@ class EventController extends Controller
     }
 
     public function update(Request $request){
-        Event::findOrFail($request->id)->update($request->all());
+        $event = Event::findOrFail($request->id);
+        $data = $request->all();
+
+        Storage::delete($event->image);
+
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now'));
+
+            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
+
+            $data['image'] = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+        }else{
+            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
+        }
+
+        $event->update($data);
 
         return redirect('/dashboard')
         ->with('msg', 'Evento Editado Com Sucesso!');
     }
 
     public function destroy($id){
-        Event::findOrFail($id)
-        ->delete();
+        $event = Event::findOrFail($id);
+
+        Storage::delete($event->image);
+
+        $event->delete();
 
         return redirect('/dashboard')
         ->with('msg', 'Evento Deletado Com Sucesso!');
