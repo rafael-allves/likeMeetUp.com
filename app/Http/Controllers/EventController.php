@@ -88,7 +88,7 @@ class EventController extends Controller
         $event = Event::findOrFail($request->id);
         $data = $request->all();
 
-        Storage::delete($event->image);
+        Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
 
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $requestImage = $request->image;
@@ -113,7 +113,8 @@ class EventController extends Controller
     public function destroy($id){
         $event = Event::findOrFail($id);
 
-        Storage::delete($event->image);
+        Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
+        //Na minha db eu guardo o caminho todo do storage ate o nome da imagem, por isso preciso separar oq n qro com o explode(SEMELHANTE AO SPLIT)
 
         $event->delete();
 
