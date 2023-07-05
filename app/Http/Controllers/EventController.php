@@ -122,4 +122,11 @@ class EventController extends Controller
         return redirect('/dashboard')
         ->with('msg', 'Evento Deletado Com Sucesso!');
     }
+
+    public function joinEvent($id){
+        $user = Auth::user();
+        $user->eventAsParticipant()->attach($id); //Se n entender va na model do user q vai ta la
+
+        return back()->with('msg', 'Sua Presença foi Confirmada!');
+    }
 }

@@ -29,9 +29,12 @@
                     </ion-icon>
                     {{$dono}}
                 </p>
-                <a href="#" class="btn btn-primary" id="event-submit">
-                    Confirmar Presença
-                </a>
+                <form action="join/{{ $event->id }}" method="POST">
+                    @csrf
+                    <button  type="submit" class="btn btn-primary" id="event-submit">
+                        Confirmar Presença
+                    </button>
+                </form>
                 <h3>O Evento Conta Com:</h3>
                 <ul id="items-list">
                     @foreach ($event->items as $item)
