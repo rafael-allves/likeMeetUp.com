@@ -21,6 +21,10 @@ body {
     width: 100px;
 }
 
+#file{
+    display: none;
+}
+
 .profile-tab-nav {
 	min-width: 250px;
 }

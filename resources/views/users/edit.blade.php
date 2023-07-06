@@ -76,7 +76,9 @@
 					<div class="p-4">
 						<div class="img-circle text-center mb-3" id="pic-tab">
 							<img src="{{asset($user->profile_pic)}}" alt="Image" class="shadow" id="user-pic-tab">
-						</div>
+                            <input type="file" name="profile-pic" id="file">
+                            <label for="file">Escolha uma imagem</label>
+                        </div>
 						<h4 class="text-center">{{$user->name}}</h4>
 					</div>
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
