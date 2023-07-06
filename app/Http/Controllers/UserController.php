@@ -94,4 +94,8 @@ class UserController extends Controller
         return redirect('/auth');
     }
 
+    public function edit(){
+        $user = Auth::user();
+        return view('users.edit', ['user' => $user]);
+    }
 }

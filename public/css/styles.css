@@ -259,6 +259,14 @@ header{
     font-weight: bold;
 }
 
+.event-owner{
+    display: flex;
+    align-items: center;
+}
+.event-owner img{
+    margin-right: 5px;
+}
+
 #info-container h2{
     display: flex;
     align-items: center;

@@ -43,3 +43,5 @@ Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])
 ->middleware('auth');
+Route::get('/user/edit/', [UserController::class, 'edit'])
+->middleware('auth');

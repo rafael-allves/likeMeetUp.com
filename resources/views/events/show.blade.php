@@ -28,7 +28,7 @@
                 <p class="event-owner">
                     <ion-icon name="star-outline">
                     </ion-icon>
-                    <img src="{{$dono->profile_pic}}" alt="{{$dono->name}}">
+                    <img src="{{$dono->profile_pic}}" alt="{{$dono->name}}" width="30px">
                     {{$dono->name}}
                 </p>
                 @if (!$event->users()->where('user_id', Auth::user()->id)->exists())
