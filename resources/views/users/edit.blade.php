@@ -6,7 +6,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/user/edit/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/user/edit/style.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -69,14 +69,13 @@
             </div>
         </nav>
     </header>
-	<main class="py-5 my-5">
+	<main id="main-container">
 		<div class="container">
-			<h1 class="mb-5">Configurações da Conta</h1>
 			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
 				<div class="profile-tab-nav border-right">
 					<div class="p-4">
-						<div class="img-circle text-center mb-3">
-							<img src="{{asset($user->profile_pic)}}" alt="Image" class="shadow">
+						<div class="img-circle text-center mb-3" id="pic-tab">
+							<img src="{{asset($user->profile_pic)}}" alt="Image" class="shadow" id="user-pic-tab">
 						</div>
 						<h4 class="text-center">{{$user->name}}</h4>
 					</div>

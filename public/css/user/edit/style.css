@@ -4,8 +4,21 @@ body {
 	font-family: "Roboto", sans-serif;
 }
 
-.shadow {
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+#main-container{
+    margin-top: 50px;
+}
+
+
+#pic-tab{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#user-pic-tab{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+
+    width: 100px;
 }
 
 .profile-tab-nav {
