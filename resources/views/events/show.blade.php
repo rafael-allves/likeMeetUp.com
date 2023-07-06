@@ -28,7 +28,8 @@
                 <p class="event-owner">
                     <ion-icon name="star-outline">
                     </ion-icon>
-                    {{$dono}}
+                    <img src="{{$dono->profile_pic}}" alt="{{$dono->name}}">
+                    {{$dono->name}}
                 </p>
                 @if (!$event->users()->where('user_id', Auth::user()->id)->exists())
                     <form action="join/{{ $event->id }}" method="POST">
