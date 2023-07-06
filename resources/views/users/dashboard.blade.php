@@ -2,9 +2,30 @@
 
 @section('title', 'DashBoard')
 
+@section('specialStyle', 'css/auth/authType.css')
+
 @section('content')
 
-<div class="col-md-10 offset-md-1 dashboard-title-container">
+<section class="main__container__form__section">
+    <div class="main__container__form__section_authtype">
+        <button
+        type="button"
+        id="login">
+            Meus Eventos
+        </button>
+    </div>
+    <span class="authSelected">Meus Eventos</span>
+    <div class="main__container__form__section_authtype">
+        <button
+        type="button"
+        id="register"
+        >
+            Eventos que participo
+        </button>
+    </div>
+</section>
+
+<div id="meusEventos"class="col-md-10 offset-md-1 dashboard-title-container">
     <h1>
         Meus Eventos
     </h1>
@@ -67,5 +88,6 @@
         </p>
     @endif
 </div>
+<script src="/js/dashboard/main.js"></script>
 
 @endsection
