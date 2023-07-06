@@ -5,7 +5,6 @@
 	<title>{{$user->name}}</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/user/edit/style.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -75,20 +74,21 @@
 				<div class="profile-tab-nav border-right">
 					<div class="p-4">
 						<div class="img-circle text-center mb-3" id="pic-tab">
-							<img src="{{asset($user->profile_pic)}}" alt="Image" class="shadow" id="user-pic-tab">
+                            <img src="{{asset($user->profile_pic)}}" alt="Image" class="shadow" id="user-pic-tab">
                             <input type="file" name="profile-pic" id="file">
-                            <label for="file">Escolha uma imagem</label>
+                            <label for="file" id="btnUpFile">
+                                <ion-icon name="camera-reverse-outline"></ion-icon>
+                            </label>
                         </div>
 						<h4 class="text-center">{{$user->name}}</h4>
 					</div>
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
-							<i class="fa fa-home text-center mr-1"></i>
-							Conta
+                            <ion-icon name="home"></ion-icon>							Conta
 						</a>
 						<a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
-							<i class="fa fa-key text-center mr-1"></i>
-							Senha
+                            <ion-icon name="key"></ion-icon>
+                            Senha
 						</a>
 					</div>
 				</div>
@@ -153,7 +153,9 @@
 	</main>
 
     <footer>RAFA Events &copy; 2023</footer>
+    <script src="/js/user/edit/main.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
