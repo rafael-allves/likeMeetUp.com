@@ -1,13 +1,3 @@
-:root{
-    --background: rgb(222, 225, 231);
-    --color-white: #FFF;
-    --text-color: rgb(6, 6, 6);
-    --background-gradient: rgb(224, 224, 224);
-    --text-muted-color: rgb(121, 120, 123);
-    --main-font-family: 'Roboto', sans-serif;
-    --interact-color: rgb(2, 102, 255);
-}
-
 .auth{
     display: flex;
     flex-direction: column;

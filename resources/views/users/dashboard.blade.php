@@ -10,7 +10,7 @@
     <div class="main__container__form__section_authtype">
         <button
         type="button"
-        id="login">
+        id="meusEventosBtn">
             Meus Eventos
         </button>
     </div>
@@ -18,76 +18,132 @@
     <div class="main__container__form__section_authtype">
         <button
         type="button"
-        id="register"
+        id="eventosParticipoBtn"
         >
             Eventos que participo
         </button>
     </div>
 </section>
 
-<div id="meusEventos"class="col-md-10 offset-md-1 dashboard-title-container">
+<section id="meusEventos"class="col-md-10 offset-md-1 dashboard-title-container">
     <h1>
         Meus Eventos
     </h1>
-</div>
-<div class="col-md-10 offset-md-1 dashboard-events-container">
-    @if(count($events) > 0)
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        #
-                    </th>
-                    <th scope="col">
-                        Nome
-                    </th>
-                    <th scope="col">
-                        Participantes
-                    </th>
-                    <th scope="col">
-                        Ações
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($events as $event)
+
+    <div class="col-md-10 dashboard-events-container">
+        @if(count($myevents) > 0)
+            <table class="table">
+                <thead>
                     <tr>
-                        <td scropt="row">{{ $loop->index + 1 }}</td>
-                        <td>
-                            <a href="events/{{$event->id}}">
-                                {{$event->title}}
-                            </a>
-                        </td>
-                        <td>
-                            {{count($event->users)}}
-                        </td>
-                        <td>
-                            <a class="btn btn-info edit-btn"href="/events/edit/{{$event->id}}">
-                                <ion-icon name="create-outline"></ion-icon>
-                                Editar
-                            </a>
-                            <form action="/events/delete/{{ $event->id }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger delete-btn">
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                    Deletar
-                                </button>
-                            </form>
-                        </td>
+                        <th scope="col">
+                            #
+                        </th>
+                        <th scope="col">
+                            Nome
+                        </th>
+                        <th scope="col">
+                            Participantes
+                        </th>
+                        <th scope="col">
+                            Ações
+                        </th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @else
-        <p>
-            Nenhum Evento Encontrado.
-            <a href="/events/create">
-                Criar Evento!
-            </a>
-        </p>
-    @endif
-</div>
+                </thead>
+                <tbody>
+                    @foreach($myevents as $event)
+                        <tr>
+                            <td scropt="row">{{ $loop->index + 1 }}</td>
+                            <td>
+                                <a href="events/{{$event->id}}">
+                                    {{$event->title}}
+                                </a>
+                            </td>
+                            <td>
+                                {{count($event->users)}}
+                            </td>
+                            <td>
+                                <a class="btn btn-info edit-btn"href="/events/edit/{{$event->id}}">
+                                    <ion-icon name="create-outline"></ion-icon>
+                                    Editar
+                                </a>
+                                <form action="/events/delete/{{ $event->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger delete-btn">
+                                        <ion-icon name="trash-outline"></ion-icon>
+                                        Deletar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <p>
+                Nenhum Evento Encontrado.
+                <a href="/events/create">
+                    Criar Evento!
+                </a>
+            </p>
+        @endif
+    </div>
+</section>
+<section id="eventosParticipo"class="col-md-10 offset-md-1 dashboard-title-container" style="display:none;">
+    <h1>
+        Eventos Que Participo
+    </h1>
+
+    <div class="col-md-10 dashboard-events-container">
+        @if(count($eventsparticipant) > 0)
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            #
+                        </th>
+                        <th scope="col">
+                            Nome
+                        </th>
+                        <th scope="col">
+                            Participantes
+                        </th>
+                        <th scope="col">
+                            Ações
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($eventsparticipant as $event)
+                        <tr>
+                            <td scropt="row">{{ $loop->index + 1 }}</td>
+                            <td>
+                                <a href="events/{{$event->id}}">
+                                    {{$event->title}}
+                                </a>
+                            </td>
+                            <td>
+                                {{count($event->users)}}
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger delete-btn">
+                                    Sair do Evento!
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <p>
+                Nenhum Evento Encontrado.
+                <a href="/">
+                    Procurar Eventos!
+                </a>
+            </p>
+        @endif
+    </div>
+</section>
 <script src="/js/dashboard/main.js"></script>
 
 @endsection

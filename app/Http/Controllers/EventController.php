@@ -82,6 +82,10 @@ class EventController extends Controller
     public function edit($id){
         $event = Event::findOrFail($id);
 
+        $user = Auth::user();
+
+        if($user->id != $event->user_id)return redirect('/dashboard');
+
         return view('events.edit', ['event' => $event]);
     }
 
@@ -89,9 +93,10 @@ class EventController extends Controller
         $event = Event::findOrFail($request->id);
         $data = $request->all();
 
-        Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
 
         if($request->hasFile('image') && $request->file('image')->isValid()){
+            Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
+
             $requestImage = $request->image;
 
             $extension = $requestImage->extension();
@@ -101,9 +106,11 @@ class EventController extends Controller
             $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
             $data['image'] = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
-        }else{
+        }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
             return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
         }
+
+        $data['items'] = json_encode($request->input('items', [])); // Converte o array em uma string JSON
 
         $event->update($data);
 

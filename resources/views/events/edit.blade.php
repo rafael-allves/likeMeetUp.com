@@ -57,23 +57,44 @@
             <label>
                 Adicione caracteristicas:
             </label>
-            <div class="form-group">
-                <input type="checkbox" name="items[]" id="items" value="Cadeiras" {{ (in_array("Cadeiras", $event->items)) ? "checked='checked' "  :  ''  }}>Cadeiras
-            </div>
-            <div class="form-group">
-                <input type="checkbox" name="items[]" id="items" value="Palco" {{ (in_array("Palco", $event->items)) ? "checked='checked' "  :  ''  }}>Palco
-            </div>
-            <div class="form-group">
-                <input type="checkbox" name="items[]" id="items" value="Open Bar" {{ (in_array("Open Bar", $event->items)) ? "checked='checked' "  :  ''  }}>Open Bar
-            </div>
-            <div class="form-group">
-                <input type="checkbox" name="items[]" id="items" value="Open Food" {{ (in_array("Palco", $event->items)) ? "checked='checked' "  :  ''  }}>Open Food
-            </div>
-            <div class="form-group">
-                <input type="checkbox" name="items[]" id="items" value="Brindes" {{ (in_array("Palco", $event->items)) ? "checked='checked' "  :  ''  }}>Brindes
-            </div>
+            @if($event->items || count($event->items) > 0)
+                @php
+                    $items = json_decode($event->items, true);
+                @endphp
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Cadeiras" {{ (in_array("Cadeiras", $items)) ? "checked='checked' "  :  ''  }}>Cadeiras
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Palco" {{ (in_array("Palco", $items)) ? "checked='checked' "  :  ''  }}>Palco
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Open Bar" {{ (in_array("Open Bar", $items)) ? "checked='checked' "  :  ''  }}>Open Bar
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Open Food" {{ (in_array("Open Food", $items)) ? "checked='checked' "  :  ''  }}>Open Food
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Brindes" {{ (in_array("Brindes", $items)) ? "checked='checked' "  :  ''  }}>Brindes
+                </div>
+            @else
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Cadeiras" >Cadeiras
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Palco" >Palco
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Open Bar" >Open Bar
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Open Food" >Open Food
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" id="items" value="Brindes" >Brindes
+                </div>
+            @endif
         </section>
-        <button type="submit" class="btn btn-primary">Criar Evento</button>
+        <button type="submit" class="btn btn-primary">Editar Evento</button>
     </form>
 </div>
 
