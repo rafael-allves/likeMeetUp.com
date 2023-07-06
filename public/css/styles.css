@@ -276,8 +276,16 @@ header{
     margin-right: 5px;
 }
 
-#info-container #event-submit{
+#info-container button{
     margin: 20px 0;
+
+    display: flex;
+    align-items: center;
+}
+
+#info-container button ion-icon,
+#info-container a ion-icon{
+    color: #FFF;
 }
 
 #description-container{

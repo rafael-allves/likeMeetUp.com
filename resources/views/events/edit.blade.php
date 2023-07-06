@@ -57,7 +57,7 @@
             <label>
                 Adicione caracteristicas:
             </label>
-            @if($event->items || count($event->items) > 0)
+            @if($event->items && count(json_decode($event->items)) > 0)
                 @php
                     $items = json_decode($event->items, true);
                 @endphp
