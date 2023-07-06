@@ -1,6 +1,6 @@
 const profilePic = document.getElementById('user-pic-tab');
 const btnUploadFile = document.getElementById('btnUpFile');
-const file = document.getElementById('file');
+const fileInput = document.getElementById('file');
 
 
 profilePic.addEventListener('mouseenter', () =>{
@@ -18,7 +18,7 @@ profilePic.addEventListener('touchstart', ()=>{
     profilePic.style.filter = 'blur(3px)';
 })
 
-file.addEventListener('change', () =>{
+fileInput.addEventListener('change', ()=>{
     btnUploadFile.style.display = "none";
-    profilePic.style.filter = 'blur(0)'
+    profilePic.style.filter = 'blur(0)';
 })
