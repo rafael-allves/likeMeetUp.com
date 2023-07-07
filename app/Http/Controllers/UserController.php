@@ -105,7 +105,7 @@ class UserController extends Controller
         $data = $request->all();
 
         if($request->hasFile('profile_pic') && $request->file('profile_pic')->isValid()){
-            if($user->profile_pic)Storage::delete('public/users/' . explode('storage/users/', $user->profile_pic)[1]);
+            if($user->profile_pic != null)Storage::delete('public/users/' . explode('storage/users/', $user->profile_pic)[1]);
 
             $requestImage = $request->image;
 
