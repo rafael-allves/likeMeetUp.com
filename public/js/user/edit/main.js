@@ -3,8 +3,6 @@ const profilePic = document.getElementById('user-pic-tab');
 const btnUploadFile = document.getElementById('btnUpFile');
 const fileInput = document.getElementById('file');
 
-console.log(user)
-
 profilePic.addEventListener('mouseenter', () =>{
     btnUploadFile.style.display = "flex";
     profilePic.style.filter = 'blur(3px)';
@@ -22,12 +20,12 @@ profilePic.addEventListener('touchstart', ()=>{
 fileInput.addEventListener('change', ()=>{
     const newProfilePic = fileInput.files[0];
     if(newProfilePic){
-        const preCharge = new FileReader();
+        const preview = new FileReader();
 
-        preCharge.addEventListener('load', function (){
-            profilePic.setAttribute('src', preCharge.result);
+        preview.addEventListener('load', function (){
+            profilePic.setAttribute('src', preview.result);
         })
-        preCharge.readAsDataURL(newProfilePic);
+        preview.readAsDataURL(newProfilePic);
     }
     btnUploadFile.style.display = "none";
     profilePic.style.filter = 'blur(0)';

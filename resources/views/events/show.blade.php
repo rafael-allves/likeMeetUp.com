@@ -28,7 +28,13 @@
                 <p class="event-owner">
                     <ion-icon name="star-outline">
                     </ion-icon>
-                    <img src="{{$dono->profile_pic}}" alt="{{$dono->name}}" width="30px">
+                    <img
+                        @if($dono->profile_pic)
+                            src="{{$dono->profile_pic}}"
+                        @else
+                            src="{{asset('/assets/customer.png')}}"
+                        @endif
+                        alt="{{$dono->name}}" width="30px">
                     {{$dono->name}}
                 </p>
                 @if (!$event->users()->where('user_id', Auth::user()->id)->exists())
@@ -66,8 +72,8 @@
 
                 <h3>O Evento Conta Com:</h3>
                 <ul id="items-list">
-                    @if($event->items && count(json_decode($event->items)) > 0)
-                        @foreach (json_decode($event->items) as $item)
+                    @if($event->items && count($event->items) > 0)
+                        @foreach ($event->items as $item)
                             <li>
                                 <ion-icon name="play-outline">
                                 </ion-icon>

@@ -19,19 +19,18 @@ use App\Http\Controllers\UserController;
 Route::get('/', [EventController::class, 'index'])->name('home');
 Route::get('/events/create', [EventController::class, 'create'])
 ->middleware('auth');
-Route::get('/events/{id}', [EventController::class, 'show']);
+Route::get('/events/{evento}', [EventController::class, 'show']);
 Route::post('/events', [EventController::class, 'store']);
-Route::get('/events/edit/{id}', [EventController::class, 'edit'])
+Route::get('/events/edit/{evento}', [EventController::class, 'edit'])
 ->middleware('auth');
-Route::put('/events/update/{id}', [EventController::class, 'update'])
+Route::put('/events/update/{evento}', [EventController::class, 'update'])
 ->middleware('auth');
-Route::delete('/events/delete/{id}', [EventController::class, 'destroy'])
+Route::delete('/events/delete/{evento}', [EventController::class, 'destroy'])
 ->middleware('auth');
-Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])
+Route::post('/events/join/{evento}', [EventController::class, 'joinEvent'])
 ->middleware('auth');
-Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])
+Route::delete('/events/leave/{evento}', [EventController::class, 'leaveEvent'])
 ->middleware('auth');
-
 
 Route::get('/user', [UserController::class, 'index'])
 ->middleware('auth');
@@ -45,5 +44,5 @@ Route::post('/logout', [UserController::class, 'logout'])
 ->middleware('auth');
 Route::get('/user/edit/', [UserController::class, 'edit'])
 ->middleware('auth');
-Route::post('/user/update/{id}', [UserController::class, 'update'])
+Route::put('/user/update/{user}', [UserController::class, 'update'])
 ->middleware('auth');

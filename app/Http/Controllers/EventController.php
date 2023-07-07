@@ -89,10 +89,8 @@ class EventController extends Controller
         return view('events.edit', ['event' => $event]);
     }
 
-    public function update(Request $request){
-        $event = Event::findOrFail($request->id);
+    public function update(Request $request, Event $event){
         $data = $request->all();
-
 
         if($request->hasFile('image') && $request->file('image')->isValid()){
             Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);

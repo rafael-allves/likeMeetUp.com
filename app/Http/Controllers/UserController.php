@@ -100,28 +100,26 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
-    public function update(Request $request){
-        $user = User::findOrFail($request->id);
+    public function update(Request $request, User $user){
         $data = $request->all();
 
         if($request->hasFile('profile_pic') && $request->file('profile_pic')->isValid()){
-            if($user->profile_pic != null)Storage::delete('public/users/' . explode('storage/users/', $user->profile_pic)[1]);
+            if($user->profile_pic)Storage::delete('public/users/' . explode('storage/users/', $user->profile_pic)[1]);
 
-            $requestImage = $request->image;
+            $requestImage = $request->profile_pic;
 
             $extension = $requestImage->extension();
 
             $imageName = md5($requestImage->getClientOriginalName() . strtotime('now'));
 
-            $request->image->move(storage_path('/app/public/users'), $imageName . '.' . $extension);
+            $request->profile_pic->move(storage_path('/app/public/users'), $imageName . '.' . $extension);
 
             $data['profile_pic'] = "storage/users/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
-        }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
-            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
+        }elseif($request->hasFile('profile_pic') && !$request->file('profile_pic')->isValid()){
+            return redirect('/user/edit')->with('msg', 'DEU ERRADO SEU FILHO DA PUTA');
         }
 
         $user->update($data);
-        return redirect('/user/edit')
-        ->with('msg', 'Perfil Editado Com Sucesso!');
+        return response()->json(['redirect' => '/user/edit'], 200);
     }
 }
