@@ -120,7 +120,7 @@ class UserController extends Controller
             return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
         }
         $user->update($data);
-        return redirect('/dashboard')
+        return redirect('/user/edit')
         ->with('msg', 'Perfil Editado Com Sucesso!');
     }
 }
