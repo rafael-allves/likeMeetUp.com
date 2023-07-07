@@ -104,8 +104,8 @@ class UserController extends Controller
         $user = User::findOrFail($request->id);
         $data = $request->all();
 
-        if($request->hasFile('image') && $request->file('image')->isValid()){
-            Storage::delete('public/users/' . explode('storage/users/', $user->image)[1]);
+        if($request->hasFile('profile_pic') && $request->file('profile_pic')->isValid()){
+            if($user->profile_pic)Storage::delete('public/users/' . explode('storage/users/', $user->profile_pic)[1]);
 
             $requestImage = $request->image;
 
@@ -115,10 +115,11 @@ class UserController extends Controller
 
             $request->image->move(storage_path('/app/public/users'), $imageName . '.' . $extension);
 
-            $data['image'] = "storage/users/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+            $data['profile_pic'] = "storage/users/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
             return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
         }
+
         $user->update($data);
         return redirect('/user/edit')
         ->with('msg', 'Perfil Editado Com Sucesso!');

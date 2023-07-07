@@ -47,7 +47,15 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <h2 class="dropdowntitle">
-                                        <img src="{{Auth::user()->profile_pic}}" id="user-pic" alt="{{Auth::user()->name}}">
+                                        '/assets/customer.png'
+                                        src="{{Auth::user()->profile_pic}}"
+                                        <img
+                                        @if(Auth::user()->profile_pic)
+                                            src="{{asset(Auth::user()->profile_pic)}}"
+                                        @else
+                                            src="{{asset('/assets/customer.png')}}"
+                                        @endif
+                                        id="user-pic" alt="{{Auth::user()->name}}">
                                         {{Auth::user()->name}}
                                     </h2>
                                     <a class="dropdown-item" href="/user/edit">

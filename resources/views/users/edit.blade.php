@@ -87,7 +87,8 @@
 					</div>
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
-                            <ion-icon name="home"></ion-icon>							Conta
+                            <ion-icon name="home"></ion-icon>
+                            Conta
 						</a>
 						<a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
                             <ion-icon name="key"></ion-icon>
@@ -118,9 +119,7 @@
 								</div>
 							</div>
 						</div>
-						<div>
-							<button class="btn btn-primary" id="perfilSettings">Atualizar</button>
-						</div>
+						<button class="btn btn-primary" id="perfilSettings" type="submit">Atualizar</button>
 					</div>
 					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
 						<h3 class="mb-4">Redefinir Senha</h3>
