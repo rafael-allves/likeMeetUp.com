@@ -40,11 +40,23 @@
                     @auth
                         <li class="nav-item">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-expanded="false">
-                                <img src="{{Auth::user()->profile_pic}}" id="user-pic" alt="{{Auth::user()->name}}">
+                                <img
+                                        @if(Auth::user()->profile_pic)
+                                            src="{{asset(Auth::user()->profile_pic)}}"
+                                        @else
+                                            src="{{asset('/assets/customer.png')}}"
+                                        @endif
+                                        id="user-pic" alt="{{Auth::user()->name}}">
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <h2 class="dropdowntitle">
-                                    <img src="{{Auth::user()->profile_pic}}" id="user-pic" alt="{{Auth::user()->name}}">
+                                    <img
+                                        @if(Auth::user()->profile_pic)
+                                            src="{{asset(Auth::user()->profile_pic)}}"
+                                        @else
+                                            src="{{asset('/assets/customer.png')}}"
+                                        @endif
+                                        id="user-pic" alt="{{Auth::user()->name}}">
                                     {{Auth::user()->name}}
                                 </h2>
                                 <a class="dropdown-item" href="/user/edit">
