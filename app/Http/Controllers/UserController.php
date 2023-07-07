@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\facades\Validator;
 use Illuminate\Support\Facades\Hash; //Preciso disso pra encriptografar senhas na db
 use Illuminate\Support\Facades\Auth; //Preciso disso pra gerenciar sessões no laravel
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\User;
 
@@ -100,7 +101,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-        $user = User::findOrFail($request->id)
+        $user = User::findOrFail($request->id);
         $data = $request->all();
 
         if($request->hasFile('image') && $request->file('image')->isValid()){
