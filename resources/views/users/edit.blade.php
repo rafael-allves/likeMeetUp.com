@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>{{$user->name}}</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/user/edit/style.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -154,6 +154,7 @@
 
     <footer>RAFA Events &copy; 2023</footer>
     <script src="/js/user/edit/main.js"></script>
+    <script src="/js/dropdownUserPic.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
