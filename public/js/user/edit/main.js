@@ -19,6 +19,15 @@ profilePic.addEventListener('touchstart', ()=>{
 })
 
 fileInput.addEventListener('change', ()=>{
+    const newProfilePic = fileInput.files[0];
+    if(newProfilePic){
+        const preCharge = new FileReader();
+
+        preCharge.addEventListener('load', function (){
+            profilePic.setAttribute('src', preCharge.result);
+        })
+        preCharge.readAsDataURL(newProfilePic);
+    }
     btnUploadFile.style.display = "none";
     profilePic.style.filter = 'blur(0)';
 })
