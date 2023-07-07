@@ -102,19 +102,19 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Nome</label>
-								  	<input type="text" class="form-control" value="{{$user->name}}">
+								  	<input type="text" class="form-control" id="username" value="{{$user->name}}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Email</label>
-								  	<input type="text" class="form-control" value="{{$user->email}}">
+								  	<input type="text" class="form-control" id="useremail" value="{{$user->email}}">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
 								  	<label>Bio</label>
-									<textarea class="form-control" rows="4" placeholder="Conte um pouco sobre você">{{$user->bio}}</textarea>
+									<textarea class="form-control" rows="4" placeholder="Conte um pouco sobre você" id="userbio">{{$user->bio}}</textarea>
 								</div>
 							</div>
 						</div>
@@ -156,8 +156,12 @@
 	</main>
 
     <footer>RAFA Events &copy; 2023</footer>
-    <script src="/js/user/edit/main.js"></script>
+    <script>
+        const user = @json($user->id);
+    </script>
+    <script src="/js/user/edit/main.js" type="module"></script>
     <script src="/js/dropdownUserPic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

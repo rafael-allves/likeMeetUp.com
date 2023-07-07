@@ -202,5 +202,6 @@
     <footer>RAFA Events &copy; 2023</footer>
     <script src="/js/auth/main.js" type="module"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>

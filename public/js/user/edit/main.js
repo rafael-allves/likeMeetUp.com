@@ -3,6 +3,7 @@ const profilePic = document.getElementById('user-pic-tab');
 const btnUploadFile = document.getElementById('btnUpFile');
 const fileInput = document.getElementById('file');
 
+console.log(user)
 
 profilePic.addEventListener('mouseenter', () =>{
     btnUploadFile.style.display = "flex";

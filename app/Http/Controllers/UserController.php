@@ -98,4 +98,28 @@ class UserController extends Controller
         $user = Auth::user();
         return view('users.edit', ['user' => $user]);
     }
+
+    public function update(Request $request){
+        $user = User::findOrFail($request->id)
+        $data = $request->all();
+
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            Storage::delete('public/users/' . explode('storage/users/', $user->image)[1]);
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now'));
+
+            $request->image->move(storage_path('/app/public/users'), $imageName . '.' . $extension);
+
+            $data['image'] = "storage/users/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+        }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
+            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
+        }
+        $user->update($data);
+        return redirect('/dashboard')
+        ->with('msg', 'Perfil Editado Com Sucesso!');
+    }
 }

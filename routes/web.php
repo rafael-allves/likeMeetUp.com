@@ -45,3 +45,5 @@ Route::post('/logout', [UserController::class, 'logout'])
 ->middleware('auth');
 Route::get('/user/edit/', [UserController::class, 'edit'])
 ->middleware('auth');
+Route::put('/events/update/{id}', [UserController::class, 'update'])
+->middleware('auth');
