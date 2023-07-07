@@ -1,3 +1,4 @@
+import perfilSettings from './perfilSettings.js'
 const profilePic = document.getElementById('user-pic-tab');
 const btnUploadFile = document.getElementById('btnUpFile');
 const fileInput = document.getElementById('file');
@@ -15,7 +16,6 @@ btnUploadFile.addEventListener('mouseleave', () =>{
 
 profilePic.addEventListener('touchstart', ()=>{
     btnUploadFile.style.display = "flex";
-    profilePic.style.filter = 'blur(3px)';
 })
 
 fileInput.addEventListener('change', ()=>{
@@ -31,3 +31,6 @@ fileInput.addEventListener('change', ()=>{
     btnUploadFile.style.display = "none";
     profilePic.style.filter = 'blur(0)';
 })
+
+document.getElementById('perfilSettings').addEventListener('click', perfilSettings);
+

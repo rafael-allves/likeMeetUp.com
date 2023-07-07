@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 	<meta charset="UTF-8">
-	<title>{{$user->name}}</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{$user->name}}</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/user/edit/style.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -116,7 +119,7 @@
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-primary">Atualizar</button>
+							<button class="btn btn-primary" id="perfilSettings">Atualizar</button>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
