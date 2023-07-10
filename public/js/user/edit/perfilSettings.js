@@ -7,6 +7,7 @@ export default function perfilSettings(evt){
 
 
     const formData = new FormData();
+    formData.append('_method', "PUT")//Isso é necessário para poder receber o put la no backend ou isso ou mudar o tipo para x-www-form-control, mas n posso mudar para x-www-form-control pois preciso enviar imagens
     formData.append('profile_pic', profilePic);
     formData.append('name', userName);
     formData.append('email', userEmail);
@@ -14,7 +15,7 @@ export default function perfilSettings(evt){
 
     console.log(formData)
 
-    axios.put(`/user/update/${user}`,formData,
+    axios.post(`/user/update/${user}`,formData,
     {
         headers: {
             'Content-Type': 'multipart/form-data',
