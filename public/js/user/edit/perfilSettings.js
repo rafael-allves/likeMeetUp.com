@@ -22,7 +22,7 @@ export default function perfilSettings(evt){
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content'),
         }
     })
-    .then(data =>  data)
+    .then(data =>  location.href = data.data.redirect)
     .catch(err => console.log(err));
 }
 
