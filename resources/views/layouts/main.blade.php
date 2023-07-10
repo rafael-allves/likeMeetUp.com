@@ -53,7 +53,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <h2 class="dropdowntitle">
-                                        <img
+                                        <img style="border-radius:100%"
                                         @if(Auth::user()->profile_pic)
                                             src="{{asset(Auth::user()->profile_pic)}}"
                                         @else
