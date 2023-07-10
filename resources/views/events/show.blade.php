@@ -30,7 +30,7 @@
                     </ion-icon>
                     <img
                         @if($dono->profile_pic)
-                            src="{{$dono->profile_pic}}"
+                            src="{{asset($dono->profile_pic)}}"
                         @else
                             src="{{asset('/assets/customer.png')}}"
                         @endif

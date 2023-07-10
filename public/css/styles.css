@@ -67,10 +67,17 @@ header{
     background-color: transparent;
     border: none;
 
+    border-radius: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+#dropdownMenuButton > img{
+    border-radius: 100%;
+}
+
 #dropdownMenuButton::after{
     display: none;
 }
@@ -262,9 +269,11 @@ header{
 .event-owner{
     display: flex;
     align-items: center;
+    border-radius: 100%;
 }
 .event-owner img{
     margin-right: 5px;
+    border-radius: 100%;
 }
 
 #info-container h2{
