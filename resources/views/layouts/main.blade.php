@@ -62,7 +62,7 @@
                                         id="user-pic" alt="{{Auth::user()->name}}">
                                         {{Auth::user()->name}}
                                     </h2>
-                                    <a class="dropdown-item" href="/user/edit">
+                                    <a class="dropdown-item" href="/users/{{ Auth::user()->id }}/edit">
                                         <ion-icon name="person-circle-outline"></ion-icon>
                                         Editar Perfil
                                     </a>

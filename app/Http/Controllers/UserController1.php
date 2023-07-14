@@ -18,12 +18,4 @@ class UserController extends Controller
         $user = Auth::user();
     }
     
-    public function dashboard(){
-        $user = Auth::user();
-        $myEvents = $user->events;
-
-        $eventsParticipant = $user->eventAsParticipant;
-
-        return view('users.dashboard', ['myevents' => $myEvents, 'eventsparticipant' => $eventsParticipant]);
-    }
 }

@@ -15,7 +15,7 @@ export default function perfilSettings(evt){
 
     console.log(formData)
 
-    axios.post(`/user/update/${user}`,formData,
+    axios.post(`/users/${user}`,formData,
     {
         headers: {
             'Content-Type': 'multipart/form-data',

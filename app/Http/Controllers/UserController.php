@@ -93,6 +93,15 @@ class UserController extends Controller
         return redirect('/users/create');
     }
 
+    public function dashboard(){
+        $user = Auth::user();
+        $myEvents = $user->events;
+
+        $eventsParticipant = $user->eventAsParticipant;
+
+        return view('users.dashboard', ['myevents' => $myEvents, 'eventsparticipant' => $eventsParticipant]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -112,9 +121,11 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(String $id)
     {
-        $user = Auth::user();
+        $user = User::where([
+            ['id', $id],
+            ])->first();
         return view('users.edit', ['user' => $user]);
     }
 
@@ -138,12 +149,12 @@ class UserController extends Controller
             
             $data['profile_pic'] = "storage/users/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('profile_pic') && !$request->file('profile_pic')->isValid()){
-            return redirect('/user/' . $user->id . '/edit')->with('msg', 'DEU ERRADO SEU FILHO DA PUTA');
+            return redirect('/users/' . $user->id . '/edit')->with('msg', 'DEU ERRADO SEU FILHO DA PUTA');
         }
         
         
         $user->update(array_merge($data));
-        return response()->json(['redirect' => '/user/' . $user->id . '/edit'], 200);
+        return response()->json(['redirect' => '/users/' . $user->id . '/edit'], 200);
     }
 
     /**
