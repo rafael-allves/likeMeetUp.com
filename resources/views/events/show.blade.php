@@ -56,11 +56,11 @@
                 @endif
 
                 @if($event->user_id == Auth::user()->id)
-                    <a class="btn btn-info edit-btn"href="/events/edit/{{$event->id}}">
+                    <a class="btn btn-info edit-btn"href="/events/{{$event->id}}/edit">
                         <ion-icon name="create-outline"></ion-icon>
                         Editar
                     </a>
-                    <form action="/events/delete/{{ $event->id }}" method="POST">
+                    <form action="/events/{{ $event->id }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger delete-btn">

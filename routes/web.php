@@ -15,7 +15,6 @@ Route::resource('users', UserController::class)->name('', 'users');
 Route::controller(UserController::class)->group(function (){
     Route::post('/auth/register', 'register');
     Route::post('/auth/login', 'login');
-
 });
 
 Route::controller(UserController::class)->middleware(['auth'])->group(function (){
