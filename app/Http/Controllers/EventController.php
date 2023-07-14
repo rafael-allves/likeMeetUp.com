@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
 use App\Models\User;
 
-use Exception;
-
 class EventController extends Controller
 {
     public function index(){
@@ -35,10 +33,8 @@ class EventController extends Controller
     }
 
     public function store(Request $request){
-        $event = new Event;
-
         //pegando a imagem
-
+        $image = null;
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $requestImage = $request->image;
 
@@ -52,21 +48,14 @@ class EventController extends Controller
 
             $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
-            $event->image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+            $image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }else{
             return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
         }
-        $event->title = $request->title;
-        $event->date = $request->date;
-        $event->city = $request->city;
-        $event->private = $request->private;
-        $event->description = $request->description;
-        $event->items = $request->items;
-
+        
         $user = Auth::user(); //Pegando o usuário logado que fez a request pelo browser
-        $event->user_id = $user->id; //mandando armazenar o dono do evento
-
-        $event->save();
+        Event::create(array_merge([$request, 'image' => $image, 'user_id' => $user->id]));
+        //mandando armazenar o dono do evento e a imagem!
 
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
     }
