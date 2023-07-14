@@ -21,18 +21,7 @@ Route::post('/events/join/{evento}', [EventController::class, 'joinEvent'])
 Route::delete('/events/leave/{evento}', [EventController::class, 'leaveEvent'])
 ->middleware('auth');
 
-// Route::get('/user', [UserController::class, 'index'])
-// ->middleware('auth');
-// Route::get('/dashboard', [UserController::class, 'dashboard'])
-// ->middleware('auth');
-// Route::get('/auth', [UserController::class, 'create'])->name('auth')
-// ->middleware('guest');
-// Route::get('/user/edit/', [UserController::class, 'edit'])
-// ->middleware('auth');
-// Route::put('/user/update/{user}', [UserController::class, 'update'])
-// ->middleware('auth');
-
-Route::resource('user', UserController::class);
+Route::resource('users', UserController::class)->name('', 'users');
 Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])

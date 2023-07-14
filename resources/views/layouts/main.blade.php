@@ -35,7 +35,7 @@
                         </li>
                         @guest
                             <li class="nav-item">
-                                <a href="/auth" class="nav-link">
+                                <a href="/users/create" class="nav-link">
                                     Entrar/cadastrar
                                 </a>
                             </li>
