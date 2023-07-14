@@ -54,7 +54,9 @@ class EventController extends Controller
         }
         
         $user = Auth::user(); //Pegando o usuário logado que fez a request pelo browser
-        Event::create(array_merge([$request, 'image' => $image, 'user_id' => $user->id]));
+        //request->all() Serve para pegar apenas os parametros! E não a requisição inteira
+        Event::create(array_merge($request->all(), ['image' => $image, 'user_id' => $user->id]));
+        
         //mandando armazenar o dono do evento e a imagem!
 
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
