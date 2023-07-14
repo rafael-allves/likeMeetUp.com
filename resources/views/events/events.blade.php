@@ -5,7 +5,7 @@
 @section('content')
     <section id="search-container" class="col-md-12">
         <h1>Busque um evento</h1>
-        <form action="/" method="GET">
+        <form action="/events" method="GET">
             <input type="text" name="search" id="search" class="form-control" placeholder="Procure um Evento">
             <button type="submit">
                 <ion-icon name="search-outline"></ion-icon>
@@ -47,7 +47,7 @@
             @elseif(count($events) == 0)
                 <p>
                     Nenhum Evento Encontrado com {{ $search }}
-                    <a href="/">Ver Todos</a>
+                    <a href="/events">Ver Todos</a>
                 </p>
             @endif
         </section>
