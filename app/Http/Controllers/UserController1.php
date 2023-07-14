@@ -66,6 +66,26 @@ class UserController1 extends Controller
             return response()->json(['error' => $err], 500);
         }
     }
+    
+    public function login (Request $request)
+    {
+        $data = $request->json()->all();
+        try{
+            $user = User::Where([
+                ['email', $data['email']],
+            ])->first();
+
+            if(!$user)return response()->json(['campid' => 'loginemail', 'message' => 'Email não cadastrado'], 400);
+
+            if (!Hash::check($data['password'], $user->password))return response()->json(['campid' => 'loginpassword', 'message' => 'Senha incorreta!'], 400);
+            //to usando o HASH pq eu encriptei a senha!
+            Auth::login($user);
+            return response()->json(['sucesso' => '/']);
+
+        }catch(Exception $err){
+            return response()->json(['error' => $err], 500);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
