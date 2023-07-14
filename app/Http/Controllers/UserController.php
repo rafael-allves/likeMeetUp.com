@@ -25,7 +25,6 @@ class UserController extends Controller
         $eventsParticipant = $user->eventAsParticipant;
 
         return view('users.dashboard', ['myevents' => $myEvents, 'eventsparticipant' => $eventsParticipant]);
-
     }
 
     public function create(){
