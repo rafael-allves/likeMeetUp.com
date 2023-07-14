@@ -28,13 +28,13 @@ Route::delete('/events/leave/{evento}', [EventController::class, 'leaveEvent'])
 // ->middleware('auth');
 // Route::get('/auth', [UserController::class, 'create'])->name('auth')
 // ->middleware('guest');
-// Route::post('/auth/register', [UserController::class, 'register']);
-// Route::post('/auth/login', [UserController::class, 'login']);
-// Route::post('/logout', [UserController::class, 'logout'])
-// ->middleware('auth');
 // Route::get('/user/edit/', [UserController::class, 'edit'])
 // ->middleware('auth');
 // Route::put('/user/update/{user}', [UserController::class, 'update'])
 // ->middleware('auth');
 
 Route::resource('user', UserController1::class);
+Route::post('/auth/register', [UserController::class, 'register']);
+Route::post('/auth/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout'])
+->middleware('auth');
