@@ -11,119 +11,19 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\User;
 
-class UserController1 extends Controller
+class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+
+    public function index(){
         $user = Auth::user();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('users.auth');
-    }
-
-    public function register(Request $request)
-    {
-        $data = $request->all();
-
-        try{
-            $validUsername = Validator::make($data, [
-                'name' => 'required',
-            ]);
-
-            if($validUsername->fails())return response()->json(['campid' => 'registerusername', 'message' =>'Campo não preenchido corretamente'], 400);
-
-            $validEmail = Validator::make($data, [
-                'email' => 'required|email|unique:users,email',
-            ]);
-
-            if($validEmail->fails())return response()->json(['campid' => 'registeremail', 'message' => 'email já cadastrado'], 400);
-
-            $validPassword = Validator::make($data, [
-                'password' => 'required',
-            ]);
-
-            if($validPassword->fails())return response()->json(['campid' => 'registerpassword', 'message' => 'Campo não preenchido corretamente'], 400);
-            //SE TODOS OS CAMPOS ESTIVEREM DEVIDAMENTE PREENCHIDOS EU VOU CONECTAR COM A TABELA users ENCRIPTOGRAFAR A SENHA E SALVAR O NOVO USUÁRIO
-
-            $hash = Hash::make($data['password']);//Encriptografando a senha por padrão ele faz 1024 iterações
-
-            $user = User::create(array_merge($data, ['password' => $hash]));
-
-            // FAÇA O LOGIN AUTOMÁTICO APÓS O REGISTRO
-            Auth::login($user);
-
-            return response()->json(['sucesso' => '/'], 200);
-        }
-        catch(Exception $err){
-            return response()->json(['error' => $err], 500);
-        }
-    }
     
-    public function login (Request $request)
-    {
-        $data = $request->json()->all();
-        try{
-            $user = User::Where([
-                ['email', $data['email']],
-            ])->first();
+    public function dashboard(){
+        $user = Auth::user();
+        $myEvents = $user->events;
 
-            if(!$user)return response()->json(['campid' => 'loginemail', 'message' => 'Email não cadastrado'], 400);
+        $eventsParticipant = $user->eventAsParticipant;
 
-            if (!Hash::check($data['password'], $user->password))return response()->json(['campid' => 'loginpassword', 'message' => 'Senha incorreta!'], 400);
-            //to usando o HASH pq eu encriptei a senha!
-            Auth::login($user);
-            return response()->json(['sucesso' => '/']);
-
-        }catch(Exception $err){
-            return response()->json(['error' => $err], 500);
-        }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        return redirect('/users/auth');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('users.dashboard', ['myevents' => $myEvents, 'eventsparticipant' => $eventsParticipant]);
     }
 }

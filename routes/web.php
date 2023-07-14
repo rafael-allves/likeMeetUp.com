@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\UserController1;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [EventController::class, 'index'])->name('home');
@@ -33,7 +32,7 @@ Route::delete('/events/leave/{evento}', [EventController::class, 'leaveEvent'])
 // Route::put('/user/update/{user}', [UserController::class, 'update'])
 // ->middleware('auth');
 
-Route::resource('user', UserController1::class);
+Route::resource('user', UserController::class);
 Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])
