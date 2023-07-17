@@ -66,7 +66,6 @@
                             <div class="main__container__form__section_authtype">
                                 <button
                                 type="button"
-                                id="register"
                                 >
                                     Register
                                 </button>
@@ -85,7 +84,7 @@
 
                                         </span>
                                     </div>
-                                </div>
+                                 </div>
                                 <p class="errorMessage">
                                 </p>
                                 <div class="input__camp">
@@ -103,7 +102,13 @@
                                     </div>
                                 </div>
                                 <p class="errorMessage"></p>
-                                <button id="formLogin" class="authButton" type="submit">LOGIN</button>
+                                <button id="formLogin" 
+                                class="authButton" 
+                                type="submit"
+                                @click.prevent="login(controler.register)"
+                                >
+                                    LOGIN
+                                </button>
 
                             </form>
                             <form class="auth" id="registerform" method="POST">
@@ -165,7 +170,13 @@
                                 </div>
                                 <p class="errorMessage"></p>
 
-                                <button id="formRegister" class="authButton" type="submit">REGISTER</button>
+                                <button id="formRegister"
+                                class="authButton"
+                                type="submit"
+                                @click.prevent="register(controler.register)"
+                                >
+                                    REGISTER
+                                </button>
                             </form>
                         </section>
                     </section>
