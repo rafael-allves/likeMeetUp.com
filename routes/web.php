@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 
+Route::inertia('/', 'Home');
+
 Route::resource('events', EventController::class)->name('', 'events');
 Route::controller(EventController::class)->middleware(['auth'])->group(function (){
     Route::post('/events/join/{evento}', 'joinEvent');
