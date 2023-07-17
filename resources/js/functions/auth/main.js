@@ -4,23 +4,6 @@ import toggleShowPass from "./toggleShowPass.js";
 import register  from "./register.js";
 import login from "./login.js";
 
-const controler = {
-    type:{
-        login: true,
-        register: false,
-    },
-    login: {
-        email: false,
-        password: false
-    },
-    register: {
-        username: false,
-        email: false,
-        password: false,
-        confirmpassword: false,
-    }
-}
-
 const buttonsAuthType = Array.from(document.querySelectorAll('.main__container__form__section_authtype > button'));
 
 const inputs = Array.from(document.querySelectorAll('input'));

@@ -3,7 +3,10 @@
     
     import '/public/css/auth/styles.css';
 
-    import Logo from '../../../public/assets/logo.png'
+    import Logo from '/public/assets/logo.png'
+
+    import login from '../functions/auth/login.js'
+    import register from '../functions/auth/register.js'
 
     const props = defineProps({
         user:{
@@ -11,6 +14,23 @@
             required: true,
         }
     })
+
+    const controler = {
+        type:{
+            login: true,
+            register: false,
+        },
+        login: {
+            email: false,
+            password: false
+        },
+        register: {
+            username: false,
+            email: false,
+            password: false,
+            confirmpassword: false,
+        }
+    }
 </script>
 
 <template>

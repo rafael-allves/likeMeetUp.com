@@ -1,10 +1,7 @@
 import addError from './campvalidations/toggleError.js'
-export default function login (event, controler){
-    event.preventDefault();
+import axios from 'axios';
 
-    const email = document.getElementById('loginemail').value;
-    const password = document.getElementById('loginpassword').value;
-
+export default function login (controler, email, password){
     if(!controler.email || !controler.password)return;
 
     const data = {
