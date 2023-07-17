@@ -56,7 +56,6 @@
     height: calc(100% - 0.5rem);
 
     position: absolute;
-    left: 0.5rem;
     z-index: 1;
 
     color: var(--text-color);
@@ -70,4 +69,12 @@
     background-color: var(--color-white);
 
     transition: 0.5s all ease;
+}
+
+.Login{
+    left: 0.5rem;
+}
+
+.Register{
+    left: 50%;
 }

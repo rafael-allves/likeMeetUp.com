@@ -11,7 +11,7 @@ function checkCamp(evt, controler){
     if(icon)icon.classList.remove('checkedCamp');
     if(icon)icon.innerText = '';
 
-    const typeData = controler.type.login ? controler.login : controler.register;
+    const typeData = controler.type === 'login' ? controler.login : controler.register;
     const controlData = id === 'confirmpassword' ? 'confirmpassword' :
      id.split('login')[0] === '' ? id.split('login')[1] :  id.split('register')[1];//Se o id não for confirmpassword ele vai checar qual campo é
 

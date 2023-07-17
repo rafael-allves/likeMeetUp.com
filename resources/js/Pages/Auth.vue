@@ -9,6 +9,8 @@
 
     import login from '../functions/auth/login.js'
     import register from '../functions/auth/register.js'
+    import toggleShowPass from '../functions/auth/toggleShowPass'
+    import inputListener from '../functions/auth/inputListener'
 
     const props = defineProps({
         user:{
@@ -18,6 +20,7 @@
     })
 
     const controler = {
+        type: ref('login'),
         login: {
             email: false,
             password: false
@@ -29,8 +32,7 @@
             confirmpassword: false,
         }
     }
-
-    const authType = ref('login');
+    const toggleAuth = ref('Login');
 
 </script>
 
@@ -60,31 +62,32 @@
                                 <button
                                 type="button"
                                 id="login"
-                                @click="authType = 'login';">
+                                @click="controler.type = 'login'; toggleAuth = 'Login'">
                                     Login
                                 </button>
                             </div>
-                            <span class="authSelected">
-                                Login
+                            <span :class="toggleAuth">
+                                {{ toggleAuth }}
                             </span>
                             <div class="main__container__form__section_authtype">
                                 <button
                                 type="button"
-                                @click="authType = 'register';"
+                                @click="controler.type = 'register'; toggleAuth = 'Register'"
                                 >
                                     Register
                                 </button>
                             </div>
                         </section>
                         <section>
-                            <form id="loginform" class="auth" method="POST" v-if="authType === 'login'">
+                            <form id="loginform" class="auth" method="POST" v-if="controler.type == 'login'">
                                 <div class="input__camp">
                                     <span class="material-symbols-outlined input__camp_icon">
                                         mail
                                     </span>
                                     <div class="input__text">
                                         <label for="loginemail">Email</label>
-                                        <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required maxlength="64">
+                                        <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required maxlength="64"
+                                        @input="inputListener($event, controler)">
                                         <span class="material-symbols-outlined">
 
                                         </span>
@@ -99,7 +102,10 @@
                                     <div class="input__text">
                                         <label for="loginpassword">Senha</label>
                                         <input type="password" name="loginpassword" id="loginpassword" class="input__camp_input" required minlength="8">
-                                        <button class="showpassbtn" type="button">
+                                        <button 
+                                        class="showpassbtn" 
+                                        type="button" 
+                                        @click.prevent="toggleShowPass">
                                             <span class="material-symbols-outlined">
                                                 visibility_off
                                             </span>
@@ -150,7 +156,10 @@
                                     <div class="input__text">
                                         <label for="registerpassword">Senha</label>
                                         <input type="password" name="registerpassword" id="registerpassword" class="input__camp_input" required minlength="8">
-                                        <button class="showpassbtn" type="button">
+                                        <button 
+                                        class="showpassbtn" 
+                                        type="button" 
+                                        @click.prevent="toggleShowPass">
                                             <span class="material-symbols-outlined">
                                                 visibility_off
                                             </span>
@@ -166,7 +175,10 @@
                                     <div class="input__text">
                                         <label for="confirmpassword">Confirmar Senha</label>
                                         <input type="password" name="confirmpassword" id="confirmpassword" class="input__camp_input" required>
-                                        <button class="showpassbtn" type="button">
+                                        <button 
+                                        class="showpassbtn" 
+                                        type="button" 
+                                        @click.prevent="toggleShowPass">
                                             <span class="material-symbols-outlined">
                                                 visibility_off
                                             </span>
