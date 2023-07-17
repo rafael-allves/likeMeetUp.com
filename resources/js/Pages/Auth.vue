@@ -2,6 +2,7 @@
     import {ref} from 'vue'
 
     import Layout from '../Layouts/mainLayout.vue';
+    import {Head} from '@inertiajs/vue3'
     
     import '/public/css/auth/styles.css';
 
@@ -43,6 +44,11 @@
     
     >
         <main>
+            <Head>
+                <title>
+                    Auth
+                </title>
+            </Head>
             <section class="main__container">
                     <header class="main__container__header">
                         <h2 class="main__container__header_h2">

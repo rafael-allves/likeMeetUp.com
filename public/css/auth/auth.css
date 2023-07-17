@@ -9,6 +9,7 @@
     align-items: center;
 
     height: 2.5rem;
+    width: 100%;
 
     border: 1px solid var(--text-muted-color);
     border-radius: 5px;
@@ -86,7 +87,7 @@
 }
 
 .refusedCamp{
-    color: #f00;
+    color: #f00 !important;
 }
 
 .showpassbtn{
