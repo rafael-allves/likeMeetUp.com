@@ -1,11 +1,6 @@
+import { router } from '@inertiajs/vue3'
 import addError from './campvalidations/toggleError.js'
-export default function register (event, controler){
-    event.preventDefault();
-    const username = document.getElementById('registerusername');
-    const email = document.getElementById('registeremail');
-    const password = document.getElementById('registerpassword');
-    const confirmpassword = document.getElementById('confirmpassword');
-
+export default function register (controler, name, email, password){
     if(!controler.username)addError(username, "Nome inválido");
 
     if(!controler.email)addError(email, "Email inválido");

@@ -8,11 +8,8 @@ export default function login (controler, email, password){
         email: email,
         password: password,
     }
-    axios.post('/auth/login', data,{
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content'),
-        }
-    })
+    
+    axios.post('/auth/login', data)
     .then(response => {
         if(response.data.sucesso)location.href = response.data.sucesso  //MEU BACKEND VAI ME ENTREGAR UMA URL PARA REDIRECIONAR O USUÁRIO APÓS O REGISTRO CONCLUIDO CORRETAMENTE
         

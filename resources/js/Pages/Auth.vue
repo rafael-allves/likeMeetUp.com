@@ -123,7 +123,7 @@
                                 <button id="formLogin" 
                                 class="authButton" 
                                 type="submit"
-                                @click.prevent="login(controler.register)"
+                                @click.prevent="login(controler.login)"
                                 >
                                     LOGIN
                                 </button>

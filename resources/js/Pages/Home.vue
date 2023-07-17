@@ -12,8 +12,8 @@
     <Layout 
     :authStatus="props.user.name != undefined "
     :user="props.user"
-    
     >
+
 
     </Layout>
 </template>
