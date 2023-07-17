@@ -20,18 +20,18 @@
         </Link>
         <nav class="flex flex-row">
             <div class="flex flex-row gap-3">
-                <Link href="/about" class="hover:text-colorPrimary">
+                <Link href="/about">
                     Sobre
                 </Link>
-                <Link href="/Contact" class="hover:text-colorPrimary">
+                <Link href="/Contact">
                     Contato
                 </Link>
-                <Link href="/Contact" class="hover:text-colorPrimary">
+                <Link href="/Contact">
                     Eventos
                 </Link>
                 <div v-if="authStatus">
                     <button @onclick="dropdownUserPic">
-                    <ProfilePic/>
+                        <ProfilePic/>
                     </button>
                 </div>
                 <Link v-else href="/auth">
@@ -46,5 +46,9 @@
     .spaceItem{
         align-items: center;
         justify-content: space-between !important;
+    }
+
+    a:hover{
+        color: #F2A340;
     }
 </style>

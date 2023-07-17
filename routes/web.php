@@ -1,11 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
-Route::inertia('/', 'Home');
+Route::get('/', function (){
+    $authStatus = Auth::user() != null;
+    return Inertia::render('Home', [
+        "authStatus" => $authStatus,
+    ]);
+});
 
 Route::resource('events', EventController::class)->name('', 'events');
 Route::controller(EventController::class)->middleware(['auth'])->group(function (){
