@@ -1,7 +1,7 @@
 <script setup>
     import Layout from '../Layouts/mainLayout.vue';
     
-    import '../../../public/css/auth/styles.css';
+    import '/public/css/auth/styles.css';
 
     import Logo from '../../../public/assets/logo.png'
 
