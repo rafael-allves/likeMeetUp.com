@@ -1,8 +1,8 @@
 <script setup>
-    import {defineProps} from 'vue';
     import Layout from '../Layouts/mainLayout.vue'
     const props = defineProps({
         user:{
+            type: Object,
             required: true,
         }
     })
@@ -10,7 +10,8 @@
 
 <template>
     <Layout 
-    :authStatus="props.user != null"
+    :authStatus="props.user.name != undefined "
+    :user="props.user"
     
     >
 

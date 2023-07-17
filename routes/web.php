@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function (){
     return Inertia::render('Home', [
-        "user" => Auth::user(),
+        "user" => Auth::user() ?? ["user" => ""],
     ]);
 });
 
