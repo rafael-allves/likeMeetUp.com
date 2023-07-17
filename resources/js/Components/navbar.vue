@@ -10,11 +10,9 @@
     const props = defineProps({
         authStatus:{
             type: Boolean,
-            required: true,
         },
         user:{
             type: Object,
-            required: true,
         }
     });
 
@@ -64,7 +62,7 @@
                         </form>
                     </div>
                 </div>
-                <Link v-else href="/auth">
+                <Link v-else href="/users/create">
                     Login/Registro
                 </Link>
             </div>

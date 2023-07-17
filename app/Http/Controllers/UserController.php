@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Validator;
@@ -26,7 +28,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.auth');
+        $user = Auth::user();
+        if($user != null){
+            Auth::login($user);
+        }
+
+        return Inertia::render('Auth', [
+            "user" => ["user" => ""],
+        ]);
     }
 
     public function register(Request $request)

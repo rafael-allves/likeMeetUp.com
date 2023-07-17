@@ -13,10 +13,13 @@
 </script>
 
 <template>
-    <Navbar 
-        :authStatus="props.authStatus"
-        :user="props.user"
-    />
+    <div>
+        <Navbar 
+            :authStatus="props.authStatus"
+            :user="props.user"
+        />
+        <slot />
+    </div>
 </template>
 
 <style scoped>
