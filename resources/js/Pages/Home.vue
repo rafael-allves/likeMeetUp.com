@@ -1,11 +1,11 @@
 <script setup>
-
+    import Layout from '../Layouts/mainLayout.vue'
 </script>
 
 <template>
-    <h1>
-        Teste
-    </h1>
+    <Layout>
+        
+    </Layout>
 </template>
 
 <style scoped>
