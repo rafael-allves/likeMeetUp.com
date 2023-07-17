@@ -2,6 +2,15 @@
     import { Link } from '@inertiajs/vue3'
     import Logo from '../../../public/assets/logo.png'
     import ProfilePic from './profilepic.vue'
+    import dropdownUserPic from '../functions/dropdownUserPic.js'
+
+    import {defineProps} from 'vue'
+    defineProps({
+        authStatus:{
+            type: Boolean,
+            required: true,
+        }
+    });
 </script>
 
 <template>
@@ -20,11 +29,15 @@
                 <Link href="/Contact" class="hover:text-colorPrimary">
                     Eventos
                 </Link>
+                <div v-if="authStatus">
+                    <button @onclick="dropdownUserPic">
+                    <ProfilePic/>
+                    </button>
+                </div>
+                <Link v-else href="/auth">
+                    Login/Registro
+                </Link>
             </div>
-            <button>
-
-            </button>
-            
         </nav>
     </header>
 </template>
