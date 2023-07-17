@@ -2,8 +2,7 @@
     import {defineProps} from 'vue';
     import Layout from '../Layouts/mainLayout.vue'
     const props = defineProps({
-        authStatus: {
-            type: Boolean,
+        user:{
             required: true,
         }
     })
@@ -11,7 +10,7 @@
 
 <template>
     <Layout 
-    :authStatus=props.authStatus
+    :authStatus="props.user != null"
     
     >
 

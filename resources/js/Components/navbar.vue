@@ -9,6 +9,10 @@
         authStatus:{
             type: Boolean,
             required: true,
+        },
+        user:{
+            type: Object,
+            required: true,
         }
     });
 </script>
@@ -31,8 +35,14 @@
                 </Link>
                 <div v-if="authStatus">
                     <button @onclick="dropdownUserPic">
-                        <ProfilePic/>
+                        <ProfilePic />
                     </button>
+                    <div>
+                        <h2>
+                            <ProfilePic />
+                            {{ props.user.name }}
+                        </h2>
+                    </div>
                 </div>
                 <Link v-else href="/auth">
                     Login/Registro

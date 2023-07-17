@@ -8,9 +8,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function (){
-    $authStatus = Auth::user() != null;
     return Inertia::render('Home', [
-        "authStatus" => $authStatus,
+        "user" => Auth::user(),
     ]);
 });
 
