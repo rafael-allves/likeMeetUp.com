@@ -103,10 +103,6 @@
     align-items: center;
 }
 
-#registerform{
-    display: none;
-}
-
 .auth__options_fieldset{
     border-left: 0;
     border-bottom: 0;

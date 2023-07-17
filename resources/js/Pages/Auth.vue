@@ -1,4 +1,6 @@
 <script setup>
+    import {ref} from 'vue'
+
     import Layout from '../Layouts/mainLayout.vue';
     
     import '/public/css/auth/styles.css';
@@ -16,10 +18,6 @@
     })
 
     const controler = {
-        type:{
-            login: true,
-            register: false,
-        },
         login: {
             email: false,
             password: false
@@ -31,6 +29,9 @@
             confirmpassword: false,
         }
     }
+
+    const authType = ref('login');
+
 </script>
 
 <template>
@@ -58,21 +59,25 @@
                             <div class="main__container__form__section_authtype">
                                 <button
                                 type="button"
-                                id="login">
+                                id="login"
+                                @click="authType = 'login';">
                                     Login
                                 </button>
                             </div>
-                            <span class="authSelected">Login</span>
+                            <span class="authSelected">
+                                Login
+                            </span>
                             <div class="main__container__form__section_authtype">
                                 <button
                                 type="button"
+                                @click="authType = 'register';"
                                 >
                                     Register
                                 </button>
                             </div>
                         </section>
                         <section>
-                            <form id="loginform" class="auth" method="POST">
+                            <form id="loginform" class="auth" method="POST" v-if="authType === 'login'">
                                 <div class="input__camp">
                                     <span class="material-symbols-outlined input__camp_icon">
                                         mail
@@ -111,7 +116,7 @@
                                 </button>
 
                             </form>
-                            <form class="auth" id="registerform" method="POST">
+                            <form class="auth" id="registerform" method="POST" v-else>
                                 <div class="input__camp">
                                     <span class="material-symbols-outlined input__camp_icon">
                                         person
