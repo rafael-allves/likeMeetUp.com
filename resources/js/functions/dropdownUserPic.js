@@ -13,7 +13,7 @@ function handleClickOutside(element){
 
 export default function dropMenu(evt){
     evt.preventDefault();
-    evt.stopPropagation()
+    evt.stopPropagation();
     const expanded = evt.currentTarget.getAttribute('aria-expanded');
 
     evt.currentTarget.nextElementSibling.style.display = expanded == 'true' ? 'none': 'block';

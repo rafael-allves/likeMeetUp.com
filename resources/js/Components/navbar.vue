@@ -4,7 +4,7 @@
 
     import Logo from '/public/assets/logo.png'
     
-    import dropdownUserPic from '../functions/dropdownUserPic.js'
+    import dropMenu from '../functions/dropdownUserPic.js'
 
     const props = defineProps({
         authStatus:{
@@ -35,7 +35,7 @@
                     Eventos
                 </Link>
                 <div v-if="authStatus">
-                    <button @onclick="dropdownUserPic">
+                    <button @onclick="dropMenu" aria-expanded="false">
                         <ProfilePic :profilePic="props.user.profile_pic" />
                     </button>
                     <div>
