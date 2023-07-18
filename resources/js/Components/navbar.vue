@@ -15,7 +15,7 @@
         }
     });
 
-    const linkEditUser = `users/${props.user.id}`;
+    const linkEditUser = `users/${props.user.id}/edit`;
 </script>
 
 <template>
@@ -48,7 +48,7 @@
                         </h2>
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 flex flex-col gap-1">
                             <li>
-                                <Link href="/dashboard" class="text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1">
+                                <Link :href="linkEditUser" class="text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1">
                                     <span class="material-symbols-outlined">
                                         person
                                     </span>
@@ -61,6 +61,14 @@
                                         dashboard
                                     </span>
                                     Dashboard
+                                </Link>
+                            </li>
+                            <li class="my-3 border-t-2 py-2">
+                                <Link href="/dashboard" class="text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1">
+                                    <span class="material-symbols-outlined">
+                                        logout
+                                    </span>
+                                    Sair
                                 </Link>
                             </li>
                         </ul>
