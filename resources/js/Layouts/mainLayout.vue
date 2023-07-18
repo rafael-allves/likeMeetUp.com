@@ -28,6 +28,11 @@
             :user="props.user"
         />
         <slot />
+
+        <footer class="flex items-center relative bottom-0 justify-center w-full bg-black h-20 text-rose-50">
+            Rafa Events
+            &copy; 2023
+        </footer>
     </div>
 </template>
 
