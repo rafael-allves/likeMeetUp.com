@@ -68,7 +68,7 @@
                                 <button
                                 type="button"
                                 id="login"
-                                @click="controler.type = 'login'; toggleAuth = 'Login'">
+                                @click="controler.type.value = 'login'; toggleAuth = 'Login'">
                                     Login
                                 </button>
                             </div>
@@ -78,14 +78,14 @@
                             <div class="main__container__form__section_authtype">
                                 <button
                                 type="button"
-                                @click="controler.type = 'register'; toggleAuth = 'Register'"
+                                @click="controler.type.value = 'register'; toggleAuth = 'Register'"
                                 >
                                     Register
                                 </button>
                             </div>
                         </section>
                         <section>
-                            <form id="loginform" class="auth" method="POST" v-if="controler.type == 'login'">
+                            <form id="loginform" class="auth" method="POST" v-if="controler.type.value === 'login'">
                                 <div class="input__camp">
                                     <span class="material-symbols-outlined input__camp_icon">
                                         mail

@@ -28,10 +28,10 @@
                 <Link href="/about">
                     Sobre
                 </Link>
-                <Link href="/Contact">
+                <Link href="/contact">
                     Contato
                 </Link>
-                <Link href="/Contact">
+                <Link href="/events">
                     Eventos
                 </Link>
                 <div v-if="authStatus">
