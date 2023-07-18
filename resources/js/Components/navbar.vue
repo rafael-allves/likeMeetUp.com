@@ -2,7 +2,7 @@
     import { Link } from '@inertiajs/vue3'
     import ProfilePic from './profilepic.vue'
 
-    import Logo from '../../../public/assets/logo.png'
+    import Logo from '/public/assets/logo.png'
     
     import dropdownUserPic from '../functions/dropdownUserPic.js'
 

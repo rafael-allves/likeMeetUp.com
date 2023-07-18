@@ -52,7 +52,7 @@
             <section class="main__container">
                     <header class="main__container__header">
                         <h2 class="main__container__header_h2">
-                            <img :src=Logo width="40px" height="40px" alt="Rafa Events" />
+                            <img width="40" height="40" :src=Logo alt="Logo">
                             Rafa Events
                         </h2>
 
@@ -93,7 +93,8 @@
                                     <div class="input__text">
                                         <label for="loginemail">Email</label>
                                         <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required maxlength="64"
-                                        @input="inputListener($event, controler)">
+                                        @input="inputListener($event, controler)"
+                                        v-model="loginEmail">
                                         <span class="material-symbols-outlined">
 
                                         </span>
@@ -108,7 +109,8 @@
                                     <div class="input__text">
                                         <label for="loginpassword">Senha</label>
                                         <input type="password" name="loginpassword" id="loginpassword" class="input__camp_input" required minlength="8"
-                                        @input="inputListener($event, controler)">
+                                        @input="inputListener($event, controler)"
+                                        v-model="loginPassword">
                                         <button 
                                         class="showpassbtn" 
                                         type="button" 
@@ -123,7 +125,7 @@
                                 <button id="formLogin" 
                                 class="authButton" 
                                 type="submit"
-                                @click.prevent="login(controler.login)"
+                                @click.prevent="login(controler.login, loginEmail, loginPassword)"
                                 >
                                     LOGIN
                                 </button>
@@ -137,7 +139,8 @@
                                     <div class="input__text">
                                         <label for="registerusername">Nome</label>
                                         <input type="username" name="registerusername" id="registerusername" class="input__camp_input" required minlength="4"
-                                        @input="inputListener($event, controler)">
+                                        @input="inputListener($event, controler)"
+                                        v-model="registerName">
                                         <span class="material-symbols-outlined">
 
                                         </span>
@@ -151,7 +154,8 @@
                                     <div class="input__text">
                                         <label for="registeremail">Email</label>
                                         <input type="email" name="registeremail" id="registeremail" class="input__camp_input" required maxlength="64"
-                                        @input="inputListener($event, controler)">
+                                        @input="inputListener($event, controler)"
+                                        v-model="registerEmail">
                                         <span class="material-symbols-outlined">
 
                                         </span>
@@ -165,7 +169,8 @@
                                     <div class="input__text">
                                         <label for="registerpassword">Senha</label>
                                         <input type="password" name="registerpassword" id="registerpassword" class="input__camp_input" required minlength="8"
-                                        @input="inputListener($event, controler)">
+                                        @input="inputListener($event, controler)"
+                                        v-model="registerPassword">
                                         <button 
                                         class="showpassbtn" 
                                         type="button" 
@@ -201,7 +206,7 @@
                                 <button id="formRegister"
                                 class="authButton"
                                 type="submit"
-                                @click.prevent="register(controler.register)"
+                                @click.prevent="register(controler.register, registerName, registerEmail, registerPassword)"
                                 >
                                     REGISTER
                                 </button>
