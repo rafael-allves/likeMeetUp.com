@@ -18,6 +18,7 @@ export default {
             colors: {
                 colorPrimary: "#F2A340",
                 colorSecondary: "#C28008",
+                colorHover: "rgba(194, 128, 8, 0.15)",
             }
         },
     },

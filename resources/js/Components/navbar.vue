@@ -28,7 +28,7 @@
             aria-expanded="false"
             >
             </button>
-            <section class="menuBg hidden w-full justify-center max-md:items-center max-md:flex-col absolute top-8 right-0 z-10 transition delay-300">
+            <section class="menuBg hidden w-full justify-center max-md:items-center max-md:flex-col absolute top-10 right-0 z-10 transition delay-300">
                 <div class="menu absolute right-0 max-md:flex h-full max-md:justify-center max-md:items-center max-md:flex-col transition delay-300">
                     <DropDownAvatar :user="props.user" :responsive="true"/>
                 </div>
