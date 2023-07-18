@@ -49,9 +49,9 @@
                     Auth
                 </title>
             </Head>
-            <section class="main__container">
+            <section class="main__container mt-10">
                     <header class="main__container__header">
-                        <h2 class="main__container__header_h2">
+                        <h2 class="main__container__header_h2 flex items-center justify-center gap-1">
                             <img width="40" height="40" :src=Logo alt="Logo">
                             Rafa Events
                         </h2>
