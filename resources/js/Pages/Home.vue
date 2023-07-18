@@ -7,7 +7,7 @@
     import searchingImg from '/public/assets/home/searching.svg'
     import talking from '/public/assets/home/talking.svg'
     import join from '/public/assets/home/join.svg'
-
+    import homeImg from '/public/assets/home/homeimg.png'
     const props = defineProps({
         user:{
             type: Object,
@@ -88,20 +88,21 @@
                     <img :src="join" alt="Encontre pessoas novas" class="w-[50%]">
                 </div>
             </section>
-            <section class="md:flex hidden">
-                <div width="30%">
+            <section class="md:flex hidden justify-around">
+                <div class="w-[30%]">
                     <h1 class="text-[100px] leading-[80px]">
                         Rafa Events
                     </h1>
-                    <h3>
-
-                    </h3>
-                    <Link href="/users/create" class="bg-colorPrimary rounded-sm py-1 px-1 border-colorSecondary border cursor-pointer mt-4">
+                    <p class="my-5 text-">
+                        Descubra um mundo de experiências inesquecíveis e conecte-se com pessoas apaixonadas por eventos. Cadastre-se agora na nossa rede social baseada em eventos e embarque em uma jornada única!
+                        Você adora eventos e deseja compartilhar suas paixões com pessoas que têm interesses semelhantes? Junte-se à nossa vibrante comunidade de entusiastas de eventos. Cadastre-se hoje mesmo e mergulhe em um oceano de oportunidades!
+                    </p>
+                    <Link href="/users/create" class="bg-colorSecondary rounded-lg py-3 px-3 border-colorPrimary border cursor-pointer mt-4 hover:bg-colorPrimary">
                         Cadastrar Agora
                     </Link>
                 </div>
-                <div width="70%">
-                    <img :src="talking" alt="" class="w-full">
+                <div class="w-[46%]">
+                    <img :src="homeImg" alt="" class="w-full">
                 </div>
             </section>
         </section>

@@ -15,7 +15,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="relative" id="layout">
         <Head>
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
         />
         <slot />
 
-        <footer class="flex items-center relative bottom-0 justify-center w-full bg-black h-20 text-rose-50">
+        <footer class="flex items-center absolute bottom-0 justify-center w-full bg-black h-20 text-rose-50">
             Rafa Events
             &copy; 2023
         </footer>
@@ -37,4 +37,7 @@
 </template>
 
 <style scoped>
+    #layout{
+        min-height: 100vh;
+    }
 </style>
