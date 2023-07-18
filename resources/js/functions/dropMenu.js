@@ -3,6 +3,7 @@ function handleClickOutside(element, buttonDropDown){
     if(!acceptedClick.contains(element.target)){
         buttonDropDown.setAttribute('aria-expanded', 'false');
         buttonDropDown.nextElementSibling.style.display = "none";
+        buttonDropDown.classList.remove('active');
 
         const html = document;
         html.removeEventListener('click', handleClickOutside);
@@ -26,11 +27,13 @@ export default function dropMenu(evt){
         
         evt.target.classList.add('active')
 
+        const buttonDropDown = evt.currentTarget;
+
         html.addEventListener('click', (evt) => {
-            handleClickOutside(evt, evt.currentTarget)
+            handleClickOutside(evt, buttonDropDown)
         });
         html.addEventListener('touchstart', (evt)=>{
-            handleClickOutside(evt, evt.currentTarget)
+            handleClickOutside(evt, buttonDropDown)
         }, {passive:false});
     }
 }
