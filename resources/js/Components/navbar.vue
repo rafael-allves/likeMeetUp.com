@@ -18,7 +18,7 @@
 </script>
 
 <template>
-    <header class="flex flex-row spaceItem shadow-md px-10">
+    <header class="flex flex-row items-center justify-between shadow-md px-10 py-2">
         <Link href="/">
             <img width="40" height="40" :src=Logo alt="Logo">
         </Link>
@@ -28,20 +28,53 @@
             aria-expanded="false"
             >
             </button>
-            <section class="menuBg hidden w-full justify-center max-md:items-center max-md:flex-col absolute top-10 right-0 z-10 transition delay-300">
-                <div class="menu absolute right-0 max-md:flex h-full max-md:justify-center max-md:items-center max-md:flex-col transition delay-300">
-                    <DropDownAvatar :user="props.user" :responsive="true"/>
+            <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-10">
+                <div id="menu" class="menu absolute max-md:flex h-full max-md:items-center max-md:flex-col">
+                    <DropDownAvatar :user="props.user" :responsive="true" v-if="props.authStatus"/>
+                    <ul class="flex flex-col w-full px-10 h-full relative mt-8 font-medium text-2xl">
+                        <li>
+                            <Link href="/about" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                                <span class="material-symbols-outlined">
+                                    menu_book
+                                </span>
+                                Sobre
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/contact" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                                <span class="material-symbols-outlined">
+                                    contacts
+                                </span>
+                                Contato
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/events" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                                <span class="material-symbols-outlined">
+                                    groups
+                                </span>
+                                Eventos
+                            </Link>
+                        </li>
+
+                        <Link href="/logout" class="text-black w-10/12 flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover absolute bottom-2">
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                            Sair
+                        </Link>
+                    </ul>
                 </div>
             </section>
 
             <div class="gap-3 max-md:hidden flex flex-row">
-                <Link href="/about">
+                <Link href="/about" class="flex items-center">
                     Sobre
                 </Link>
-                <Link href="/contact">
+                <Link href="/contact" class="flex items-center">
                     Contato
                 </Link>
-                <Link href="/events">
+                <Link href="/events" class="flex items-center">
                     Eventos
                 </Link>
                 <div v-if="authStatus">
@@ -62,11 +95,6 @@
 </template>
 
 <style scoped>
-    .spaceItem{
-        align-items: center !important;
-        justify-content: space-between !important;
-    }
-
     a:hover{
         color: #F2A340;
     }
@@ -110,19 +138,36 @@
         top: -0.5rem;
      }
 
-
      .menuBg{
-        height: calc(100% - 40px);
+        height: calc(100% - 56px);
 
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: #FFF;
+
+        overflow-x: hidden;
+
+        transition: all 0.5s;
      }
 
      .menu{
         width: 80%;
+        
+        background-color: #fff;
+
+        right: -80%;
+
+        visibility: hidden;
+        transition: all 0.5s;
      }
 
-     .hamburger.active ~ .menu{
+     .hamburger.active + .menuBg{
+        background-color: rgba(0, 0, 0, 0.5);
+     }
+
+     .hamburger.active + .menuBg .menu{
+        right: 0 !important;
+
         visibility: visible !important;
+        
         overflow-y: auto !important;
      }
 </style>

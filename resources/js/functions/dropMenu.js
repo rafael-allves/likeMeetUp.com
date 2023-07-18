@@ -1,5 +1,5 @@
 function handleClickOutside(element, buttonDropDown){
-    const acceptedClick = document.getElementById('dropdownAvatar');
+    const acceptedClick = document.getElementById('menu');
     if(!acceptedClick.contains(element.target)){
         buttonDropDown.setAttribute('aria-expanded', 'false');
         buttonDropDown.nextElementSibling.style.display = "none";
@@ -16,7 +16,7 @@ export default function dropMenu(evt){
     evt.stopPropagation();
     const expanded = evt.currentTarget.getAttribute('aria-expanded');
 
-    evt.currentTarget.nextElementSibling.style.display = expanded == 'true' ? 'none': 'block';
+    evt.currentTarget.nextElementSibling.style.visibility = expanded == 'true' ? 'hidden': 'visible';
 
     evt.currentTarget.setAttribute('aria-expanded', expanded == 'true' ? 'false' : 'true');
 
