@@ -36,11 +36,11 @@
                 </Link>
                 <div v-if="authStatus">
                     <button @onclick="dropdownUserPic">
-                        <ProfilePic props.user.profile_Pic />
+                        <ProfilePic :profilePic="props.user.profile_pic" />
                     </button>
                     <div>
                         <h2>
-                            <ProfilePic :user="props.user.profile_Pic" />
+                            <ProfilePic :profilePic="props.user.profile_pic" />
                             {{ props.user.name }}
                         </h2>
                         <Link :href="linkEditUser">
@@ -50,7 +50,7 @@
                             Eventos
                         </Link>
                         <form action="/logout" method="POST">
-                            <Link class="dropdown-item"
+                            <Link href="/users/create"
                             onclick="this.closest('form').submit();"
                             style="cursor: pointer;">
                                 Sair

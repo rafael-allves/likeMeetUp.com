@@ -9,8 +9,8 @@
 </script>
 
 <template>
-    <img :src=props.profilePic 
-    width="40px"
+    <img :src="props.profilePic"
+    width="40"
     class="rounded-full"
     >
 </template>

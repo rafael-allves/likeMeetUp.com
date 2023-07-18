@@ -16,7 +16,7 @@ export default function register (controler, name, email, password){
     })
     .catch((err) => {
         if(err.response.status === 400){
-            addError(document.getElementById(response.data.campid), response.data.message);
+            addError(document.getElementById(err.response.data.campid), err.response.data.message);
             //Dê uma olhada na user controler e veja que eu estou retornando o ID do campo incorreto e a mensagem por meio de um array!
             //Por isso escrevi dessa forma
             const wrongData = campid.split('register')[1];
