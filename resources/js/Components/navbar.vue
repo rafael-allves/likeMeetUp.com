@@ -56,8 +56,17 @@
                                 Eventos
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/users/create" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                                <span class="material-symbols-outlined">
+                                    person_add
+                                </span>
+                                Login/Registro
+                            </Link>
+                        </li>
 
-                        <Link href="/logout" class="text-black w-10/12 flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover absolute bottom-2">
+
+                        <Link href="/logout" class="text-black w-10/12 flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover absolute bottom-2" v-if="props.authStatus">
                             <span class="material-symbols-outlined">
                                 logout
                             </span>
@@ -95,6 +104,9 @@
 </template>
 
 <style scoped>
+    span{
+        font-size: 2rem;
+    }
     a:hover{
         color: #F2A340;
     }
@@ -141,7 +153,7 @@
      .menuBg{
         height: calc(100% - 56px);
 
-        background-color: #FFF;
+        background-color: transparent;
 
         overflow-x: hidden;
 
