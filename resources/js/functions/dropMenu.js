@@ -1,8 +1,6 @@
-function handleClickOutside(element){
+function handleClickOutside(element, buttonDropDown){
     const acceptedClick = document.getElementById('dropdownAvatar');
     if(!acceptedClick.contains(element.target)){
-
-        const buttonDropDown = document.getElementById('dropdownUserAvatarButton');
         buttonDropDown.setAttribute('aria-expanded', 'false');
         buttonDropDown.nextElementSibling.style.display = "none";
 
@@ -21,9 +19,18 @@ export default function dropMenu(evt){
 
     evt.currentTarget.setAttribute('aria-expanded', expanded == 'true' ? 'false' : 'true');
 
+    evt.target.classList.remove('active')
+
     if(expanded == 'false'){
         const html = document;
-        html.addEventListener('click', handleClickOutside);
-        html.addEventListener('touchstart', handleClickOutside, {passive:false});
+        
+        evt.target.classList.add('active')
+
+        html.addEventListener('click', (evt) => {
+            handleClickOutside(evt, evt.currentTarget)
+        });
+        html.addEventListener('touchstart', (evt)=>{
+            handleClickOutside(evt, evt.currentTarget)
+        }, {passive:false});
     }
 }

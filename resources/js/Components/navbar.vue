@@ -24,7 +24,15 @@
             <img width="40" height="40" :src=Logo alt="Logo">
         </Link>
         <nav class="flex flex-row">
-            <div class="flex flex-row gap-3">
+            <button class="max-md:block hidden hamburger"
+            @click="dropMenu">
+            </button>
+
+            <div class="hidden menu max-md:flex max-md:justify-center max-md:items-center max-md:flex-col w-full absolute top-8 right-0 z-10 transition delay-300">
+
+            </div>
+
+            <div class="gap-3 max-md:hidden flex flex-row">
                 <Link href="/about">
                     Sobre
                 </Link>
@@ -42,7 +50,7 @@
                         <ProfilePic :profilePic="props.user.profile_pic" />
                     </button>
                     <div id="dropdownAvatar" class="z-1 right-3 hidden bg-white px-7 divide-y divide-gray-100 rounded-lg shadow w-44 absolute align-middle border">
-                        <h2 class="text-sm text-gray-900 flex gap-1 items-center border-b-2 pb-1">
+                        <h2 class="text-sm text-gray-900 flex gap-1 items-center border-b-2 pb-1 mt-3">
                             <ProfilePic :profilePic="props.user.profile_pic" />
                             {{ props.user.name }}
                         </h2>
@@ -64,7 +72,7 @@
                                 </Link>
                             </li>
                             <li class="my-3 border-t-2 py-2">
-                                <Link href="/dashboard" class="text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1">
+                                <Link href="/logout" class="text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1">
                                     <span class="material-symbols-outlined">
                                         logout
                                     </span>
@@ -91,4 +99,49 @@
     a:hover{
         color: #F2A340;
     }
-</style>../functions/dropMenu.js
+
+    .hamburger{
+        border-top: 0.2rem solid;
+    
+        width: 2rem;
+    
+        transition: 0.5s;
+    }
+
+    .hamburger::before,
+    .hamburger::after{
+        content: "";
+
+        display: block;
+
+        width: 2rem;
+        height: 0.2rem;
+
+        margin-top: 0.4rem;
+
+        background: currentColor;
+
+        transition: 0.5s;
+
+        position: relative;
+    }
+
+    .hamburger.active{
+        border-top-color: transparent;
+    }
+
+     .hamburger.active::before{
+         transform: rotate(135deg);
+     }
+
+     .hamburger.active::after{
+        transform: rotate(-135deg);
+        top: -0.5rem;
+     }
+
+     .hamburger.active ~ .menu{
+        height: calc(100% - 8rem);
+        visibility: visible !important;
+        overflow-y: auto !important;
+     }
+</style>
