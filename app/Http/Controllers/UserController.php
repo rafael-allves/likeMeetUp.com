@@ -158,7 +158,7 @@ class UserController extends Controller
             
             $data['profile_pic'] = "storage/users/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('profile_pic') && !$request->file('profile_pic')->isValid()){
-            return redirect('/users/' . $user->id . '/edit')->with('msg', 'DEU ERRADO SEU FILHO DA PUTA');
+            return redirect('/users/' . $user->id . '/edit');
         }
         
         

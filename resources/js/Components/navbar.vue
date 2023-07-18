@@ -50,11 +50,11 @@
                             Eventos
                         </Link>
                         <form action="/logout" method="POST">
-                            <Link href="/users/create"
+                            <a
                             onclick="this.closest('form').submit();"
                             style="cursor: pointer;">
                                 Sair
-                            </Link>
+                            </a>
                         </form>
                     </div>
                 </div>
