@@ -1,10 +1,10 @@
 <script setup>
-    import { Link } from '@inertiajs/vue3'
-    import ProfilePic from './profilepic.vue'
+    import { Link } from '@inertiajs/vue3';
+    import ProfilePic from './profilepic.vue';
 
-    import Logo from '/public/assets/logo.png'
+    import Logo from '/public/assets/logo.png';
     
-    import dropMenu from '../functions/dropdownUserPic.js'
+    import dropMenu from '../functions/dropMenu.js';
 
     const props = defineProps({
         authStatus:{
@@ -15,7 +15,7 @@
         }
     });
 
-    const linkEditUser = `users/${props.user.id}`
+    const linkEditUser = `users/${props.user.id}`;
 </script>
 
 <template>
@@ -35,27 +35,17 @@
                     Eventos
                 </Link>
                 <div v-if="authStatus">
-                    <button @onclick="dropMenu" aria-expanded="false">
+                    <button id="dropdownUserAvatarButton" class="flex text-sm rounded-full focus:ring-4 focus:ring-gray-300 " type="button"
+                    aria-expanded="false"
+                    @click="dropMenu($event)">
+                        <span class="sr-only">Open user menu</span>
                         <ProfilePic :profilePic="props.user.profile_pic" />
                     </button>
-                    <div>
+                    <div id="dropdownAvatar" class="z-1 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute">
                         <h2>
                             <ProfilePic :profilePic="props.user.profile_pic" />
                             {{ props.user.name }}
                         </h2>
-                        <Link :href="linkEditUser">
-                            Editar Perfil
-                        </Link>
-                        <Link href="/dashboard">
-                            Eventos
-                        </Link>
-                        <form action="/logout" method="POST">
-                            <a
-                            onclick="this.closest('form').submit();"
-                            style="cursor: pointer;">
-                                Sair
-                            </a>
-                        </form>
                     </div>
                 </div>
                 <Link v-else href="/users/create">
@@ -75,4 +65,4 @@
     a:hover{
         color: #F2A340;
     }
-</style>
+</style>../functions/dropMenu.js
