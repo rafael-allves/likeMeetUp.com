@@ -41,11 +41,29 @@
                         <span class="sr-only">Open user menu</span>
                         <ProfilePic :profilePic="props.user.profile_pic" />
                     </button>
-                    <div id="dropdownAvatar" class="z-1 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute">
-                        <h2>
+                    <div id="dropdownAvatar" class="z-1 right-3 hidden bg-white px-7 divide-y divide-gray-100 rounded-lg shadow w-44 absolute align-middle border">
+                        <h2 class="text-sm text-gray-900 flex gap-1 items-center border-b-2 pb-1">
                             <ProfilePic :profilePic="props.user.profile_pic" />
                             {{ props.user.name }}
                         </h2>
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 flex flex-col gap-1">
+                            <li>
+                                <Link href="/dashboard" class="text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1">
+                                    <span class="material-symbols-outlined">
+                                        person
+                                    </span>
+                                    Editar perfil
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/dashboard" class="text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1">
+                                    <span class="material-symbols-outlined">
+                                        dashboard
+                                    </span>
+                                    Dashboard
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <Link v-else href="/users/create">
@@ -58,7 +76,7 @@
 
 <style scoped>
     .spaceItem{
-        align-items: center;
+        align-items: center !important;
         justify-content: space-between !important;
     }
 

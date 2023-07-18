@@ -17,6 +17,7 @@ export default {
             },
             colors: {
                 colorPrimary: "#F2A340",
+                colorSecondary: "#C28008",
             }
         },
     },
