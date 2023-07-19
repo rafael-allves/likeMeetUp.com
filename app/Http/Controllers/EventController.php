@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +38,11 @@ class EventController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(){
-        return view('events.create');
+        $user = Auth::user();
+        if($user == null)return redirect('/users/create');
+        return Inertia::render('events/Create', [
+            'user' => $user,
+        ]);
     }
 
     /**

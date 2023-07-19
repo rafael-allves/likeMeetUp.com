@@ -1,17 +1,17 @@
 <script setup>
     import {ref} from 'vue'
 
-    import Layout from '../Layouts/mainLayout.vue';
+    import Layout from '../../Layouts/mainLayout.vue';
     import {Head} from '@inertiajs/vue3'
     
     import '/public/css/auth/styles.css';
 
     import Logo from '/public/assets/logo.png'
 
-    import login from '../functions/auth/login.js'
-    import register from '../functions/auth/register.js'
-    import toggleShowPass from '../functions/auth/toggleShowPass'
-    import inputListener from '../functions/auth/inputListener'
+    import login from '../../functions/auth/login.js'
+    import register from '../../functions/auth/register.js'
+    import toggleShowPass from '../../functions/auth/toggleShowPass'
+    import inputListener from '../../functions/auth/inputListener'
 
     const props = defineProps({
         user:{

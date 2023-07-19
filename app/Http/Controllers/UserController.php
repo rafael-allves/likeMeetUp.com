@@ -31,9 +31,10 @@ class UserController extends Controller
         $user = Auth::user();
         if($user != null){
             Auth::login($user);
+            return redirect('/');
         }
 
-        return Inertia::render('Auth', [
+        return Inertia::render('users/Auth', [
             "user" => ["user" => ""],
         ]);
     }
