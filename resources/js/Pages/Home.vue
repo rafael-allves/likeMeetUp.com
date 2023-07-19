@@ -106,6 +106,14 @@
                 </div>
             </section>
         </section>
+        <section v-else>
+            <section class="block md:hidden">
+
+            </section>
+            <section class="md:flex hidden">
+
+            </section>
+        </section>
     </main>
     </Layout>
 </template>

@@ -31,6 +31,14 @@
                     </Link>
                 </li>
                 <li>
+                    <Link href="/events/create" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                        <span class="material-symbols-outlined">
+                            group_add
+                        </span>
+                        Criar um Evento
+                    </Link>
+                </li>
+                <li>
                     <Link href="/dashboard" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                         <span class="material-symbols-outlined">
                             dashboard
@@ -52,6 +60,14 @@
                             person
                         </span>
                         Editar perfil
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/events/create" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                        <span class="material-symbols-outlined">
+                            group_add
+                        </span>
+                        Criar um Evento
                     </Link>
                 </li>
                 <li>

@@ -111,7 +111,6 @@
     a:hover{
         color: #F2A340;
     }
-
     .hamburger{
         border-top: 0.2rem solid;
     
