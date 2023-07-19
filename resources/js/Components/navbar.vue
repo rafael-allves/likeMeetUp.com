@@ -24,7 +24,8 @@
         </Link>
         <nav class="flex flex-row">
             <button class="max-md:block hidden hamburger"
-            @click="dropMenu"
+            @click.prevent="dropMenu"
+            @touchstart.prevent="dropMenu"
             aria-expanded="false"
             >
             </button>
@@ -32,6 +33,15 @@
                 <div id="menu" class="menu absolute max-md:flex h-full max-md:items-center max-md:flex-col">
                     <DropDownAvatar :user="props.user" :responsive="true" v-if="props.authStatus"/>
                     <ul class="flex flex-col w-full px-10 h-full relative mt-8 font-medium text-2xl">
+                        <li>
+                            <Link href="/users/create" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover"
+                            v-if="!props.authStatus">
+                                <span class="material-symbols-outlined">
+                                    person_add
+                                </span>
+                                Login/Registro
+                            </Link>
+                        </li>
                         <li>
                             <Link href="/about" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                                 <span class="material-symbols-outlined">
@@ -56,15 +66,6 @@
                                 Eventos
                             </Link>
                         </li>
-                        <li>
-                            <Link href="/users/create" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
-                                <span class="material-symbols-outlined">
-                                    person_add
-                                </span>
-                                Login/Registro
-                            </Link>
-                        </li>
-
 
                         <Link href="/logout" class="text-black w-10/12 flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover absolute bottom-2" v-if="props.authStatus">
                             <span class="material-symbols-outlined">
@@ -147,7 +148,7 @@
 
      .hamburger.active::after{
         transform: rotate(-135deg);
-        top: -0.5rem;
+        top: -0.6rem;
      }
 
      .menuBg{

@@ -12,7 +12,6 @@ function checkCamp(evt, controler){
 
     
     const typeData = controler.type.value === 'login' ? controler.login : controler.register;
-    console.log(typeData)
     const controlData = id === 'confirmpassword' ? 'confirmpassword' :
     id.split('login')[0] === '' ? id.split('login')[1] :  id.split('register')[1];//Se o id não for confirmpassword ele vai checar qual campo é
     typeData[controlData] = false;

@@ -44,7 +44,7 @@
                         <p>
                             Entre agora e participe dos eventos mais empolgantes da sua região! Ou se preferir aproveite dos eventos online.
                         </p>
-                        <Link href="users/create" class="text-[0.8rem] text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover hover:text-colorPrimary">
+                        <Link href="users/create" class="text-[0.8rem] text-black flex items-center ml-2 gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover hover:text-colorPrimary">
                             Entrar Agora
                             <span class="material-symbols-outlined">
                                 arrow_right_alt
@@ -62,7 +62,7 @@
                         <p>
                             No Rafa Events você encontrará pessoas com as mesmas paixões que você
                         </p>
-                        <Link href="users/create" class="text-[0.8rem] text-black flex justify-end items-center gap-2 hover:border-r-2 border-colorSecondary hover:pl-1 hover:bg-colorHover hover:text-colorPrimary">
+                        <Link href="users/create" class="text-[0.8rem] text-black flex justify-end  mr-2 items-center gap-2 hover:border-r-2 border-colorSecondary hover:pr-1 hover:bg-colorHover hover:text-colorPrimary">
                             <span class="material-symbols-outlined">
                                 arrow_left_alt
                             </span>
@@ -78,7 +78,7 @@
                         <p>
                             Comece a se conectar agora mesmo!
                         </p>
-                        <Link href="users/create" class="text-[0.8rem] text-black flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover hover:text-colorPrimary">
+                        <Link href="users/create" class="text-[0.8rem] text-black flex items-center ml-2 gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover hover:text-colorPrimary">
                             Entrar Agora
                             <span class="material-symbols-outlined">
                                 arrow_right_alt

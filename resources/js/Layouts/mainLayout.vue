@@ -23,13 +23,15 @@
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         </Head>
-        <Navbar 
-            :authStatus="props.authStatus"
-            :user="props.user"
-        />
-        <slot />
+        <div class="pb-20">
+            <Navbar 
+                :authStatus="props.authStatus"
+                :user="props.user"
+            />
+            <slot />
+        </div>
 
-        <footer class="flex items-center absolute bottom-0 justify-center w-full bg-black h-20 text-rose-50">
+        <footer class="flex items-center absolute left-0 bottom-0 justify-center w-full bg-black h-20 text-rose-50">
             Rafa Events
             &copy; 2023
         </footer>

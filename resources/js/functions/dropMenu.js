@@ -12,7 +12,6 @@ function handleClickOutside(element, buttonDropDown){
 }
 
 export default function dropMenu(evt){
-    evt.preventDefault();
     evt.stopPropagation();
     const expanded = evt.currentTarget.getAttribute('aria-expanded');
 
@@ -34,6 +33,6 @@ export default function dropMenu(evt){
         });
         html.addEventListener('touchstart', (evt)=>{
             handleClickOutside(evt, buttonDropDown)
-        }, {passive:false});
+        });
     }
 }
