@@ -7,16 +7,18 @@ function checkCamp(evt, controler){
     const id = camp.getAttribute('id');
     const icon = camp.nextElementSibling.classList == "material-symbols-outlined" ? camp.nextElementSibling : undefined;
 
-
     if(icon)icon.classList.remove('checkedCamp');
     if(icon)icon.innerText = '';
 
-    const typeData = controler.type.login ? controler.login : controler.register;
+    
+    const typeData = controler.type.value === 'login' ? controler.login : controler.register;
     const controlData = id === 'confirmpassword' ? 'confirmpassword' :
-     id.split('login')[0] === '' ? id.split('login')[1] :  id.split('register')[1];//Se o id não for confirmpassword ele vai checar qual campo é
+    id.split('login')[0] === '' ? id.split('login')[1] :  id.split('register')[1];//Se o id não for confirmpassword ele vai checar qual campo é
+    typeData[controlData] = false;
 
     if(validityState.tooShort){
         toggleError(camp, `Esse campo deve ter no mínimo ${camp.getAttribute('minlength')} caracteres`)
+        return;
     }
 
     if(id == "loginemail" || id == "registeremail"){
@@ -35,12 +37,11 @@ function checkCamp(evt, controler){
         }
     }
 
-
-
     //Se der tudo certo ele vai falar que o campo está validado
 
     typeData[controlData] = true;
 
+    if(icon)icon.classList.remove('refusedCamp')
     if(icon)icon.classList.add('checkedCamp');
     if(icon)icon.innerText = 'check_circle';
 

@@ -1,6 +1,7 @@
 export default function addError(camp, messageError){
     const graphicalMessage = camp.parentNode.parentNode.nextElementSibling;
-    const icon = camp.nextElementSibling.classList == "material-symbols-outlined" ? camp.nextElementSibling : undefined;
+    const icon = camp.nextElementSibling.classList == "material-symbols-outlined" ||
+    camp.nextElementSibling.classList == "material-symbols-outlined checkedCamp" ? camp.nextElementSibling : undefined;
 
     graphicalMessage.innerText = messageError;
 

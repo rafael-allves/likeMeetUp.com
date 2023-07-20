@@ -1,21 +1,15 @@
 import addError from './campvalidations/toggleError.js'
-export default function login (event, controler){
-    event.preventDefault();
+import axios from 'axios';
 
-    const email = document.getElementById('loginemail').value;
-    const password = document.getElementById('loginpassword').value;
-
+export default function login (controler, email, password){
     if(!controler.email || !controler.password)return;
 
     const data = {
         email: email,
         password: password,
     }
-    axios.post('/auth/login', data,{
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content'),
-        }
-    })
+    
+    axios.post('/auth/login', data)
     .then(response => {
         if(response.data.sucesso)location.href = response.data.sucesso  //MEU BACKEND VAI ME ENTREGAR UMA URL PARA REDIRECIONAR O USUÁRIO APÓS O REGISTRO CONCLUIDO CORRETAMENTE
         

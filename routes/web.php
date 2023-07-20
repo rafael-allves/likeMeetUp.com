@@ -1,9 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/', function (){
+    return Inertia::render('Home', [
+        "user" => Auth::user() ?? ["user" => ""],
+    ]);
+});
 
 Route::resource('events', EventController::class)->name('', 'events');
 Route::controller(EventController::class)->middleware(['auth'])->group(function (){
@@ -18,6 +26,6 @@ Route::controller(UserController::class)->group(function (){
 });
 
 Route::controller(UserController::class)->middleware(['auth'])->group(function (){
-    Route::post('/logout', 'logout');
+    Route::get('/logout', 'logout');
     Route::get('/dashboard', 'dashboard');
 });

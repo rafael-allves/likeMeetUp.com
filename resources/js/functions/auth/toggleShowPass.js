@@ -1,5 +1,4 @@
 export default function toggleShowPass(evt){
-    evt.preventDefault();
      // Como o span ta dentro do botão e o clique vai ser no icone o evt.target referencia o span
     //por isso é necessario usar currentTarget para referenciar o button
     //outra solução pra evitar aql sintaxe podre de currentTarget.chuldren[0] é usar evt.stopPropagation entendendo que quem recebe o evento é o span
