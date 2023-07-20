@@ -1,7 +1,7 @@
 <script setup>
     import {ref} from 'vue'
 
-    import Layout from '../../Layouts/mainLayout.vue';
+    import Layout from '@/Layouts/mainLayout.vue';
     import SetAuthType from '@/Components/setAuthType.vue'
     import {Head} from '@inertiajs/vue3'
     
@@ -66,20 +66,6 @@
                         <SetAuthType :toggleAuth="controler.type.value" @toggleAuth="(type) => controler.type.value = type" />
                         <section>
                             <form id="loginform" class="auth" method="POST" v-if="controler.type.value === 'Login'">
-                                <div class="input__camp">
-                                    <span class="material-symbols-outlined input__camp_icon">
-                                        mail
-                                    </span>
-                                    <div class="input__text">
-                                        <label for="loginemail">Email</label>
-                                        <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required maxlength="64"
-                                        @input="inputListener($event, controler)"
-                                        v-model="loginEmail">
-                                        <span class="material-symbols-outlined">
-
-                                        </span>
-                                    </div>
-                                 </div>
                                 <p class="errorMessage">
                                 </p>
                                 <div class="input__camp">
