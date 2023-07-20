@@ -2,16 +2,17 @@
     import {ref} from 'vue'
 
     import Layout from '../../Layouts/mainLayout.vue';
+    import SetAuthType from '@/Components/setAuthType.vue'
     import {Head} from '@inertiajs/vue3'
     
     import '/public/css/auth/styles.css';
 
     import Logo from '/public/assets/logo.png'
 
-    import login from '../../functions/auth/login.js'
-    import register from '../../functions/auth/register.js'
-    import toggleShowPass from '../../functions/auth/toggleShowPass'
-    import inputListener from '../../functions/auth/inputListener'
+    import login from '@/functions/auth/login.js'
+    import register from '@/functions/auth/register.js'
+    import toggleShowPass from '@/functions/auth/toggleShowPass'
+    import inputListener from '@/functions/auth/inputListener'
 
     const props = defineProps({
         user:{
@@ -21,7 +22,7 @@
     })
 
     const controler = {
-        type: ref('login'),
+        type: ref('Login'),
         login: {
             email: false,
             password: false
@@ -33,7 +34,6 @@
             confirmpassword: false,
         }
     }
-    const toggleAuth = ref('Login');
 
 </script>
 
@@ -63,29 +63,9 @@
                         <small>Por Favor, Informe suas credenciais</small>
                     </header>
                     <section>
-                        <section class="main__container__form__section">
-                            <div class="main__container__form__section_authtype">
-                                <button
-                                type="button"
-                                id="login"
-                                @click="controler.type.value = 'login'; toggleAuth = 'Login'">
-                                    Login
-                                </button>
-                            </div>
-                            <span :class="toggleAuth">
-                                {{ toggleAuth }}
-                            </span>
-                            <div class="main__container__form__section_authtype">
-                                <button
-                                type="button"
-                                @click="controler.type.value = 'register'; toggleAuth = 'Register'"
-                                >
-                                    Register
-                                </button>
-                            </div>
-                        </section>
+                        <SetAuthType :toggleAuth="controler.type.value" @toggleAuth="(type) => controler.type.value = type" />
                         <section>
-                            <form id="loginform" class="auth" method="POST" v-if="controler.type.value === 'login'">
+                            <form id="loginform" class="auth" method="POST" v-if="controler.type.value === 'Login'">
                                 <div class="input__camp">
                                     <span class="material-symbols-outlined input__camp_icon">
                                         mail
