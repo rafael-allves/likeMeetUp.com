@@ -2,11 +2,8 @@
     import {ref} from 'vue'
 
     import Layout from '@/Layouts/mainLayout.vue';
-    import SetAuthType from '@/Components/setAuthType.vue'
     import {Head} from '@inertiajs/vue3'
     
-    import '/public/css/auth/styles.css';
-
     import Logo from '/public/assets/logo.png'
 
     import login from '@/functions/auth/login.js'
@@ -22,7 +19,7 @@
     })
 
     const controler = {
-        type: ref('Login'),
+        type: ref('login'),
         login: {
             email: false,
             password: false
@@ -34,6 +31,7 @@
             confirmpassword: false,
         }
     }
+    const toggleAuth = ref('Login');
 
 </script>
 
@@ -49,23 +47,57 @@
                     Auth
                 </title>
             </Head>
-            <section class="main__container mt-10">
-                    <header class="main__container__header">
-                        <h2 class="main__container__header_h2 flex items-center justify-center gap-1">
+            <section class="flex flex-col items-center mt-10">
+                    <header>
+                        <h2 class="text-center text-xl flex items-center justify-center gap-1">
                             <img width="40" height="40" :src=Logo alt="Logo">
                             Rafa Events
                         </h2>
 
-                        <h1 class="main__container__header_h1">
+                        <h1 class="text-xl text-center">
                             Bem-vindo
                         </h1>
 
                         <small>Por Favor, Informe suas credenciais</small>
                     </header>
                     <section>
-                        <SetAuthType :toggleAuth="controler.type.value" @toggleAuth="(type) => controler.type.value = type" />
+                        <section class="main__container__form__section">
+                            <div class="main__container__form__section_authtype">
+                                <button
+                                type="button"
+                                id="login"
+                                @click="controler.type.value = 'login'; toggleAuth = 'Login'">
+                                    Login
+                                </button>
+                            </div>
+                            <span :class="toggleAuth">
+                                {{ toggleAuth }}
+                            </span>
+                            <div class="main__container__form__section_authtype">
+                                <button
+                                type="button"
+                                @click="controler.type.value = 'register'; toggleAuth = 'Register'"
+                                >
+                                    Register
+                                </button>
+                            </div>
+                        </section>
                         <section>
-                            <form id="loginform" class="auth" method="POST" v-if="controler.type.value === 'Login'">
+                            <form id="loginform" class="auth" method="POST" v-if="controler.type.value === 'login'">
+                                <div class="input__camp">
+                                    <span class="material-symbols-outlined input__camp_icon">
+                                        mail
+                                    </span>
+                                    <div class="input__text">
+                                        <label for="loginemail">Email</label>
+                                        <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required maxlength="64"
+                                        @input="inputListener($event, controler)"
+                                        v-model="loginEmail">
+                                        <span class="material-symbols-outlined">
+
+                                        </span>
+                                    </div>
+                                 </div>
                                 <p class="errorMessage">
                                 </p>
                                 <div class="input__camp">

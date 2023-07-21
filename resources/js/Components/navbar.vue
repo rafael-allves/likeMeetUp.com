@@ -1,11 +1,11 @@
 <script setup>
     import { Link } from '@inertiajs/vue3';
-    import DropDownAvatar from './dropDownAvatar.vue'
-    import ProfilePic from './profilepic.vue'
+    import DropDownAvatar from './DropDownAvatar.vue'
+    import ProfilePic from './ProfilePic.vue'
 
     import Logo from '/public/assets/logo.png';
     
-    import dropMenu from '../functions/dropMenu.js';
+    import dropMenu from '@/functions/dropMenu.js';
 
     const props = defineProps({
         authStatus:{
@@ -30,7 +30,7 @@
             >
             </button>
             <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-10">
-                <div id="menu" class="menu absolute z-30 max-md:flex h-full max-md:items-center max-md:flex-col">
+                <div id="menu" class="menu absolute max-md:flex h-full max-md:items-center max-md:flex-col">
                     <DropDownAvatar :user="props.user" :responsive="true" v-if="props.authStatus"/>
                     <ul class="flex flex-col w-full px-10 h-full relative mt-8 font-medium text-2xl">
                         <li>

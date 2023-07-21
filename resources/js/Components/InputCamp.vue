@@ -36,6 +36,14 @@ defineExpose({ focus: () => input.value.focus() });
         evt.target.previousElementSibling.style.top = transformValue;
         evt.target.previousElementSibling.style.fontSize = fontSizeValue;
     }
+    function toggleShowPass(evt){
+        const input = evt.currentTarget.previousElementSibling;
+        
+        input.type = input.type == 'password' ? 'text' : 'password';
+
+        evt.currentTarget.children[0].innerText = input.type == 'password' ? 'visibility_off' : 'visibility';
+    }
+
 </script>
 
 <template>
