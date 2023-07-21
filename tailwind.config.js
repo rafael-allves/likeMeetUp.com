@@ -16,8 +16,15 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                mainBg: '#FFF',
+                secondBg: 'rgb(224, 224, 224)',
+                
+                textMuted: 'rgb(121, 120, 123)',
+                textColor: '#000',
+
                 colorPrimary: "#F2A340",
                 colorSecondary: "#C28008",
+
                 colorHover: "rgba(194, 128, 8, 0.15)",
             },
         },

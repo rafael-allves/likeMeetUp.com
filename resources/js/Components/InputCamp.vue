@@ -36,6 +36,7 @@ defineExpose({ focus: () => input.value.focus() });
         evt.target.previousElementSibling.style.top = transformValue;
         evt.target.previousElementSibling.style.fontSize = fontSizeValue;
     }
+    
     function toggleShowPass(evt){
         const input = evt.currentTarget.previousElementSibling;
         

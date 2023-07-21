@@ -1,15 +1,14 @@
 <script setup>
-    import {ref} from 'vue'
+    import {ref, watch} from 'vue'
 
-    import Layout from '@/Layouts/mainLayout.vue';
-    import {Head} from '@inertiajs/vue3'
-    
-    import Logo from '/public/assets/logo.png'
+    import Layout from '@/Layouts/MainLayout.vue';
+    import SetAuthType from '@/Components/SetAuthType.vue';
+    import InputCamp from '@/Components/InputCamp.vue';
+    import InputError from '@Components/InputError.vue';
 
-    import login from '@/functions/auth/login.js'
-    import register from '@/functions/auth/register.js'
-    import toggleShowPass from '@/functions/auth/toggleShowPass'
-    import inputListener from '@/functions/auth/inputListener'
+    import { Head, useForm } from '@inertiajs/vue3';
+
+    import Logo from '/public/assets/logo.png';
 
     const props = defineProps({
         user:{
@@ -18,20 +17,52 @@
         }
     })
 
-    const controler = {
-        type: ref('login'),
-        login: {
-            email: false,
-            password: false
-        },
-        register: {
-            username: false,
-            email: false,
-            password: false,
-            confirmpassword: false,
-        }
+    const authType = ref('Login');
+
+    const formLogin = useForm({
+        email: '',
+        password: '',
+        remember: false,
+    },{
+        required: " O campo é obrigatório",
+        minLength: "O valor fornecido não atinge o comprimento mínimo.",
+        maxLength: "O valor fornecido excede o comprimento máximo",
+        pattern: "O valor fornecido não corresponde ao padrão especificado",
+        email: "O valor fornecido não é um endereço de e-mail válido",
+        authFailed: "Credenciais Inválidas"
+    });
+
+    const formRegister = useForm({
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+    }, {
+        required: " O campo é obrigatório",
+        minLength: "O valor fornecido não atinge o comprimento mínimo.",
+        maxLength: "O valor fornecido excede o comprimento máximo",
+        pattern: "O valor fornecido não corresponde ao padrão especificado",
+        email: "O valor fornecido não é um endereço de e-mail válido",
+        authFailed: "Credenciais Inválidas"
+    });
+
+    const login = () => {
+        formLogin.post(route('login'), {
+            onFinish: () =>formLogin.reset('email', 'password'),
+        });
+    };
+
+    const register = () => {
+        formRegister.post(route('register'), {
+            onFinish: () => formRegister.reset('name', 'email', 'password', 'password_confirmation'),
+        });
+    };
+
+    const resetForm = () => {
+        formLogin.reset('email', 'password');
+        formRegister.reset('name', 'email', 'password', 'password_confirmation');
     }
-    const toggleAuth = ref('Login');
+    watch(authType, resetForm);
 
 </script>
 
@@ -48,163 +79,127 @@
                 </title>
             </Head>
             <section class="flex flex-col items-center mt-10">
-                    <header>
-                        <h2 class="text-center text-xl flex items-center justify-center gap-1">
+                    <header class="flex flex-col gap-2">
+                        <h2 class="text-center text-3xl flex items-center justify-center gap-1">
                             <img width="40" height="40" :src=Logo alt="Logo">
                             Rafa Events
                         </h2>
 
-                        <h1 class="text-xl text-center">
+                        <h1 class="text-3xl text-center">
                             Bem-vindo
                         </h1>
 
-                        <small>Por Favor, Informe suas credenciais</small>
+                        <small class="text-textMuted text-base">
+                            Por Favor, Informe suas credenciais
+                        </small>
                     </header>
                     <section>
-                        <section class="main__container__form__section">
-                            <div class="main__container__form__section_authtype">
-                                <button
-                                type="button"
-                                id="login"
-                                @click="controler.type.value = 'login'; toggleAuth = 'Login'">
-                                    Login
-                                </button>
-                            </div>
-                            <span :class="toggleAuth">
-                                {{ toggleAuth }}
-                            </span>
-                            <div class="main__container__form__section_authtype">
-                                <button
-                                type="button"
-                                @click="controler.type.value = 'register'; toggleAuth = 'Register'"
-                                >
-                                    Register
-                                </button>
-                            </div>
+                        <section class="flex items-center my-3">
+                            <SetAuthType :toggleAuth="authType" @toggleAuth="(type) => authType = type" />
                         </section>
                         <section>
-                            <form id="loginform" class="auth" method="POST" v-if="controler.type.value === 'login'">
-                                <div class="input__camp">
-                                    <span class="material-symbols-outlined input__camp_icon">
-                                        mail
-                                    </span>
-                                    <div class="input__text">
-                                        <label for="loginemail">Email</label>
-                                        <input type="email" name="loginemail" id="loginemail" class="input__camp_input" required maxlength="64"
-                                        @input="inputListener($event, controler)"
-                                        v-model="loginEmail">
-                                        <span class="material-symbols-outlined">
+                            <form id="loginform" class="auth" method="POST" v-if="authType === 'Login'"
+                            @submit="login">
+                                <InputCamp
+                                    id="email"
+                                    type="email"
+                                    class="mt-1 block"
+                                    v-model="formLogin.email"
+                                    required
+                                    autofocus
+                                    autocomplete="username"
+                                    />
+                                <InputError class="mt-2" :message="formLogin.errors.email" />
 
-                                        </span>
-                                    </div>
-                                 </div>
-                                <p class="errorMessage">
-                                </p>
-                                <div class="input__camp">
-                                    <span class="material-symbols-outlined input__camp_icon">
-                                        lock
-                                    </span>
-                                    <div class="input__text">
-                                        <label for="loginpassword">Senha</label>
-                                        <input type="password" name="loginpassword" id="loginpassword" class="input__camp_input" required minlength="8"
-                                        @input="inputListener($event, controler)"
-                                        v-model="loginPassword">
-                                        <button 
-                                        class="showpassbtn" 
-                                        type="button" 
-                                        @click.prevent="toggleShowPass">
-                                            <span class="material-symbols-outlined">
-                                                visibility_off
-                                            </span>
-                                        </button>
-                                    </div>
+                                <div class="mt-4">
+                                    <InputCamp
+                                        id="password"
+                                        type="password"
+                                        class="mt-1 block w-full"
+                                        v-model="formLogin.password"
+                                        required
+                                        autocomplete="current-password"
+                                    />
+                                    <InputError class="mt-2" :message="formLogin.errors.password" />
                                 </div>
-                                <p class="errorMessage"></p>
+
+                                <div class="block mt-4">
+                                    <label class="flex items-center">
+                                        <input
+                                        type="checkbox"
+                                        v-model="formLogin.remember"
+                                        class="rounded border-textColor text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                        />
+                                        <span class="ml-2 text-sm text-textColor">Lembrar de Mim</span>
+                                    </label>
+                                </div>
+
                                 <button id="formLogin" 
-                                class="authButton" 
+                                class="mt-2" 
                                 type="submit"
-                                @click.prevent="login(controler.login, loginEmail, loginPassword)"
                                 >
                                     LOGIN
                                 </button>
 
                             </form>
-                            <form class="auth" id="registerform" method="POST" v-else>
-                                <div class="input__camp">
-                                    <span class="material-symbols-outlined input__camp_icon">
-                                        person
-                                    </span>
-                                    <div class="input__text">
-                                        <label for="registerusername">Nome</label>
-                                        <input type="username" name="registerusername" id="registerusername" class="input__camp_input" required minlength="4"
-                                        @input="inputListener($event, controler)"
-                                        v-model="registerName">
-                                        <span class="material-symbols-outlined">
+                            <form class="auth" id="registerform" method="POST" v-else
+                            @submit.prevent="register()">
+                                <div>
+                                    <InputCamp
+                                        id="name"
+                                        type="name"
+                                        v-model="formRegister.name"
+                                        required
+                                        autofocus
+                                        autocomplete="name"
+                                    />
 
-                                        </span>
-                                    </div>
+                                    <InputError class="mt-2" :message="formRegister.errors.name" />
                                 </div>
-                                <p class="errorMessage"></p>
-                                <div class="input__camp">
-                                    <span class="material-symbols-outlined input__camp_icon">
-                                        mail
-                                    </span>
-                                    <div class="input__text">
-                                        <label for="registeremail">Email</label>
-                                        <input type="email" name="registeremail" id="registeremail" class="input__camp_input" required maxlength="64"
-                                        @input="inputListener($event, controler)"
-                                        v-model="registerEmail">
-                                        <span class="material-symbols-outlined">
 
-                                        </span>
-                                    </div>
-                                </div>
-                                <p class="errorMessage"></p>
-                                <div class="input__camp">
-                                    <span class="material-symbols-outlined input__camp_icon">
-                                        lock
-                                    </span>
-                                    <div class="input__text">
-                                        <label for="registerpassword">Senha</label>
-                                        <input type="password" name="registerpassword" id="registerpassword" class="input__camp_input" required minlength="8"
-                                        @input="inputListener($event, controler)"
-                                        v-model="registerPassword">
-                                        <button 
-                                        class="showpassbtn" 
-                                        type="button" 
-                                        @click.prevent="toggleShowPass">
-                                            <span class="material-symbols-outlined">
-                                                visibility_off
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <p class="errorMessage"></p>
+                                <div class="mt-4">
+                                    <InputCamp
+                                        id="email"
+                                        type="email"
+                                        class="mt-1 block w-full"
+                                        v-model="formRegister.email"
+                                        required
+                                        autocomplete="username"
+                                    />
 
-                                <div class="input__camp">
-                                    <span class="material-symbols-outlined input__camp_icon">
-                                        lock
-                                    </span>
-                                    <div class="input__text">
-                                        <label for="confirmpassword">Confirmar Senha</label>
-                                        <input type="password" name="confirmpassword" id="confirmpassword" class="input__camp_input" required
-                                        @input="inputListener($event, controler)">
-                                        <button 
-                                        class="showpassbtn" 
-                                        type="button" 
-                                        @click.prevent="toggleShowPass">
-                                            <span class="material-symbols-outlined">
-                                                visibility_off
-                                            </span>
-                                        </button>
-                                    </div>
+                                    <InputError class="mt-2" :message="formRegister.errors.email" />
                                 </div>
-                                <p class="errorMessage"></p>
+
+                                <div class="mt-4">
+                                    <InputCamp
+                                        id="password"
+                                        type="password"
+                                        class="mt-1 block w-full"
+                                        v-model="formRegister.password"
+                                        required
+                                        autocomplete="new-password"
+                                    />
+
+                                    <InputError class="mt-2" :message="formRegister.errors.password" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputCamp
+                                        id="password_confirmation"
+                                        type="confirmar senha"
+                                        class="mt-1 block w-full"
+                                        v-model="formRegister.password_confirmation"
+                                        required
+                                        autocomplete="new-password"
+                                    />
+
+                                    <InputError class="mt-2" :message="formRegister.errors.password_confirmation" />
+                                </div>
+
 
                                 <button id="formRegister"
-                                class="authButton"
+                                class="mt-2"
                                 type="submit"
-                                @click.prevent="register(controler.register, registerName, registerEmail, registerPassword)"
                                 >
                                     REGISTER
                                 </button>
@@ -216,5 +211,17 @@
     </Layout>
 </template>
 
-<style>
+<style scoped>
+    button{
+        background-color: rgb(2, 102, 255);
+        color: #FFF;
+
+        width: 100%;
+        height: 3rem;
+
+        border-radius: 5px;
+        border: none;
+
+        cursor: pointer;
+    }
 </style>

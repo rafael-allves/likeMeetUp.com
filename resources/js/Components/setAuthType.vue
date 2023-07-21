@@ -10,7 +10,7 @@
 </script>
 
 <template>
-    <section class="flex items-center my-3 rounded-lg h-8 relative bg-bgSecondary w-full">
+    <section class="flex items-center my-3 rounded-lg h-8 relative bg-secondBg w-full">
         <div class="relative flex items-center justify-center w-[50%] h-full">
                     <button
                     type="button"
