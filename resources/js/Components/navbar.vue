@@ -1,11 +1,11 @@
 <script setup>
     import { Link } from '@inertiajs/vue3';
-    import DropDownAvatar from './dropDownAvatar.vue'
-    import ProfilePic from './profilepic.vue'
+    import DropDownAvatar from './DropDownAvatar.vue'
+    import ProfilePic from './ProfilePic.vue'
 
     import Logo from '/public/assets/logo.png';
     
-    import dropMenu from '../functions/dropMenu.js';
+    import dropMenu from '@/functions/dropMenu.js';
 
     const props = defineProps({
         authStatus:{

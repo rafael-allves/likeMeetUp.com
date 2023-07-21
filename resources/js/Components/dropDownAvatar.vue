@@ -1,7 +1,7 @@
 <script setup>
     import { Link } from '@inertiajs/vue3';
     
-    import ProfilePic from './profilepic.vue';
+    import ProfilePic from './ProfilePic.vue';
     
     const props = defineProps({
         user:{
