@@ -41,9 +41,9 @@
     <div>
         <Layout :authStatus="props.user != null" 
         :user="props.user">
-            <main class="flex flex-col items-center">
+            <main class="flex flex-col items-center px-2">
                 <form method="POST" class="w-full mt-3 flex flex-col items-center">
-                    <div class="w-80 border border-black flex justify-center align-center relative"
+                    <div class="border border-black flex justify-center align-center relative"
                     @mouseenter="showLabel"
                     @mouseleave="hideLabel"
                     @touchstart="showLabel">
