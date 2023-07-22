@@ -27,7 +27,7 @@
                 <h2 class="text-[1rem] font-bold">
                     Procurando Eventos Empolgantes?
                 </h2>
-                <p>
+                <p class="text-[0.8rem]">
                     Entre agora e participe dos eventos mais empolgantes da sua região! Ou se preferir aproveite dos eventos online.
                 </p>
                 <Link href="users/create" class="text-[0.8rem] text-black flex items-center ml-2 gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover hover:text-colorPrimary">
@@ -42,10 +42,10 @@
         <div class="flex gap-1">
             <img :src="talking" alt="Encontre pessoas novas" class="w-[50%]">
             <div class="w-[50%] mt-3">
-                <h2 class="text-[1.1rem] font-bold">
+                <h2 class="text-[1rem] font-bold">
                     Querendo conhecer pessoas novas?
                 </h2>
-                <p>
+                <p class="text-[0.8rem]">
                     No Rafa Events você encontrará pessoas com as mesmas paixões que você
                 </p>
                 <Link href="users/create" class="text-[0.8rem] text-black flex justify-end  mr-2 items-center gap-2 hover:border-r-2 border-colorSecondary hover:pr-1 hover:bg-colorHover hover:text-colorPrimary">
@@ -61,7 +61,7 @@
                 <h2 class="text-[0.9rem] font-bold">
                     Está esperando oque ?
                 </h2>
-                <p>
+                <p class="text-[0.8rem]">
                     Comece a se conectar agora mesmo!
                 </p>
                 <Link href="users/create" class="text-[0.8rem] text-black flex items-center ml-2 gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover hover:text-colorPrimary">
@@ -79,7 +79,7 @@
             <h1 class="text-[100px] leading-[80px]">
                 Rafa Events
             </h1>
-            <p class="my-5 text-">
+            <p class="text-[0.8rem]">
                 Descubra um mundo de experiências inesquecíveis e conecte-se com pessoas apaixonadas por eventos. Cadastre-se agora na nossa rede social baseada em eventos e embarque em uma jornada única!
                 Você adora eventos e deseja compartilhar suas paixões com pessoas que têm interesses semelhantes? Junte-se à nossa vibrante comunidade de entusiastas de eventos. Cadastre-se hoje mesmo e mergulhe em um oceano de oportunidades!
             </p>
