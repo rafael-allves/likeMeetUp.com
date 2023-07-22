@@ -23,13 +23,6 @@
         email: '',
         password: '',
         remember: false,
-    },{
-        required: " O campo é obrigatório",
-        minLength: "O valor fornecido não atinge o comprimento mínimo.",
-        maxLength: "O valor fornecido excede o comprimento máximo",
-        pattern: "O valor fornecido não corresponde ao padrão especificado",
-        email: "O valor fornecido não é um endereço de e-mail válido",
-        authFailed: "Credenciais Inválidas"
     });
 
     const formRegister = useForm({
@@ -37,13 +30,6 @@
         email: '',
         password: '',
         password_confirmation: '',
-    }, {
-        required: " O campo é obrigatório",
-        minLength: "O valor fornecido não atinge o comprimento mínimo.",
-        maxLength: "O valor fornecido excede o comprimento máximo",
-        pattern: "O valor fornecido não corresponde ao padrão especificado",
-        email: "O valor fornecido não é um endereço de e-mail válido",
-        authFailed: "Credenciais Inválidas"
     });
 
     const login = () => {
