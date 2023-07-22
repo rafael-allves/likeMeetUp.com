@@ -27,6 +27,7 @@
                     <button
                     type="button"
                     @click="$emit('toggleAuth', $event.target.innerText); toggleAuth = 'Register'"
+                    class="absolute z-0"
                     >
                         Register
                     </button>

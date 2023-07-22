@@ -2,7 +2,7 @@ function handleClickOutside(element, buttonDropDown){
     const acceptedClick = document.getElementById('menu');
     if(!acceptedClick.contains(element.target)){
         buttonDropDown.setAttribute('aria-expanded', 'false');
-        buttonDropDown.nextElementSibling.style.display = "hidden";
+        buttonDropDown.nextElementSibling.style.visibility = "hidden";
         buttonDropDown.classList.remove('active');
 
         const html = document;

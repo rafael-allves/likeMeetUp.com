@@ -29,7 +29,7 @@
             aria-expanded="false"
             >
             </button>
-            <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-10">
+            <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-20">
                 <div id="menu" class="menu absolute max-md:flex h-full max-md:items-center max-md:flex-col">
                     <DropDownAvatar :user="props.user" :responsive="true" v-if="props.authStatus"/>
                     <ul class="flex flex-col w-full px-10 h-full relative mt-8 font-medium text-2xl">
@@ -158,7 +158,7 @@
         overflow-x: hidden;
 
         transition: all 0.5s;
-     }
+    }
 
      .menu{
         width: 80%;
