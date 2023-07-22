@@ -22,3 +22,8 @@ Route::controller(EventController::class)->middleware(['auth'])->group(function 
 });
 
 Route::resource('users', UserController::class)->name('', 'users');
+
+Route::controller(UserController::class)->middleware(['auth'])->group(function (){
+
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+});
