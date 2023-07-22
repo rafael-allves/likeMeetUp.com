@@ -27,3 +27,5 @@ Route::controller(UserController::class)->middleware(['auth'])->group(function (
 
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 });
+
+require __DIR__.'/auth.php';
