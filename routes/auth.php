@@ -8,6 +8,6 @@ Route::controller(AuthController::class)->group(function (){
 });
 
 Route::controller(UserController::class)->middleware(['auth'])->group(function (){
-    Route::get('/logout', 'logout');
+    Route::get('/logout', 'logout')->name('logout');
     Route::get('/dashboard', 'dashboard');
 });

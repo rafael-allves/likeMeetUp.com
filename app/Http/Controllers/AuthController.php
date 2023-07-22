@@ -8,12 +8,16 @@ use Exception;
 use Illuminate\Support\Facades\Hash; //Preciso disso pra encriptografar senhas na db
 use Illuminate\Support\Facades\Auth; //Preciso disso pra gerenciar sessões no laravel
 use Illuminate\Validation\Rules;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\RedirectResponse;
+
+
 
 use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(Request $request): RedirectResponse
     {
         try{
             $request->validate([
@@ -37,29 +41,23 @@ class AuthController extends Controller
         }
     }
     
-    public function login (Request $request)
+    public function login (LoginRequest $request): RedirectResponse
     {
-        $data = $request->json()->all();
-        try{
-            $user = User::Where([
-                ['email', $data['email']],
-            ])->first();
+        $request->authenticate();
 
-            if(!$user)return response()->json(['campid' => 'loginemail', 'message' => 'Email não cadastrado'], 400);
+        $request->session()->regenerate();
 
-            if (!Hash::check($data['password'], $user->password))return response()->json(['campid' => 'loginpassword', 'message' => 'Senha incorreta!'], 400);
-            //to usando o HASH pq eu encriptei a senha!
-            Auth::login($user);
-            return response()->json(['sucesso' => '/']);
-
-        }catch(Exception $err){
-            return response()->json(['error' => $err], 500);
-        }
+        return redirect('/');
     }
 
-    public function logout()
+    public function logout(Request $request): RedirectResponse
     {
         Auth::logout(Auth::user());
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/users/create');
     }
 }

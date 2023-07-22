@@ -15,6 +15,7 @@ Route::get('/', function (){
 });
 
 Route::resource('events', EventController::class)->name('', 'events');
+
 Route::controller(EventController::class)->middleware(['auth'])->group(function (){
     Route::post('/events/join/{evento}', 'joinEvent');
     Route::delete('/events/leave/{evento}', 'leaveEvent');
