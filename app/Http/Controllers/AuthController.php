@@ -17,11 +17,11 @@ class AuthController extends Controller
 {
     public function register(Request $request): RedirectResponse
     {
-        $request->validate([
+        ($request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ]));
         //SE TODOS OS CAMPOS ESTIVEREM DEVIDAMENTE PREENCHIDOS EU VOU CONECTAR COM A TABELA users ENCRIPTOGRAFAR A SENHA E SALVAR O NOVO USUÁRIO
 
         $hash = Hash::make($request->password);//Encriptografando a senha por padrão ele faz 1024 iterações

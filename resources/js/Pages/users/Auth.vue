@@ -34,13 +34,13 @@
 
     const login = () => {
         formLogin.post(route('login'), {
-            onFinish: () =>formLogin.reset('email', 'password'),
+            onFinish: () =>formLogin.reset('password'),
         });
     };
 
     const register = () => {
         formRegister.post(route('register'), {
-            onFinish: () => formRegister.reset('name', 'email', 'password', 'password_confirmation'),
+            onFinish: () => formRegister.reset('password', 'password_confirmation'),
         });
     };
 
