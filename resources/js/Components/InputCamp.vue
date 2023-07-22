@@ -38,11 +38,11 @@ defineExpose({ focus: () => input.value.focus() });
     }
     
     function toggleShowPass(evt){
-        const input = evt.currentTarget.previousElementSibling;
+        const input = evt.currentTarget.previousElementSibling.lastChild;
         
         input.type = input.type == 'password' ? 'text' : 'password';
 
-        evt.currentTarget.children[0].innerText = input.type == 'password' ? 'visibility_off' : 'visibility';
+        evt.currentTarget.innerText = input.type == 'password' ? 'visibility_off' : 'visibility';
     }
 
 </script>
@@ -62,8 +62,9 @@ defineExpose({ focus: () => input.value.focus() });
             :value="modelValue"
             ref="input">
         </div>
-        <span id="showPass" class="material-symbols-outlined color-black mr-2 cursor-pointer" v-if="props.type == 'password'">
-            visibility
+        <span id="showPass" class="material-symbols-outlined color-black mr-2 cursor-pointer" 
+        v-if="type == 'password'" @click.prevent="toggleShowPass">
+            visibility_off
         </span>
     </div>
 </template>
