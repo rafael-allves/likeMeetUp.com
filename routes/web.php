@@ -21,8 +21,8 @@ Route::controller(EventController::class)->middleware(['auth'])->group(function 
 
 Route::resource('users', UserController::class)->name('', 'users');
 Route::controller(UserController::class)->group(function (){
-    Route::post('/auth/register', 'register');
-    Route::post('/auth/login', 'login');
+    Route::post('/auth/register', 'register')->name('register');
+    Route::post('/auth/login', 'login')->name('login');
 });
 
 Route::controller(UserController::class)->middleware(['auth'])->group(function (){
