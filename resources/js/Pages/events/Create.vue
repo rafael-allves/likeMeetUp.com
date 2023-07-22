@@ -1,9 +1,5 @@
-<script setup>
-    import {ref} from 'vue';
-    
-    import Layout from '../../Layouts/mainLayout.vue'
-
-    import Logo from '/public/assets/logo.png'
+<script setup>    
+    import Layout from '../../Layouts/MainLayout.vue'
 
     const props = defineProps({
         user:{
@@ -15,14 +11,14 @@
     function sendImg(evt){
         const fileInput = document.getElementById('eventPic');
         fileInput.addEventListener('change', ()=>{
-            const newProfilePic = fileInput.files[0];
-            if(newProfilePic){
+            const newEventPic = fileInput.files[0];
+            if(newEventPic){
                 const preview = new FileReader();
 
                 preview.addEventListener('load', function (){
                     document.getElementById('previewImg').setAttribute('src', preview.result);
                 })
-                preview.readAsDataURL(newProfilePic);
+                preview.readAsDataURL(newEventPic);
             }
         })
         const label = evt.currentTarget;
@@ -46,7 +42,7 @@
         <Layout :authStatus="props.user != null" 
         :user="props.user">
             <main class="flex flex-col items-center">
-                <form method="POST" class="w-full mt-3">
+                <form method="POST" class="w-full mt-3 flex flex-col items-center">
                     <div class="w-80 border border-black flex justify-center align-center relative"
                     @mouseenter="showLabel"
                     @mouseleave="hideLabel"
@@ -64,6 +60,7 @@
                         name="eventPic"
                         id="eventPic"
                         class="hidden"
+                        @load="sendImg"
                         >
                     </div>
 
