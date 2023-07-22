@@ -22,10 +22,10 @@ export default {
                 textMuted: 'rgb(121, 120, 123)',
                 textColor: '#000',
 
-                colorPrimary: "#F2A340",
-                colorSecondary: "#C28008",
+                colorPrimary: "rgb(2, 102, 255)",
+                colorSecondary: "#3949AB",
 
-                colorHover: "rgba(194, 128, 8, 0.15)",
+                colorHover: "rgba(31,41,55, .2)",
             },
         },
     },

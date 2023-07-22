@@ -1,10 +1,10 @@
 <script setup>
     import {ref, watch} from 'vue'
 
-    import Layout from '@/Layouts/MainLayout.vue';
+    import Layout from '@/Layouts/mainLayout.vue';
     import SetAuthType from '@/Components/SetAuthType.vue';
     import InputCamp from '@/Components/InputCamp.vue';
-    import InputError from '@Components/InputError.vue';
+    import InputError from '@/Components/InputError.vue';
 
     import { Head, useForm } from '@inertiajs/vue3';
 

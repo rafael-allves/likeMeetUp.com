@@ -109,7 +109,7 @@
         font-size: 2rem;
     }
     a:hover{
-        color: #F2A340;
+        color: #3949AB;
     }
     .hamburger{
         border-top: 0.2rem solid;

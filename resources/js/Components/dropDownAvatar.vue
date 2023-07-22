@@ -92,7 +92,7 @@
 
 <style scoped>
     a:hover{
-        color: #F2A340;
+        color: #3949AB;
     }
 
     #menu span {

@@ -1,7 +1,7 @@
 <script setup>
     import {Head} from '@inertiajs/vue3';
 
-    import Navbar from '../Components/navbar.vue';
+    import Navbar from '@/Components/Navbar.vue';
     const props = defineProps({
         authStatus:{
             type: Boolean,
