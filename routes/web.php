@@ -11,10 +11,15 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function (){
     return Inertia::render('Home/Home', [
         "user" => Auth::user() ?? ["user" => ""],
+        'status' => session('status'),
     ]);
 });
 
-Route::resource('events', EventController::class)->name('', 'events');
+Route::resource('events', EventController::class, [
+    'names' => [
+        'store' => 'CreateEvent',
+    ]
+]);
 
 Route::controller(EventController::class)->middleware(['auth'])->group(function (){
     Route::post('/events/join/{evento}', 'joinEvent');
@@ -24,7 +29,6 @@ Route::controller(EventController::class)->middleware(['auth'])->group(function 
 Route::resource('users', UserController::class)->name('', 'users');
 
 Route::controller(UserController::class)->middleware(['auth'])->group(function (){
-
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 });
 

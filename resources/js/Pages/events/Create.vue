@@ -1,6 +1,6 @@
 <script setup>    
     import { useForm } from '@inertiajs/vue3';
-    import { ref } from 'vue';
+    import { ref, watch } from 'vue';
 
     import Layout from '@/Layouts/MainLayout.vue'
     import CheckBox from '@/Components/CheckBox.vue';
@@ -10,9 +10,13 @@
         user:{
             type: Object,
             required: true,
+        },
+
+        status:{
+            type: Object,
         }
     });
-
+    
     const eventForm = useForm({
         eventPic: '',
         title: '',
@@ -75,7 +79,9 @@
 <template>
     <div>
         <Layout :authStatus="props.user != null" 
-        :user="props.user">
+        :user="props.user"
+        :status="props.status"
+        >
             <main class="flex flex-col items-center px-2">
                 <form method="POST" class="w-full mt-3 flex flex-col items-center"
                 @submit.prevent="createEvent">

@@ -1,7 +1,7 @@
 <script setup>
     import { Link } from '@inertiajs/vue3';
     
-    import Layout from '@/Layouts/mainLayout.vue';
+    import Layout from '@/Layouts/MainLayout.vue';
 
     import UnloggedHome from './UnloggedHome.vue';
     
@@ -9,8 +9,12 @@
         user:{
             type: Object,
             required: true,
+        },
+        status:{
+            type: Object,
         }
     })
+    console.log(props.status);
 </script>
 
 <template>

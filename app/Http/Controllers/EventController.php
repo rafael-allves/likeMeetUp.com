@@ -7,15 +7,16 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
+
+
 
 use App\Models\Event;
 use App\Models\User;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $search = request('search');
@@ -29,30 +30,30 @@ class EventController extends Controller
         }else{
             $events = Event::all();
         }
-
-
-        return view('events.events', ['events' => $events, 'search' => $search]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(){
+    public function create():Response
+    {
         $user = Auth::user();
         if($user == null)return redirect('/users/create');
         return Inertia::render('events/Create', [
             'user' => $user,
+            'status' => session('status'),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request){
+    public function store(Request $request): RedirectResponse
+    {
         //pegando a imagem
         $image = null;
         if($request->hasFile('image') && $request->file('image')->isValid()){
-            $requestImage = $request->image;
+            $requestImage = $request->eventPic;
 
             $extension = $requestImage->extension();
 
@@ -61,12 +62,12 @@ class EventController extends Controller
             //adicionando a questão do timestamp pra ter maior certeza de q esse nome de imagem será único! E não será sobrescrita por esse ou outro usuário!
             //Função md5 criptografa o path da imagem pra salvar na db
 
-
-            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
+            $request->eventPic->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
             $image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }else{
-            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
+            $request->session()->flash('status', ['error' => 'Imagem inválida']);
+            return redirect('/events/create');
         }
         
         $user = Auth::user(); //Pegando o usuário logado que fez a request pelo browser
@@ -75,7 +76,8 @@ class EventController extends Controller
         
         //mandando armazenar o dono do evento e a imagem!
 
-        return redirect('/events')->with('msg', 'Evento criado com sucesso!');
+        $request->session()->flash('status', ['okay' => 'Evento Criado Com Sucesso']);        
+        return redirect('/');
     }
 
     /**
