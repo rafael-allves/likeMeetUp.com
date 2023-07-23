@@ -5,6 +5,8 @@
     import SetAuthType from '@/Components/SetAuthType.vue';
     import InputCamp from '@/Components/InputCamp.vue';
     import InputError from '@/Components/InputError.vue';
+    import CheckBox from '@/Components/CheckBox.vue';
+    import PrimaryButton from '@/Components/PrimaryButton.vue';
 
     import { Head, useForm } from '@inertiajs/vue3';
 
@@ -48,6 +50,7 @@
         formLogin.reset('email', 'password');
         formRegister.reset('name', 'email', 'password', 'password_confirmation');
     }
+    
     watch(authType, resetForm);
 
 </script>
@@ -85,7 +88,7 @@
                         </section>
                         <section>
                             <form id="loginform" class="auth" method="POST" v-if="authType === 'Login'"
-                            @submit="login">
+                            @submit.prevent="login">
                                 <InputCamp
                                     id="email"
                                     type="email"
@@ -111,21 +114,17 @@
 
                                 <div class="block mt-4">
                                     <label class="flex items-center">
-                                        <input
-                                        type="checkbox"
+                                        <CheckBox 
                                         v-model="formLogin.remember"
-                                        class="rounded border-textColor text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                        :checked="formLogin.remember"
                                         />
                                         <span class="ml-2 text-sm text-textColor">Lembrar de Mim</span>
                                     </label>
                                 </div>
 
-                                <button id="formLogin" 
-                                class="mt-2" 
-                                type="submit"
-                                >
+                                <PrimaryButton>
                                     LOGIN
-                                </button>
+                                </PrimaryButton>
 
                             </form>
                             <form class="auth" id="registerform" method="POST" v-else
@@ -181,14 +180,9 @@
 
                                     <InputError class="mt-2" :message="formRegister.errors.password_confirmation" />
                                 </div>
-
-
-                                <button id="formRegister"
-                                class="mt-2"
-                                type="submit"
-                                >
+                                <PrimaryButton>
                                     REGISTER
-                                </button>
+                                </PrimaryButton>
                             </form>
                         </section>
                     </section>
@@ -196,18 +190,3 @@
         </main>
     </Layout>
 </template>
-
-<style scoped>
-    button{
-        background-color: rgb(2, 102, 255);
-        color: #FFF;
-
-        width: 100%;
-        height: 3rem;
-
-        border-radius: 5px;
-        border: none;
-
-        cursor: pointer;
-    }
-</style>

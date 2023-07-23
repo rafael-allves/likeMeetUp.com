@@ -1,5 +1,10 @@
 <script setup>    
-    import Layout from '../../Layouts/MainLayout.vue'
+    import { useForm } from '@inertiajs/vue3';
+    import { ref } from 'vue';
+
+    import Layout from '@/Layouts/MainLayout.vue'
+    import CheckBox from '@/Components/CheckBox.vue';
+    import PrimaryButton from '@/Components/PrimaryButton.vue';
 
     const props = defineProps({
         user:{
@@ -7,6 +12,27 @@
             required: true,
         }
     });
+
+    const eventForm = useForm({
+        eventPic: '',
+        title: '',
+        local: '',
+        date: '',
+        description: 'Escreva Sobre o Evento',
+        items: [],
+    })
+
+    const dateError = ref('');
+
+    const options =[
+        'Open Bar',
+        'Open Food',
+        'Buffet',
+        'Cadeiras',
+        'Palco',
+        'Palestra',
+        'Musica',
+    ]
 
     function sendImg(evt){
         const fileInput = document.getElementById('eventPic');
@@ -19,6 +45,7 @@
                     document.getElementById('previewImg').setAttribute('src', preview.result);
                 })
                 preview.readAsDataURL(newEventPic);
+                eventForm.eventPic = newEventPic;
             }
         })
         const label = evt.currentTarget;
@@ -35,6 +62,14 @@
         label.style.display = 'none'
         label.nextElementSibling.style.filter = 'blur(0)';
     }
+    function createEvent(){
+        const date = new Date(eventForm.date);
+        if(date <= Date.now()){
+            dateError.value = 'Data inválida';
+            return;
+        }
+        eventForm.post(route('CreateEvent'));
+    }
 </script>
 
 <template>
@@ -42,8 +77,9 @@
         <Layout :authStatus="props.user != null" 
         :user="props.user">
             <main class="flex flex-col items-center px-2">
-                <form method="POST" class="w-full mt-3 flex flex-col items-center">
-                    <div class="border border-black flex justify-center align-center relative"
+                <form method="POST" class="w-full mt-3 flex flex-col items-center"
+                @submit.prevent="createEvent">
+                    <div class="min-w-[300px] border border-black flex justify-center align-center relative mb-3"
                     @mouseenter="showLabel"
                     @mouseleave="hideLabel"
                     @touchstart="showLabel">
@@ -61,14 +97,84 @@
                         id="eventPic"
                         class="hidden"
                         @load="sendImg"
+                        required
                         >
                     </div>
 
-                    <div>
-                        <label for="">
+                    <div class="flex flex-col min-w-[300px] w-[50%] mb-2">
+                        <label for="title">
                             Título do Evento
                         </label>
-                        <input type="text" class="outline-none border-none">
+                        <input type="text" class="rounded border-colorPrimary"
+                        id="title" name="title"
+                        placeholder="Título do Evento"
+                        v-model="eventForm.title"
+                        required
+                        minlength="4">
+                    </div>
+
+                    <div class="flex flex-col min-w-[300px] w-[50%] mb-2">
+                        <label for="local">
+                            Local do Evento
+                        </label>
+                        <input type="text" class="rounded border-colorPrimary"
+                        id="local" name="local"
+                        placeholder="Local do Evento"
+                        v-model="eventForm.local"
+                        required
+                        minlength="4">
+                    </div>
+
+                    <div class="flex flex-col min-w-[300px] w-[50%] mb-2">
+                        <label for="data">
+                            Data do Evento
+                        </label>
+                        <input type="date" class="rounded border-colorPrimary"
+                        id="data" name="data"
+                        v-model="eventForm.date"
+                        required
+                        >
+                        <p v-if="dateError != ''"
+                        class="text-red-700 text-sm">
+                            {{ dateError }}
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col min-w-[300px] w-[50%] mb-2">
+                        <label for="descricao">
+                            Descrição do Evento
+                        </label>
+                        <textarea name="descricao" id="descricao" cols="30" rows="10"
+                        v-model="eventForm.description"
+                        required
+                        minlength="50">
+                            {{ eventForm.description }}
+                        </textarea>
+                    </div>
+                    
+                    <section class="flex flex-col min-w-[300px] w-[50%] mb-2">
+                        <label for="data">
+                            O que vai ter no evento:
+                        </label>
+
+                        <div v-for="option in options">
+                            <label class="flex items-center">
+                                <CheckBox 
+                                v-model="eventForm.items"
+                                :checked="false"
+                                :items="eventForm.items"
+                                :value="option"
+                                />
+                                <span class="ml-2 text-sm text-textColor">
+                                    {{ option }}
+                                </span>
+                            </label>
+                        </div>
+                    </section>
+                    <div class="w-[300px] mb-3">
+                        <PrimaryButton>
+                            Criar Evento
+                        </PrimaryButton>
                     </div>
                 </form>
             </main>
@@ -79,5 +185,8 @@
 <style scoped>
     #previewImg{
         height: 320px;
+    }
+    label{
+        display: block;
     }
 </style>
