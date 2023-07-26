@@ -22,6 +22,7 @@
         title: '',
         local: '',
         date: '',
+        private: false,
         description: 'Escreva Sobre o Evento',
         items: [],
     })
@@ -144,6 +145,14 @@
                         class="text-red-700 text-sm">
                             {{ dateError }}
                         </p>
+                    </div>
+
+                    <div>
+                        <label>
+                            O evento é privado ?
+                        </label>
+                        <input type="radio" name="private" id="private" :value=true v-model="eventForm.private">  Sim
+                        <input type="radio" name="private" id="private" :value=false v-model="eventForm.private">  Não
                     </div>
 
                     <div class="flex flex-col min-w-[300px] w-[50%] mb-2">
