@@ -14,7 +14,6 @@
             type: Object,
         }
     })
-    console.log(props.status);
 </script>
 
 <template>

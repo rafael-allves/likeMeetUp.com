@@ -18,7 +18,7 @@
     });
     
     const eventForm = useForm({
-        eventPic: '',
+        image: '',
         title: '',
         local: '',
         date: '',
@@ -49,7 +49,7 @@
                     document.getElementById('previewImg').setAttribute('src', preview.result);
                 })
                 preview.readAsDataURL(newEventPic);
-                eventForm.eventPic = newEventPic;
+                eventForm.image = newEventPic;
             }
         })
         const label = evt.currentTarget;

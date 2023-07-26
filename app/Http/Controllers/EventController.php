@@ -17,6 +17,14 @@ use App\Models\User;
 
 class EventController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except([
+            'index',
+            'show',   
+        ]);
+    }
+
     public function index()
     {
         $search = request('search');
@@ -38,7 +46,6 @@ class EventController extends Controller
     public function create():Response
     {
         $user = Auth::user();
-        if($user == null)return redirect('/users/create');
         return Inertia::render('events/Create', [
             'user' => $user,
             'status' => session('status'),
@@ -53,7 +60,7 @@ class EventController extends Controller
         //pegando a imagem
         $image = null;
         if($request->hasFile('image') && $request->file('image')->isValid()){
-            $requestImage = $request->eventPic;
+            $requestImage = $request->file('image');
 
             $extension = $requestImage->extension();
 
@@ -62,7 +69,7 @@ class EventController extends Controller
             //adicionando a questão do timestamp pra ter maior certeza de q esse nome de imagem será único! E não será sobrescrita por esse ou outro usuário!
             //Função md5 criptografa o path da imagem pra salvar na db
 
-            $request->eventPic->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
+            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
             $image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }else{
