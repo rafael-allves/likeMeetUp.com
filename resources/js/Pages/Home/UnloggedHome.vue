@@ -75,15 +75,15 @@
         </div>
     </section>
     <section class="md:flex hidden justify-around">
-        <div class="w-[30%]">
-            <h1 class="text-[100px] leading-[80px]">
+        <div class="w-[40%] flex flex-col justify-center gap-3">
+            <h1 class="text-[140px] leading-[110px]">
                 Rafa Events
             </h1>
-            <p class="text-[0.8rem]">
+            <p class="text-[1.1rem]">
                 Descubra um mundo de experiências inesquecíveis e conecte-se com pessoas apaixonadas por eventos. Cadastre-se agora na nossa rede social baseada em eventos e embarque em uma jornada única!
                 Você adora eventos e deseja compartilhar suas paixões com pessoas que têm interesses semelhantes? Junte-se à nossa vibrante comunidade de entusiastas de eventos. Cadastre-se hoje mesmo e mergulhe em um oceano de oportunidades!
             </p>
-            <Link href="/users/create" class="bg-colorPrimary rounded-sm py-2 px-2 border-black text-white border shadow-md shadow-black cursor-pointer mt-4">
+            <Link href="/users/create" class="bg-colorPrimary rounded-sm py-2 px-2 border-black text-white border shadow-md shadow-black cursor-pointer mt-4 w-[50%] text-center">
                 Cadastrar Agora
             </Link>
         </div>
