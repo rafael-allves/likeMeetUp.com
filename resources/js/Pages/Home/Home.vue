@@ -20,6 +20,7 @@
     <Layout 
     :authStatus="props.user.name != undefined "
     :user="props.user"
+    :status="props.status"
     >
     <main>
         <section v-if="props.user.name == undefined" class="w-full flex flex-col">

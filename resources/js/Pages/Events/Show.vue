@@ -37,6 +37,7 @@
    <Layout
    :authStatus='props.user.name != undefined'
    :user='props.user'
+   :status="props.status"
     >
     <Head>
         <title>

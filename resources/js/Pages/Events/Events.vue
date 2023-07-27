@@ -33,6 +33,7 @@
     <Layout 
     :authStatus="props.user.name != undefined "
     :user="props.user"
+    :status="props.status"
     >
         <div class="w-full lg:px-40 bg-slate-100 min-h-[84vh]">
             <form class="flex justify-center w-full mb-3 px-2 pt-3 bg-slate-100"
