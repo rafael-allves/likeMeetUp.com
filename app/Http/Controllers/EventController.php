@@ -27,7 +27,7 @@ class EventController extends Controller
     {
         $events = null;
         if ($request->search == null) {
-            $events = Event::all()->with('users');
+            $events = Event::with('users')->get();
         } else {
             $events = Event::where('title', 'ilike', '%' . $request->search . '%')->with('users')->get();
         }
