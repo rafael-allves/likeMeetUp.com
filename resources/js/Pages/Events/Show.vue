@@ -156,7 +156,7 @@
             </section>
             <section class="mt-5">
                 <section 
-                v-if="props.event.items.length > 0"
+                v-if="props.event.items != null && props.event.items.length > 0"
                 >
                     <h2 
                     class="text-2xl font-extrabold" 

@@ -54,7 +54,8 @@
             </form>
     
             <main class="overflow-y-auto bg-white max-h-[80vh]">
-                <Link v-for="event in props.events" 
+                <Link v-for="event in props.events"
+                :key="event.id" 
                 :href="`/events/${event.id}`"
                 >
                     <section class="flex gap-1 mb-2 md:px-10">

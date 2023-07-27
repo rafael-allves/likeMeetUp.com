@@ -89,9 +89,10 @@ class EventController extends Controller
      */
     public function show(String $id): Response
     {
-        $event = Event::findOrFail($id)->with('users')->first();
+        $event = Event::with('users')->findOrFail($id);
 
         $eventOwner = User::where('id', $event->user_id)->first();
+
 
         return Inertia::render('Events/Show',[
             'user' => Auth::user() ?? ['user' => ''],
