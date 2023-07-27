@@ -34,7 +34,7 @@
     :authStatus="props.user.name != undefined "
     :user="props.user"
     >
-        <div class="w-full md:px-40 bg-slate-100 min-h-[84vh]">
+        <div class="w-full lg:px-40 bg-slate-100 min-h-[84vh]">
             <form class="flex justify-center w-full mb-3 px-2 pt-3 bg-slate-100"
             @submit.prevent="search">
                 <div class="w-full h-full md:w-[500px] relative">
@@ -89,7 +89,6 @@
                             <p class="mt-2 text-textMuted">
                                 {{ event.users.length }} Participantes
                             </p>
-
                         </div>
                     </section>
                 </Link>

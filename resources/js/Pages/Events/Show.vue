@@ -1,5 +1,5 @@
 <script setup>
-   import { Link, useForm } from '@inertiajs/vue3'
+   import { Link, Head, useForm } from '@inertiajs/vue3'
    import Layout from '@/Layouts/MainLayout.vue'
    const props = defineProps({
         dono: {
@@ -22,6 +22,15 @@
             required: true
         }
    });
+
+   const eventForm = useForm({
+        id: props.event.id,
+   });
+
+   const join = () => {
+        eventForm.post(route(`joinEvent`));
+    }
+    console.log(props.status);
 </script>
 
 <template>
@@ -29,6 +38,11 @@
    :authStatus='props.user.name != undefined'
    :user='props.user'
     >
+    <Head>
+        <title>
+            {{ props.event.title }}
+        </title>
+    </Head>
         <main class="md:flex w-full mt-4">
             <div class="md:w-[50%] w-full min-w-[300px] flex justify-center">
                 <img :src="'/' + props.event.image" alt="Event Image"
@@ -78,7 +92,7 @@
                         {{ props.dono.name }}
                     </Link>
                     <section v-if="props.user.id === props.dono.id"
-                    class="flex mt-3 gap-2">
+                    class="flex mt-3 gap-2 px-2">
                         <Link class="bg-colorSecondary w-[50%] py-2 shadow-black shadow-xl text-white flex items-center gap-4 justify-center"
                         :href="`/events/${props.event.id}/edit`">
                             Editar
@@ -100,9 +114,31 @@
                             </span>
                             </button>
                         </form>
-
                     </section>
                 </h2>
+                <div class="md:mt-3 mt-6">
+                    <form 
+                    v-if="!props.event.users.filter((user) => user == props.user) == []"
+                    @submit.prevent="join">
+                        <button type="submit"
+                        class="bg-colorPrimary flex items-center gap-3 text-white font-bold px-4 py-2 rounded shadow-lg shadow-black">
+                            Entrar no Evento
+                            <span class="material-symbols-outlined">
+                                door_open
+                            </span>
+                        </button>
+                    </form>
+                    <form v-else
+                    @submit.prevent="leave">
+                        <button type="submit"
+                        class="bg-red-700 text-white px-3 py-2 font-bold">
+                            Sair do Evento
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </main>
    </Layout>
@@ -111,8 +147,5 @@
 <style scoped>
     span{
         font-size: 30px;
-    }
-    img{
-        object-fit: cover;
     }
 </style>

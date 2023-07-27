@@ -23,8 +23,8 @@ Route::resource('events', EventController::class, [
 ]);
 
 Route::controller(EventController::class)->middleware(['auth'])->group(function (){
-    Route::post('/events/join/{evento}', 'joinEvent');
-    Route::delete('/events/leave/{evento}', 'leaveEvent');
+    Route::post('/events/join/', 'joinEvent')->name('joinEvent');
+    Route::delete('/events/leave/', 'leaveEvent')->name('leaveEvent');
 });
 
 Route::resource('users', UserController::class)->name('', 'users');

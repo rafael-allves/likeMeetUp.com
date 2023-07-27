@@ -89,14 +89,15 @@ class EventController extends Controller
      */
     public function show(String $id): Response
     {
-        $event = Event::findOrFail($id);
+        $event = Event::findOrFail($id)->with('users')->first();
 
         $eventOwner = User::where('id', $event->user_id)->first();
 
         return Inertia::render('Events/Show',[
             'user' => Auth::user() ?? ['user' => ''],
             'event' => $event,
-            'dono' => $eventOwner
+            'dono' => $eventOwner,
+            'status' => session('status'),
         ]);
     }
 
@@ -158,23 +159,26 @@ class EventController extends Controller
         ->with('msg', 'Evento Deletado Com Sucesso!');
     }
 
-    public function joinEvent($id){
+    public function joinEvent(Request $request): RedirectResponse
+    {
         $user = Auth::user();
-
-        if (!$user->eventAsParticipant()->where('event_id', $id)->exists()){
-            $user->eventAsParticipant()->attach($id); //Se n entender va na model do user q vai ta la
-            return back()->with('msg', 'Sua Presença foi Confirmada!');
+        
+        if (!$user->eventAsParticipant()->where('event_id', $request->id)->exists()){
+            $user->eventAsParticipant()->attach($request->id); //Se n entender va na model do user q vai ta la
+            $request->session()->flash('status', ['okay' => 'Presença confirmada com Sucesso!']);       
+            return redirect('/events/' . $request->id);
         }
-
-        return back()->with('msg', 'Você já confirmou presença nesse evento');
-
+        
+        $request->session()->flash('status', ['error' => 'Você já Confirmou presença nesse Evento']);       
+        
+        return redirect('/events/' . $request->id);
     }
 
-    public function leaveEvent($id){
+    public function leaveEvent(Request $request){
         $user = Auth::user();
-        $user->eventAsParticipant()->detach($id);
+        $user->eventAsParticipant()->detach($request->id);
 
-        $event = Event::findOrFail($id);
+        $event = Event::findOrFail($request->id);
 
         return back()->with('msg', 'Você saiu com sucesso do ' . $event->title);
     }
