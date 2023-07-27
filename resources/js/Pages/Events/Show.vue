@@ -30,7 +30,10 @@
    const join = () => {
         eventForm.post(route(`joinEvent`));
     }
-    console.log(props.status);
+    const leave = () => {
+        eventForm.post(route('leaveEvent'));
+    }
+    console.log(props.event.users.filter((user) => user.id == props.user.id).length );
 </script>
 
 <template>
@@ -117,9 +120,16 @@
                         </form>
                     </section>
                 </h2>
+                <p class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-textMuted">
+                        group
+                    </span>
+                    {{ props.event.users.length }}
+                    {{props.event.users.length == 1 ? 'Participantes' : 'Participante'}}
+                </p>
                 <div class="md:mt-3 mt-6">
                     <form 
-                    v-if="!props.event.users.filter((user) => user == props.user) == []"
+                    v-if="props.event.users.filter((user) => user.id == props.user.id).length == 0"
                     @submit.prevent="join">
                         <button type="submit"
                         class="bg-colorPrimary flex items-center gap-3 text-white font-bold px-4 py-2 rounded shadow-lg shadow-black">
@@ -132,7 +142,7 @@
                     <form v-else
                     @submit.prevent="leave">
                         <button type="submit"
-                        class="bg-red-700 text-white px-3 py-2 font-bold">
+                        class="bg-red-700 text-white px-3 py-2 font-bold flex items-center gap-2 rounded shadow-lg shadow-black">
                             Sair do Evento
                             <span class="material-symbols-outlined">
                                 delete

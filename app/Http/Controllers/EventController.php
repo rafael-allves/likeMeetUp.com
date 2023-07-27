@@ -180,7 +180,8 @@ class EventController extends Controller
 
         $event = Event::findOrFail($request->id);
 
-        return back()->with('msg', 'Você saiu com sucesso do ' . $event->title);
+        $request->session()->flash('status', ['okay' => 'Você saiu com sucesso do ' . $event->title]);               
+        return redirect('/events/' . $request->id);
     }
 
 }
