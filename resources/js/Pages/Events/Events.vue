@@ -1,5 +1,5 @@
 <script setup>
-    import { Link } from '@inertiajs/vue3'
+    import { Link, useForm } from '@inertiajs/vue3'
 
     import Layout from '@/Layouts/MainLayout.vue'
     
@@ -19,6 +19,13 @@
             type: Object,
         }
     })
+
+    const formSearch = useForm({
+        search: '',
+    })
+    const search = () => {
+        formSearch.get(route('events'));
+    }
 </script>
 
 <template>
@@ -26,11 +33,12 @@
     :authStatus="props.user.name != undefined "
     :user="props.user"
     >
-        <div class="w-full md:px-40 bg-slate-100">
+        <div class="w-full md:px-40 bg-slate-100 min-h-[84vh]">
             <form class="flex justify-center w-full mb-3 px-2 pt-3 bg-slate-100"
             @submit.prevent="search">
                 <div class="w-full h-full md:w-[500px] relative">
-                    <input type="text" 
+                    <input type="text"
+                    v-model="formSearch.search" 
                     name="search" 
                     id="search" 
                     placeholder="Procure um Evento"
@@ -43,17 +51,20 @@
                 </div>
             </form>
     
-            <main class="overflow-y-auto bg-white">
+            <main class="overflow-y-auto bg-white max-h-[80vh]">
                 <Link v-for="event in props.events" 
                 :href="`/events/${event.id}`"
                 >
-                    <section class="flex gap-1 mb-1 md:px-10">
+                    <section class="flex gap-1 mb-2 md:px-10">
                         <div class="w-[30%] max-w-[300px] min-w-[200px]">
-                            <img :src="event.image" alt="">
+                            <img :src="event.image" alt="FOto do Evento">
                         </div>
                         <div class="px-3 py-3 md:px-10">
                             <h2 class="text-lg">
-                                {{ event.title }}
+                                {{ event.title.slice(0, 22) }}
+                                <span v-if="event.title.length > 22">
+                                    ...
+                                </span>
                             </h2>
                             <h3 class="text-textMuted font-bold">
                                 {{ `

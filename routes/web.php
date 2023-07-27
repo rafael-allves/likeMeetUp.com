@@ -17,6 +17,7 @@ Route::get('/', function (){
 
 Route::resource('events', EventController::class, [
     'names' => [
+        'index' => 'events',
         'store' => 'CreateEvent',
     ]
 ]);

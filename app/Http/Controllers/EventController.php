@@ -25,7 +25,12 @@ class EventController extends Controller
 
     public function index(Request $request): Response
     {
-        $events = Event::all();
+        $events = null;
+        if ($request->search == null) {
+            $events = Event::all();
+        } else {
+            $events = Event::where('title', 'ilike', '%' . $request->search . '%')->get();
+        }
         return Inertia::render('Events/Events', [
             'user' => Auth::user(),
             'events' => $events,
