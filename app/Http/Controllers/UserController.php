@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use Inertia\Inertia;
+
+use Inertia\Response;
+use Illuminate\Http\RedirectResponse;
+
+
 use App\Models\User;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('guest')->only(['create']);
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -24,15 +31,9 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-        $user = Auth::user();
-        if($user != null){
-            Auth::login($user);
-            return redirect('/');
-        }
-
-        return Inertia::render('users/Auth', [
+        return Inertia::render('Users/Auth', [
             "user" => ["user" => ""],
         ]);
     }

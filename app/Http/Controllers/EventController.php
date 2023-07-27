@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
 
-
-
 use App\Models\Event;
 use App\Models\User;
 
@@ -25,19 +23,14 @@ class EventController extends Controller
         ]);
     }
 
-    public function index()
+    public function index(Request $request): Response
     {
-        $search = request('search');
-
-        if($search){
-
-            $events = Event::where([
-                ['title', 'like', '%' . $search . '%'],
-            ])->get();
-
-        }else{
-            $events = Event::all();
-        }
+        $events = Event::all();
+        return Inertia::render('Events/Events', [
+            'user' => Auth::user(),
+            'events' => $events,
+            'status' => session('status'),
+        ]);
     }
 
     /**
@@ -46,7 +39,7 @@ class EventController extends Controller
     public function create():Response
     {
         $user = Auth::user();
-        return Inertia::render('events/Create', [
+        return Inertia::render('Events/Create', [
             'user' => $user,
             'status' => session('status'),
         ]);
