@@ -32,7 +32,7 @@ class EventController extends Controller
             $events = Event::where('title', 'ilike', '%' . $request->search . '%')->with('users')->get();
         }
         return Inertia::render('Events/Events', [
-            'user' => Auth::user(),
+            'user' => Auth::user() ?? ['user' => ''],
             'events' => $events,
             'status' => session('status'),
         ]);
@@ -43,9 +43,8 @@ class EventController extends Controller
      */
     public function create():Response
     {
-        $user = Auth::user();
         return Inertia::render('Events/Create', [
-            'user' => $user,
+            'user' => Auth::user(),
             'status' => session('status'),
         ]);
     }
@@ -88,12 +87,17 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id){
+    public function show(String $id): Response
+    {
         $event = Event::findOrFail($id);
 
         $eventOwner = User::where('id', $event->user_id)->first();
 
-        return view('events.show', ['event' => $event, 'dono' => $eventOwner]);
+        return Inertia::render('Events/Show',[
+            'user' => Auth::user() ?? ['user' => ''],
+            'event' => $event,
+            'dono' => $eventOwner
+        ]);
     }
 
     /**
