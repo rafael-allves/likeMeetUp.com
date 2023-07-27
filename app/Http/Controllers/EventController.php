@@ -27,9 +27,9 @@ class EventController extends Controller
     {
         $events = null;
         if ($request->search == null) {
-            $events = Event::all();
+            $events = Event::all()->with('users');
         } else {
-            $events = Event::where('title', 'ilike', '%' . $request->search . '%')->get();
+            $events = Event::where('title', 'ilike', '%' . $request->search . '%')->with('users')->get();
         }
         return Inertia::render('Events/Events', [
             'user' => Auth::user(),

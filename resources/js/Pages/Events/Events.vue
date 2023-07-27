@@ -4,6 +4,7 @@
     import Layout from '@/Layouts/MainLayout.vue'
     
     const props = defineProps({
+        
         user: {
             default: null,
             type: Object,
@@ -11,7 +12,7 @@
         },
         
         events: {
-            type: Object,
+            type: Array,
             required: true, 
         },
 
@@ -85,6 +86,10 @@
                                     Mostrar Mais
                                 </span>
                             </p>
+                            <p class="mt-2 text-textMuted">
+                                {{ event.users.length }} Participantes
+                            </p>
+
                         </div>
                     </section>
                 </Link>
