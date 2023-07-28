@@ -126,12 +126,12 @@
                         <span class="material-symbols-outlined text-textMuted">
                             group
                         </span>
-                        {{ props.event.users.length }}
-                        {{props.event.users.length == 1 ? 'Participante' : 'Participantes'}}
+                        {{ props.event.participants.length }}
+                        {{props.event.participants.length == 1 ? 'Participante' : 'Participantes'}}
                     </p>
                     <div class="md:mt-3 mt-6">
                         <form 
-                        v-if="props.event.users.filter((user) => user.id == props.user.id).length == 0"
+                        v-if="props.event.participants.filter((user) => user.id == props.user.id).length == 0"
                         @submit.prevent="join">
                             <button type="submit"
                             class="bg-colorPrimary flex items-center gap-3 text-white font-bold px-4 py-2 rounded shadow-lg shadow-black">

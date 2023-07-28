@@ -27,10 +27,11 @@ class EventController extends Controller
     {
         $events = null;
         if ($request->search == null) {
-            $events = Event::with('users')->get();
+            $events = Event::with('participants')->get();
         } else {
-            $events = Event::where('title', 'ilike', '%' . $request->search . '%')->with('users')->get();
+            $events = Event::where('title', 'ilike', '%' . $request->search . '%')->with('participants')->get();
         }
+
         return Inertia::render('Events/Events', [
             'user' => Auth::user() ?? ['user' => ''],
             'events' => $events,
@@ -88,10 +89,10 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(String $id): Response
+    public function show(Event $event): Response
     {
-        $event = Event::with('users')->findOrFail($id);
-        
+        $event->load('participants');
+
         $eventOwner = User::where('id', $event->user_id)->first();
 
         return Inertia::render('Events/Show',[
@@ -150,16 +151,15 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id){
-        $event = Event::findOrFail($id);
-
-        Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
+    public function destroy(Event $event): RedirectResponse
+    {
+        Storage::delete('public/events/' . $event->image);
         //Na minha db eu guardo o caminho todo do storage ate o nome da imagem, por isso preciso separar oq n qro com o explode(SEMELHANTE AO SPLIT)
 
         $event->delete();
 
-        return redirect('/dashboard')
-        ->with('msg', 'Evento Deletado Com Sucesso!');
+        session()->flash('status', ['okay' => 'Evento Excluído com sucesso!']);
+        return redirect('/dashboard');
     }
 
     public function joinEvent(Request $request): RedirectResponse

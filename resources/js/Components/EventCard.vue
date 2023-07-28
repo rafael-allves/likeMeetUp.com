@@ -44,8 +44,8 @@
                     </span>
                 </p>
                 <p class="mt-2 text-textMuted">
-                    {{ event.users.length }} 
-                    {{ event.users.length == 1 ? 'Participante' : 'Participantes' }}
+                    {{ event.participants.length }} 
+                    {{ event.participants.length == 1 ? 'Participante' : 'Participantes' }}
                 </p>
             </div>
         </section>
