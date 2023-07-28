@@ -29,7 +29,7 @@ class EventController extends Controller
         if ($request->search == null) {
             $events = Event::with('participants')->get();
         } else {
-            $events = Event::where('title', 'ilike', '%' . $request->search . '%')->with('participants')->get();
+            $events = Event::where('title', 'ilike', "%$request->search%")->with('participants')->get();
         }
 
         return Inertia::render('Events/Events', [
@@ -69,7 +69,7 @@ class EventController extends Controller
 
             $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
-            $image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+            $image = "storage/events/{$imageName}.{$extension}"; //Salvando a imagem como uma string encriptografada
         }else{
             session()->flash('status', ['error' => 'Imagem inválida']);
             return redirect('/events/create');
@@ -136,16 +136,16 @@ class EventController extends Controller
 
             $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
-            $request->image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+            $request->image = "storage/events/{$imageName}.{$extension}"; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
             session()->flash('status', ['error' => 'Imagem Inválida']);
-            return redirect('/events/' . $event->id . '/edit');
+            return redirect("/events/{$event->id}/edit");
         }
 
         $event->update($request->all());
 
         session()->flash('status', ['okay' => 'Evento Editado Com Sucesso!']);
-        return redirect('/events/' . $event->id);
+        return redirect("/events/{$event->id}");
     }
 
     /**
@@ -168,13 +168,13 @@ class EventController extends Controller
         
         if (!$user->eventAsParticipant()->where('event_id', $request->id)->exists()){
             $user->eventAsParticipant()->attach($request->id); //Se n entender va na model do user q vai ta la
-            $request->session()->flash('status', ['okay' => 'Presença confirmada com Sucesso!']);       
-            return redirect('/events/' . $request->id);
+            session()->flash('status', ['okay' => 'Presença confirmada com Sucesso!']);       
+            return redirect("/events/{$request->id}");
         }
         
-        $request->session()->flash('status', ['error' => 'Você já Confirmou presença nesse Evento']);       
+        session()->flash('status', ['error' => 'Você já Confirmou presença nesse Evento']);       
         
-        return redirect('/events/' . $request->id);
+        return redirect("/events/{$request->id}");
     }
 
     public function leaveEvent(Request $request){
@@ -183,8 +183,8 @@ class EventController extends Controller
 
         $event = Event::findOrFail($request->id);
 
-        session()->flash('status', ['okay' => 'Você saiu com sucesso do ' . $event->title]);               
-        return redirect('/events/' . $request->id);
+        session()->flash('status', ['okay' => "Você saiu com sucesso do {$event->title}"]);               
+        return redirect("/events/{$request->id}");
     }
 
 }
