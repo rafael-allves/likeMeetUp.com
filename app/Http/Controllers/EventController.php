@@ -21,6 +21,11 @@ class EventController extends Controller
             'index',
             'show',   
         ]);
+        $this->middleware('eventAdmin')->only([
+            'edit',
+            'update',
+            'destroy',
+        ]);
     }
 
     public function index(Request $request): Response
