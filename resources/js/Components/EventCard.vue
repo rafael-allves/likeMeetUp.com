@@ -6,6 +6,7 @@
             required: true,
         }
     })
+
 </script>
 
 <template>
@@ -14,7 +15,7 @@
     >
         <section class="flex gap-1 mb-2 md:px-10">
             <div class="w-[30%] max-w-[300px] min-w-[200px]">
-                <img :src="event.image" alt="FOto do Evento">
+                <img :src="event.image" alt="Foto do Evento">
             </div>
             <div class="px-3 py-3 md:px-10">
                 <h2 class="text-lg">
@@ -25,8 +26,8 @@
                 </h2>
                 <h3 class="text-textMuted font-bold">
                     {{ `
-                    ${ new Date(event.date).getDay().toString().length != 1 ? 
-                        new Date(event.date).getDay() :
+                    ${ new Date(event.date).getDate().toString().length != 1 ? 
+                        new Date(event.date).getDate() :
                         '0'.concat(new Date(event.date).getDay().toString()) }
                     /
                     ${(new Date(event.date).getMonth() + 1).toString().length != 1 ?
@@ -43,7 +44,8 @@
                     </span>
                 </p>
                 <p class="mt-2 text-textMuted">
-                    {{ event.users.length }} Participantes
+                    {{ event.users.length }} 
+                    {{ event.users.length == 1 ? 'Participante' : 'Participantes' }}
                 </p>
             </div>
         </section>

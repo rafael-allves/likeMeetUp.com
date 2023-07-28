@@ -74,6 +74,7 @@ class EventController extends Controller
             return redirect('/events/create');
         }
         
+
         $user = Auth::user(); //Pegando o usuário logado que fez a request pelo browser
         //request->all() Serve para pegar apenas os parametros! E não a requisição inteira
         Event::create(array_merge($request->all(), ['image' => $image, 'user_id' => $user->id]));
@@ -90,9 +91,8 @@ class EventController extends Controller
     public function show(String $id): Response
     {
         $event = Event::with('users')->findOrFail($id);
-
+        
         $eventOwner = User::where('id', $event->user_id)->first();
-
 
         return Inertia::render('Events/Show',[
             'user' => Auth::user() ?? ['user' => ''],
@@ -105,22 +105,21 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id){
+    public function edit(String $id): Response
+    {
         $event = Event::findOrFail($id);
-
-        $user = Auth::user();
-
-        if($user->id != $event->user_id)return redirect('/dashboard');
-
-        return view('events.edit', ['event' => $event]);
+        return Inertia::render('Events/Edit', [
+            'event' => $event,
+            'user' => Auth::user(),
+            'status' => session('status'),            
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event){
-        $data = $request->all();
-
+    public function update(Request $request, Event $event): RedirectResponse
+    {
         if($request->hasFile('image') && $request->file('image')->isValid()){
             Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
 
@@ -132,17 +131,16 @@ class EventController extends Controller
 
             $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
 
-            $data['image'] = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+            $request->image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
-            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
+            $request->session()->flash('status', ['error' => 'Imagem Inválida']);
+            return redirect('/events/' . $event->id . '/edit');
         }
 
-        $data['items'] = json_encode($request->input('items', [])); // Converte o array em uma string JSON
+        $event->update($request->all());
 
-        $event->update($data);
-
-        return redirect('/dashboard')
-        ->with('msg', 'Evento Editado Com Sucesso!');
+        $request->session()->flash('status', ['okay' => 'Evento Editado Com Sucesso!']);
+        return redirect('/dashboard');
     }
 
     /**

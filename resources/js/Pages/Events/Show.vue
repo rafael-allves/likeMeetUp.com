@@ -1,6 +1,10 @@
 <script setup>
    import { Link, Head, useForm } from '@inertiajs/vue3'
+   
    import Layout from '@/Layouts/MainLayout.vue'
+
+   import ProfilePic from '@/Components/ProfilePic.vue';
+
    const props = defineProps({
         dono: {
             type: Object,
@@ -33,7 +37,6 @@
     const leave = () => {
         eventForm.post(route('leaveEvent'));
     }
-    console.log(props.event.users.filter((user) => user.id == props.user.id).length );
 </script>
 
 <template>
@@ -48,12 +51,12 @@
         </title>
     </Head>
         <main class="md:px-20">
-            <section class="md:flex w-full mt-4">
-                <section class="md:w-[50%] w-full min-w-[300px] flex justify-center">
+            <section class="lg:flex w-full mt-4">
+                <section class="lg:w-[50%] w-full min-w-[300px] flex justify-center">
                     <img :src="'/' + props.event.image" alt="Event Image"
                     class="object-fit flex justify-center">
                 </section>
-                <section>
+                <section class="lg:w-[50%]">
                     <h1 class="text-3xl font-bold">
                         {{ props.event.title }}
                     </h1>
@@ -63,8 +66,8 @@
                         </span>
                         {{ 
                             `
-                                ${ new Date(props.event.date).getDay().toString().length != 1 ? 
-                                    new Date(props.event.date).getDay() :
+                                ${ new Date(props.event.date).getDate().toString().length != 1 ? 
+                                    new Date(props.event.date).getDate() :
                                     '0'.concat(new Date(props.event.date).getDay().toString()) }
                                 /
                                 ${(new Date(props.event.date).getMonth() + 1).toString().length != 1 ?
@@ -89,15 +92,13 @@
                             <span class="material-symbols-outlined text-yellow-600">
                                 star
                             </span>
-                            <img :src="props.dono.profile_pic" 
-                            alt="Perfil do Dono do Evento"
-                            width="40"
-                            height="40"
-                            />
+                            
+                            <ProfilePic :profilePic="props.dono.profile_pic" />
+
                             {{ props.dono.name }}
                         </Link>
                         <section v-if="props.user.id === props.dono.id"
-                        class="flex my-3 gap-2 px-2">
+                        class="flex my-5 gap-2 px-2">
                             <Link class="bg-colorSecondary w-[50%] py-2 shadow-black shadow-xl text-white flex items-center gap-4 justify-center"
                             :href="`/events/${props.event.id}/edit`">
                                 Editar

@@ -1,6 +1,6 @@
 <script setup>    
     import { useForm } from '@inertiajs/vue3';
-    import { ref, watch } from 'vue';
+    import { ref } from 'vue';
 
     import Layout from '@/Layouts/MainLayout.vue'
     import CheckBox from '@/Components/CheckBox.vue';
@@ -151,8 +151,13 @@
                         <label>
                             O evento é privado ?
                         </label>
-                        <input type="radio" name="private" id="private" :value=true v-model="eventForm.private">  Sim
-                        <input type="radio" name="private" id="private" :value=false v-model="eventForm.private">  Não
+                        <div class="flex items-center justify-center gap-2">
+                            <input type="radio" name="private" id="privateYes" :value=true v-model="eventForm.private">
+                            <label for="privateYes">Sim</label>
+
+                            <input type="radio" name="private" id="privateNo" :value=false v-model="eventForm.private">
+                            <label for="privateNo">Não</label>
+                        </div>
                     </div>
 
                     <div class="flex flex-col min-w-[300px] w-[50%] mb-2">
@@ -168,7 +173,7 @@
                     </div>
                     
                     <section class="flex flex-col min-w-[300px] w-[50%] mb-2">
-                        <label for="data">
+                        <label>
                             O que vai ter no evento:
                         </label>
 

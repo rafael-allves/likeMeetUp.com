@@ -19,6 +19,7 @@ Route::resource('events', EventController::class, [
     'names' => [
         'index' => 'events',
         'store' => 'CreateEvent',
+        'update' => 'UpdateEvent',
     ]
 ]);
 
