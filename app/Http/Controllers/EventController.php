@@ -67,7 +67,7 @@ class EventController extends Controller
             //adicionando a questão do timestamp pra ter maior certeza de q esse nome de imagem será único! E não será sobrescrita por esse ou outro usuário!
             //Função md5 criptografa o path da imagem pra salvar na db
 
-            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
+            $request->image->move(storage_path('/app/public/events'), "$imageName.$extension");
 
             $image = "storage/events/{$imageName}.{$extension}"; //Salvando a imagem como uma string encriptografada
         }else{
@@ -134,7 +134,7 @@ class EventController extends Controller
 
             $imageName = md5($requestImage->getClientOriginalName() . strtotime('now'));
 
-            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
+            $request->image->move(storage_path('/app/public/events'), "$imageName.$extension");
 
             $request->image = "storage/events/{$imageName}.{$extension}"; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
