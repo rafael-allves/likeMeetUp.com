@@ -70,7 +70,7 @@ class EventController extends Controller
 
             $image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }else{
-            $request->session()->flash('status', ['error' => 'Imagem inválida']);
+            session()->flash('status', ['error' => 'Imagem inválida']);
             return redirect('/events/create');
         }
         
@@ -81,7 +81,7 @@ class EventController extends Controller
         
         //mandando armazenar o dono do evento e a imagem!
 
-        $request->session()->flash('status', ['okay' => 'Evento Criado Com Sucesso']);        
+        session()->flash('status', ['okay' => 'Evento Criado Com Sucesso']);        
         return redirect('/');
     }
 
@@ -105,9 +105,13 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(String $id): Response
+    public function edit(Event $event)
     {
-        $event = Event::findOrFail($id);
+        if(Auth::user()->id != $event->user_id){
+            session()->flash('status', ['error' => 'Você Não Tem permissão de editar esse Evento']);
+            return redirect('/events/create');
+        }
+
         return Inertia::render('Events/Edit', [
             'event' => $event,
             'user' => Auth::user(),
@@ -133,14 +137,14 @@ class EventController extends Controller
 
             $request->image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
-            $request->session()->flash('status', ['error' => 'Imagem Inválida']);
+            session()->flash('status', ['error' => 'Imagem Inválida']);
             return redirect('/events/' . $event->id . '/edit');
         }
 
         $event->update($request->all());
 
-        $request->session()->flash('status', ['okay' => 'Evento Editado Com Sucesso!']);
-        return redirect('/dashboard');
+        session()->flash('status', ['okay' => 'Evento Editado Com Sucesso!']);
+        return redirect('/events/' . $event->id);
     }
 
     /**
@@ -179,7 +183,7 @@ class EventController extends Controller
 
         $event = Event::findOrFail($request->id);
 
-        $request->session()->flash('status', ['okay' => 'Você saiu com sucesso do ' . $event->title]);               
+        session()->flash('status', ['okay' => 'Você saiu com sucesso do ' . $event->title]);               
         return redirect('/events/' . $request->id);
     }
 

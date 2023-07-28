@@ -24,7 +24,7 @@
       }
    });
 
-
+   if(props.event.items == null)props.event.items = [];
    
    const eventForm = useForm({
         ...props.event,
