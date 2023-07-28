@@ -24,8 +24,8 @@ Route::resource('events', EventController::class, [
 ]);
 
 Route::controller(EventController::class)->middleware(['auth'])->group(function (){
-    Route::post('/events/join/', 'joinEvent')->name('joinEvent');
-    Route::post('/events/leave/', 'leaveEvent')->name('leaveEvent');
+    Route::post('/events/join/{event}', 'joinEvent')->name('joinEvent');
+    Route::post('/events/leave/{event}', 'leaveEvent')->name('leaveEvent');
 });
 
 Route::resource('users', UserController::class)->name('', 'users');

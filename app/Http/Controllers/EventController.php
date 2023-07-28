@@ -111,13 +111,8 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit(Event $event): Response
     {
-        if(Auth::user()->id != $event->user_id){
-            session()->flash('status', ['error' => 'Você Não Tem permissão de editar esse Evento']);
-            return redirect('/events/create');
-        }
-
         return Inertia::render('Events/Edit', [
             'event' => $event,
             'user' => Auth::user(),
@@ -167,29 +162,27 @@ class EventController extends Controller
         return redirect('/dashboard');
     }
 
-    public function joinEvent(Request $request): RedirectResponse
+    public function joinEvent(Event $event): RedirectResponse
     {
         $user = Auth::user();
         
-        if (!$user->eventAsParticipant()->where('event_id', $request->id)->exists()){
-            $user->eventAsParticipant()->attach($request->id); //Se n entender va na model do user q vai ta la
+        if (!$user->eventAsParticipant()->where('event_id', $event->id)->exists()){
+            $user->eventAsParticipant()->attach($event->id); //Se n entender va na model do user q vai ta la
             session()->flash('status', ['okay' => 'Presença confirmada com Sucesso!']);       
-            return redirect("/events/{$request->id}");
+            return redirect("/events/{$event->id}");
         }
         
         session()->flash('status', ['error' => 'Você já Confirmou presença nesse Evento']);       
         
-        return redirect("/events/{$request->id}");
+        return redirect("/events/{$event->id}");
     }
 
-    public function leaveEvent(Request $request){
-        $user = Auth::user();
-        $user->eventAsParticipant()->detach($request->id);
-
-        $event = Event::findOrFail($request->id);
+    public function leaveEvent(Event $event): RedirectResponse
+    {
+        Auth::user()->eventAsParticipant()->detach($event->id);
 
         session()->flash('status', ['okay' => "Você saiu com sucesso do {$event->title}"]);               
-        return redirect("/events/{$request->id}");
+        return redirect("/events/{$event->id}");
     }
 
 }

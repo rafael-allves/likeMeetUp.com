@@ -26,16 +26,15 @@
             required: true
         }
    });
+  
 
-   const eventForm = useForm({
-        id: props.event.id,
-   });
+   const eventForm = useForm({});
 
    const join = () => {
-        eventForm.post(route(`joinEvent`));
+        eventForm.post(`/events/join/${props.event.id}`);
     }
     const leave = () => {
-        eventForm.post(route('leaveEvent'));
+        eventForm.post(`/events/leave/${props.event.id}`);
     }
 </script>
 
