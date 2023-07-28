@@ -97,7 +97,7 @@
                             {{ props.dono.name }}
                         </Link>
                         <section v-if="props.user.id === props.dono.id"
-                        class="flex mt-3 gap-2 px-2">
+                        class="flex my-3 gap-2 px-2">
                             <Link class="bg-colorSecondary w-[50%] py-2 shadow-black shadow-xl text-white flex items-center gap-4 justify-center"
                             :href="`/events/${props.event.id}/edit`">
                                 Editar
