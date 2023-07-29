@@ -20,6 +20,8 @@
           type: Object,
       }
    });
+
+   const currentUrl = window.location.hash;
 </script>
 
 <template>
@@ -30,7 +32,7 @@
     >
     <section>
       <div class="flex items-center justify-center mt-8">
-         <main class="md:flex w-full">
+         <main class="md:flex md:w-[70%] w-full">
             <section class="flex items-center justify-center">
                <div class="min-w-[300px] w-[30%]">
                   <ProfilePic :profilePic="user.profile_pic"/>
@@ -59,8 +61,26 @@
                   </h3>
                </div>
             </section>
-            <section class="border-2">
-               
+            <section class="border-2 md:w-[70%] w-full px-10 py-3">
+               <section>
+                  <div class="flex items-center gap-1 justify-center mt-3">
+                     <Link href="#publicacoes"
+                     :class="{'flex justify-center items-center gap-2 px-3 py-2': true, 'active': currentUrl === '#publicacoes'}">
+                     <span class="material-symbols-outlined">
+                        demography
+                     </span>
+                     Publicações
+                     </Link>
+      
+                     <Link href="#events"
+                     :class="{'flex justify-center items-center gap-2 px-3 py-2': true, 'active': currentUrl === '#events'}">
+                     <span class="material-symbols-outlined">
+                        groups
+                     </span>
+                     Eventos
+                     </Link>
+                  </div>
+               </section>
             </section>
          </main>
       </div>
@@ -69,4 +89,9 @@
 </template>
 
 <style scoped>
+   .active{
+      border-top:1px solid #3949AB;
+      
+      font-weight: bold;
+   }
 </style>
