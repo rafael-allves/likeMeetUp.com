@@ -7,52 +7,63 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
 
 use App\Models\Event;
 use App\Models\User;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct()
     {
-        $search = request('search');
+        $this->middleware('auth')->except([
+            'index',
+            'show',   
+        ]);
+        $this->middleware('eventAdmin')->only([
+            'edit',
+            'update',
+            'destroy',
+        ]);
+    }
 
-        if($search){
-
-            $events = Event::where([
-                ['title', 'like', '%' . $search . '%'],
-            ])->get();
-
-        }else{
-            $events = Event::all();
+    public function index(Request $request): Response
+    {
+        $events = null;
+        if ($request->search == null) {
+            $events = Event::with('participants')->get();
+        } else {
+            $events = Event::where('title', 'ilike', "%$request->search%")->with('participants')->get();
         }
 
-
-        return view('events.events', ['events' => $events, 'search' => $search]);
+        return Inertia::render('Events/Events', [
+            'user' => Auth::user() ?? ['user' => ''],
+            'events' => $events,
+            'status' => session('status'),
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(){
-        $user = Auth::user();
-        if($user == null)return redirect('/users/create');
-        return Inertia::render('events/Create', [
-            'user' => $user,
+    public function create():Response
+    {
+        return Inertia::render('Events/Create', [
+            'user' => Auth::user(),
+            'status' => session('status'),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request){
+    public function store(Request $request): RedirectResponse
+    {
         //pegando a imagem
         $image = null;
         if($request->hasFile('image') && $request->file('image')->isValid()){
-            $requestImage = $request->image;
+            $requestImage = $request->file('image');
 
             $extension = $requestImage->extension();
 
@@ -61,53 +72,59 @@ class EventController extends Controller
             //adicionando a questão do timestamp pra ter maior certeza de q esse nome de imagem será único! E não será sobrescrita por esse ou outro usuário!
             //Função md5 criptografa o path da imagem pra salvar na db
 
+            $request->image->move(storage_path('/app/public/events'), "$imageName.$extension");
 
-            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
-
-            $image = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+            $image = "storage/events/{$imageName}.{$extension}"; //Salvando a imagem como uma string encriptografada
         }else{
-            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
+            session()->flash('status', ['error' => 'Imagem inválida']);
+            return redirect('/events/create');
         }
         
+
         $user = Auth::user(); //Pegando o usuário logado que fez a request pelo browser
         //request->all() Serve para pegar apenas os parametros! E não a requisição inteira
         Event::create(array_merge($request->all(), ['image' => $image, 'user_id' => $user->id]));
         
         //mandando armazenar o dono do evento e a imagem!
 
-        return redirect('/events')->with('msg', 'Evento criado com sucesso!');
+        session()->flash('status', ['okay' => 'Evento Criado Com Sucesso']);        
+        return redirect('/');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id){
-        $event = Event::findOrFail($id);
+    public function show(Event $event): Response
+    {
+        $event->load('participants');
 
         $eventOwner = User::where('id', $event->user_id)->first();
 
-        return view('events.show', ['event' => $event, 'dono' => $eventOwner]);
+        return Inertia::render('Events/Show',[
+            'user' => Auth::user() ?? ['user' => ''],
+            'event' => $event,
+            'dono' => $eventOwner,
+            'status' => session('status'),
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id){
-        $event = Event::findOrFail($id);
-
-        $user = Auth::user();
-
-        if($user->id != $event->user_id)return redirect('/dashboard');
-
-        return view('events.edit', ['event' => $event]);
+    public function edit(Event $event): Response
+    {
+        return Inertia::render('Events/Edit', [
+            'event' => $event,
+            'user' => Auth::user(),
+            'status' => session('status'),            
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event){
-        $data = $request->all();
-
+    public function update(Request $request, Event $event): RedirectResponse
+    {
         if($request->hasFile('image') && $request->file('image')->isValid()){
             Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
 
@@ -117,55 +134,55 @@ class EventController extends Controller
 
             $imageName = md5($requestImage->getClientOriginalName() . strtotime('now'));
 
-            $request->image->move(storage_path('/app/public/events'), $imageName . '.' . $extension);
+            $request->image->move(storage_path('/app/public/events'), "$imageName.$extension");
 
-            $data['image'] = "storage/events/" . $imageName . '.' . $extension; //Salvando a imagem como uma string encriptografada
+            $request->image = "storage/events/{$imageName}.{$extension}"; //Salvando a imagem como uma string encriptografada
         }elseif($request->hasFile('image') && !$request->file('image')->isValid()){
-            return redirect()->back()->withInput()->withErrors(['image' => 'O campo de imagem está incorreto.']);
+            session()->flash('status', ['error' => 'Imagem Inválida']);
+            return redirect("/events/{$event->id}/edit");
         }
 
-        $data['items'] = json_encode($request->input('items', [])); // Converte o array em uma string JSON
+        $event->update($request->all());
 
-        $event->update($data);
-
-        return redirect('/dashboard')
-        ->with('msg', 'Evento Editado Com Sucesso!');
+        session()->flash('status', ['okay' => 'Evento Editado Com Sucesso!']);
+        return redirect("/events/{$event->id}");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id){
-        $event = Event::findOrFail($id);
-
-        Storage::delete('public/events/' . explode('storage/events/', $event->image)[1]);
+    public function destroy(Event $event): RedirectResponse
+    {
+        Storage::delete('public/events/' . $event->image);
         //Na minha db eu guardo o caminho todo do storage ate o nome da imagem, por isso preciso separar oq n qro com o explode(SEMELHANTE AO SPLIT)
 
         $event->delete();
 
-        return redirect('/dashboard')
-        ->with('msg', 'Evento Deletado Com Sucesso!');
+        session()->flash('status', ['okay' => 'Evento Excluído com sucesso!']);
+        return redirect('/dashboard');
     }
 
-    public function joinEvent($id){
+    public function joinEvent(Event $event): RedirectResponse
+    {
         $user = Auth::user();
-
-        if (!$user->eventAsParticipant()->where('event_id', $id)->exists()){
-            $user->eventAsParticipant()->attach($id); //Se n entender va na model do user q vai ta la
-            return back()->with('msg', 'Sua Presença foi Confirmada!');
+        
+        if (!$user->eventAsParticipant()->where('event_id', $event->id)->exists()){
+            $user->eventAsParticipant()->attach($event->id); //Se n entender va na model do user q vai ta la
+            session()->flash('status', ['okay' => 'Presença confirmada com Sucesso!']);       
+            return redirect("/events/{$event->id}");
         }
-
-        return back()->with('msg', 'Você já confirmou presença nesse evento');
-
+        
+        session()->flash('status', ['error' => 'Você já Confirmou presença nesse Evento']);       
+        
+        return redirect("/events/{$event->id}");
     }
 
-    public function leaveEvent($id){
-        $user = Auth::user();
-        $user->eventAsParticipant()->detach($id);
+    public function leaveEvent(Event $event): RedirectResponse
+    {
+        Auth::user()->eventAsParticipant()->detach($event->id);
 
-        $event = Event::findOrFail($id);
-
-        return back()->with('msg', 'Você saiu com sucesso do ' . $event->title);
+        session()->flash('status', ['okay' => "Você saiu com sucesso do {$event->title}"]);               
+        return redirect("/events/{$event->id}");
     }
 
 }

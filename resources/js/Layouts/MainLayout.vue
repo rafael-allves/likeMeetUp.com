@@ -10,6 +10,9 @@
         user:{
             type: Object,
             required: true,
+        },
+        status:{
+            type: Object,
         }
     });
 </script>
@@ -28,6 +31,17 @@
                 :authStatus="props.authStatus"
                 :user="props.user"
             />
+
+            <div v-if="props.status != undefined">
+                <p v-if="props.status.error != undefined"
+                class="text-red-950 bg-red-400 w-full text-center">
+                    {{ props.status.error }}
+                </p>
+                <p v-if="props.status.okay != undefined"
+                class="text-green-950 bg-green-600 w-full text-center">
+                    {{ props.status.okay }}
+                </p>
+            </div>
             <slot />
         </div>
 

@@ -1,7 +1,7 @@
 <script setup>
     import { Link } from '@inertiajs/vue3';
     
-    import Layout from '@/Layouts/mainLayout.vue';
+    import Layout from '@/Layouts/MainLayout.vue';
 
     import UnloggedHome from './UnloggedHome.vue';
     
@@ -9,6 +9,9 @@
         user:{
             type: Object,
             required: true,
+        },
+        status:{
+            type: Object,
         }
     })
 </script>
@@ -17,6 +20,7 @@
     <Layout 
     :authStatus="props.user.name != undefined "
     :user="props.user"
+    :status="props.status"
     >
     <main>
         <section v-if="props.user.name == undefined" class="w-full flex flex-col">

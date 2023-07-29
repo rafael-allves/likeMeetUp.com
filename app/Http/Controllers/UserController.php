@@ -2,20 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use Inertia\Inertia;
+
+use Inertia\Response;
+use Illuminate\Http\RedirectResponse;
+
+
 use App\Models\User;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('guest')->only(['create']);
+        $this->middleware('auth')->except([
+            'create',
+            'show',
+        ]);
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -24,20 +35,15 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-        $user = Auth::user();
-        if($user != null){
-            Auth::login($user);
-            return redirect('/');
-        }
-
-        return Inertia::render('users/Auth', [
+        return Inertia::render('Users/Auth', [
             "user" => ["user" => ""],
         ]);
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $user = Auth::user();
         $myEvents = $user->events;
 
@@ -49,7 +55,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         return redirect('/users/auth');
     }
@@ -57,9 +63,13 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user): Response
     {
-        
+        return Inertia::render('Users/Show', [
+            'user' => $user,
+            'userSession' => Auth::user(),
+            'status' => session('status'),
+        ]);
     }
 
     /**

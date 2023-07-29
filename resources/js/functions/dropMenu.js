@@ -12,7 +12,8 @@ function handleClickOutside(element, buttonDropDown){
 }
 
 export default function dropMenu(evt){
-    evt.stopPropagation();
+    evt.stopImmediatePropagation();
+
     const expanded = evt.currentTarget.getAttribute('aria-expanded');
 
     evt.currentTarget.nextElementSibling.style.visibility = expanded == 'true' ? 'hidden': 'visible';

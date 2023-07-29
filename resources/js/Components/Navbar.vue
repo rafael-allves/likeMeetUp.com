@@ -29,7 +29,7 @@
             aria-expanded="false"
             >
             </button>
-            <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-20">
+            <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-50">
                 <div id="menu" class="menu absolute max-md:flex h-full max-md:items-center max-md:flex-col">
                     <DropDownAvatar :user="props.user" :responsive="true" v-if="props.authStatus"/>
                     <ul class="flex flex-col w-full px-10 h-full relative mt-8 font-medium text-2xl">
@@ -67,7 +67,8 @@
                             </Link>
                         </li>
 
-                        <Link href="/logout" class="text-black w-10/12 flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover absolute bottom-2" v-if="props.authStatus">
+                        <Link href="/logout" class="text-black w-10/12 flex items-center gap-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover absolute bottom-2" 
+                        v-if="props.authStatus">
                             <span class="material-symbols-outlined">
                                 logout
                             </span>
@@ -92,7 +93,9 @@
                     aria-expanded="false"
                     @click="dropMenu($event)">
                         <span class="sr-only">Open user menu</span>
-                        <ProfilePic :profilePic="props.user.profile_pic" :responsive="false" />
+                        <div class="w-[40px]">
+                            <ProfilePic :profilePic="props.user.profile_pic" :responsive="false" />
+                        </div>
                     </button>
                     <DropDownAvatar :user="props.user" />
                 </div>

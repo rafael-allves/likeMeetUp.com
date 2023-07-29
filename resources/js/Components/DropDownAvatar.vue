@@ -18,7 +18,9 @@
 <template>
         <section id="dropdownAvatar" class="bg-white top-0 divide-gray-100 shadow-md w-full items-center px-10" v-if="props.responsive">
             <h2 class="text-gray-900 flex gap-1 items-center border-b-2 pb-1 mt-3 font-bold text-2xl">
-                <ProfilePic :profilePic="props.user.profile_pic" />
+                <div class="w-[40px]">
+                    <ProfilePic :profilePic="props.user.profile_pic" />
+                </div>
                 {{ props.user.name }}
             </h2>
             <ul class="py-2 text-gray-700 dark:text-gray-200 flex flex-col text-center mt-5 font-normal text-2xl">
@@ -48,9 +50,11 @@
                 </li>
             </ul>
         </section>
-        <section class="invisible z-1 right-3 bg-white px-7 divide-y divide-gray-100 rounded-lg shadow w-44 absolute align-middle border" v-else>
+        <section class="invisible z-50 right-3 bg-white px-7 divide-y divide-gray-100 rounded-lg shadow w-44 absolute align-middle border" v-else>
             <h2 class="text-sm text-gray-900 flex gap-1 items-center border-b-2 pb-1 mt-3">
-                <ProfilePic :profilePic="props.user.profile_pic" />
+                <div class="w-[40px]">
+                    <ProfilePic :profilePic="props.user.profile_pic" />
+                </div>
                 {{ props.user.name }}
             </h2>
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 flex flex-col gap-1">
