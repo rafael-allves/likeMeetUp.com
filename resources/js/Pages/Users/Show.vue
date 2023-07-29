@@ -3,6 +3,7 @@
 
    import Layout from '@/Layouts/MainLayout.vue';
    import ProfilePic from '@/Components/ProfilePic.vue';
+   import Card from '@/Components/Card.vue';
 
    const props = defineProps({
       userSession: {
@@ -91,6 +92,14 @@
                      Eventos
                      </Link>
                   </div>
+                  <section v-if="currentUrl ==='#publicacoes'"
+                  >
+                     
+                  </section>
+                  <section v-else
+                  >
+                     
+                  </section>
                </section>
             </section>
          </main>
