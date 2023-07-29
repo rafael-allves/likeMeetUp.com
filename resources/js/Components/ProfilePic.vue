@@ -10,8 +10,7 @@
 
 <template>
     <img :src="props.profilePic"
-    width="40"
-    class="rounded-full"
+    class="rounded-full w-full"
     >
 </template>
 

@@ -21,6 +21,10 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->only(['create']);
+        $this->middleware('auth')->except([
+            'create',
+            'show',
+        ]);
     }
 
     public function index()
@@ -38,7 +42,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $user = Auth::user();
         $myEvents = $user->events;
 
@@ -50,7 +55,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         return redirect('/users/auth');
     }
@@ -58,9 +63,13 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user): Response
     {
-        
+        return Inertia::render('Users/Show', [
+            'user' => $user,
+            'userSession' => Auth::user(),
+            'status' => session('status'),
+        ]);
     }
 
     /**
