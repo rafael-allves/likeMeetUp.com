@@ -4,6 +4,10 @@
         event:{
             type: Object,
             required: true,
+        },
+        type: {
+            type: String,
+            required: true,
         }
     })
 
@@ -11,7 +15,7 @@
 
 <template>
     <Link
-    :href="`/events/${event.id}`"
+    :href="`/${type}/${event.id}`"
     >
         <section class="flex gap-1 mb-2 md:px-10">
             <div class="w-[30%] max-w-[300px] min-w-[200px]">
@@ -24,7 +28,7 @@
                         ...
                     </span>
                 </h2>
-                <h3 class="text-textMuted font-bold">
+                <h3 class="text-textMuted font-bold" v-if="type === 'event'">
                     {{ `
                     ${ new Date(event.date).getDate().toString().length != 1 ? 
                         new Date(event.date).getDate() :
@@ -43,7 +47,7 @@
                         Mostrar Mais
                     </span>
                 </p>
-                <p class="mt-2 text-textMuted">
+                <p class="mt-2 text-textMuted" v-if="type === 'event'">
                     {{ event.participants.length }} 
                     {{ event.participants.length == 1 ? 'Participante' : 'Participantes' }}
                 </p>

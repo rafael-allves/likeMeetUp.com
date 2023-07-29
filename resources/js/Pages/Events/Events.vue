@@ -57,7 +57,8 @@
             <main class="overflow-y-auto bg-white max-h-[80vh]">
                 <div v-if="props.events.length > 0">
                     <EventCard v-for="event in props.events"
-                    :event="event" :key="event.id"/>
+                    :event="event" :key="event.id"
+                    type="event"/>
                 </div>
                 <div v-else>
                     <h2>
