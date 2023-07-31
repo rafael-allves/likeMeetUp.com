@@ -1,4 +1,5 @@
 <script setup>
+   import { ref } from 'vue';
    import { Link, Head } from '@inertiajs/vue3';
 
    import Layout from '@/Layouts/MainLayout.vue';
@@ -24,6 +25,12 @@
 
    if(window.location.hash === '')window.location.hash = '#publicacoes'
    const currentUrl = window.location.hash;
+
+   const events = ref([
+      ...props.user.events,
+      ...props.user.event_as_participant
+   ]);
+
 </script>
 
 <template>
@@ -73,7 +80,7 @@
                   <!--Quando clicar no perfil acima quero que quando clicar mostre um form pro cara mudar inpage mesmo-->
                </div>
             </section>
-            <section class="border-2 lg:w-[70%] w-full px-10 py-3 overflow-y-auto">
+            <section class="border-2 lg:w-[70%] w-full px-10 py-3">
                <section>
                   <div class="flex items-center gap-1 justify-center mt-3">
                      <Link href="#publicacoes"
@@ -98,17 +105,19 @@
                      
                   </section>
                   <section v-else
-                  class="grid grid-cols-profile gap-3 mt-10"
+                  class="mt-10 border-t-2"
                   >
-                     <article v-for="event in [...user.events, ...user.event_as_participant]"
-                     class="shadow-md shadow-black">
-                        <Card 
-                        type="events"
-                        :content="event"
-                        :owner="event.user_id === user.id" 
-                        />
-                     </article>
-
+                     <section 
+                     class="grid grid-cols-profile gap-3 max-h-[600px] mt-2 overflow-y-auto py-1 px-3 shadow">
+                        <article v-for="event in events"
+                        class="shadow-md shadow-black">
+                           <Card 
+                           type="events"
+                           :content="event"
+                           :owner="event.user_id === user.id" 
+                           />
+                        </article>
+                     </section>
                   </section>
                </section>
             </section>
@@ -120,7 +129,7 @@
 
 <style scoped>
    .active{
-      border-top:1px solid #3949AB;
+      border-top: 2px solid #3949AB;
       
       font-weight: bold;
    }
