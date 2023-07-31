@@ -99,21 +99,16 @@
                      
                   </section>
                   <section v-else
+                  class="grid grid-cols-profile gap-3 mt-10"
                   >
-                  <div class="flex items-center justify-center">
-                     <button>
-                        
-                     </button>
-                     <button>
-
-                     </button>
-                  </div>
-                     <div v-for="event in [...user.events, ...user.eventAsParticipant]">
+                     <article v-for="event in [...user.events, ...user.eventAsParticipant]"
+                     class="shadow-md shadow-black">
                         <Card 
                         type="events"
-                        :event="event" 
+                        :content="event"
+                        :owner="event.user_id === user.id" 
                         />
-                     </div>
+                     </article>
                   </section>
                </section>
             </section>

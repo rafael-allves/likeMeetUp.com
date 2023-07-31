@@ -12,10 +12,14 @@ export default {
 
     theme: {
         extend: {
+            gridTemplateColumns: {
+                profile: 'repeat(auto-fill, minmax(200px, 1fr))'
+            },
 
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+
             colors: {
                 mainBg: '#FFF',
                 secondBg: 'rgb(224, 224, 224)',
