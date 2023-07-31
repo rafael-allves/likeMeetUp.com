@@ -29,17 +29,19 @@
                     </span>
                 </h2>
                 <h3 class="text-textMuted font-bold" v-if="type === 'events'">
-                    {{ `
-                    ${ new Date(event.date).getDate().toString().length != 1 ? 
-                        new Date(event.date).getDate() :
-                        '0'.concat(new Date(event.date).getDay().toString()) }
-                    /
-                    ${(new Date(event.date).getMonth() + 1).toString().length != 1 ?
-                        new Date(event.date).getMonth() + 1 :
-                        '0'.concat(new Date(event.date).getMonth() + 1)}
-                    /
-                    ${new Date(event.date).getFullYear()}
-                    ` }}
+                    {{
+                        `
+                        ${ new Date(event.date).getDate().toString().length != 1 ? 
+                            new Date(event.date).getDate() :
+                            '0'.concat(new Date(event.date).getDay().toString()) }
+                        /
+                        ${(new Date(event.date).getMonth() + 1).toString().length != 1 ?
+                            new Date(event.date).getMonth() + 1 :
+                            '0'.concat(new Date(event.date).getMonth() + 1)}
+                        /
+                        ${new Date(event.date).getFullYear()}
+                        `
+                    }}
                 </h3>
                 <p class="w-full">
                     {{ event.description.slice(0, 50)}}

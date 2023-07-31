@@ -28,14 +28,29 @@
                     <img :src="'/' + content.image" alt="Image" />
                 </div>
                 <div class="pl-3 mt-2">
-                    <h2 class="mb-2 font-bold text-center">
+                    <h2 class="mb-2 font-bold">
                         {{ content.title.slice(0, 22) }}
                         <span v-if="content.title.length > 22"
                         class="text-colorSecondary">
                             ...
                         </span>
                     </h2>
-    
+                    <h3 class="text-textMuted font-bold mb-2" v-if="type === 'events'">
+                        {{
+                            `
+                            ${ new Date(content.date).getDate().toString().length != 1 ? 
+                                new Date(content.date).getDate() :
+                                '0'.concat(new Date(content.date).getDay().toString()) }
+                            /
+                            ${(new Date(content.date).getMonth() + 1).toString().length != 1 ?
+                                new Date(content.date).getMonth() + 1 :
+                                '0'.concat(new Date(content.date).getMonth() + 1)}
+                            /
+                            ${new Date(content.date).getFullYear()}
+                            `
+                        }}
+                    </h3>
+
                     <p>
                         {{ content.description.slice(0, 50) }}
                         <span v-if="content.description.length > 50"
@@ -53,6 +68,9 @@
                     </span>
                     Dono 
                 </h3>
+            </div>
+            <div v-if="$slot">
+                <slot />
             </div>
         </section>
     </Link>

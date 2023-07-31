@@ -80,7 +80,7 @@
                   <!--Quando clicar no perfil acima quero que quando clicar mostre um form pro cara mudar inpage mesmo-->
                </div>
             </section>
-            <section class="border-2 lg:w-[70%] w-full px-10 py-3">
+            <section class="border-2 lg:w-[70%] w-full py-3">
                <section>
                   <div class="flex items-center gap-1 justify-center mt-3">
                      <Link href="#publicacoes"
@@ -105,10 +105,10 @@
                      
                   </section>
                   <section v-else
-                  class="mt-10 border-t-2"
+                  class="mt-10 border-t-2 overflow-y-auto max-h-[600px] px-10"
                   >
                      <section 
-                     class="grid grid-cols-profile gap-3 max-h-[600px] mt-2 overflow-y-auto py-1 px-3 shadow">
+                     class="grid grid-cols-profile gap-3 mt-2 py-1 px-3 shadow">
                         <article v-for="event in events"
                         class="shadow-md shadow-black">
                            <Card 
