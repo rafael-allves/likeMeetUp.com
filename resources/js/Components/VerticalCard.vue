@@ -21,7 +21,7 @@
             <div class="w-[30%] max-w-[300px] min-w-[200px]">
                 <img :src="'/' + event.image" alt="Foto do Evento">
             </div>
-            <div class="px-3 py-3 md:px-10">
+            <div class="px-3 py-3 md:px-10 shadow-md w-full">
                 <h2 class="text-lg">
                     {{ event.title.slice(0, 22) }}
                     <span v-if="event.title.length > 22">

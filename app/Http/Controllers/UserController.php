@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -32,9 +30,7 @@ class UserController extends Controller
         $user = Auth::user();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create(): Response
     {
         return Inertia::render('Users/Auth', [
@@ -52,17 +48,11 @@ class UserController extends Controller
         return view('users.dashboard', ['myevents' => $myEvents, 'eventsparticipant' => $eventsParticipant]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request): RedirectResponse
     {
         return redirect('/users/auth');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(User $user): Response
     {
         $user->load(['eventAsParticipant', 'events']);
@@ -73,9 +63,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(String $id)
     {
         $user = User::where([
@@ -84,9 +71,6 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $user)
     {
         $data = $request->all();
@@ -112,9 +96,6 @@ class UserController extends Controller
         return response()->json(['redirect' => '/users/' . $user->id . '/edit'], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy()
     {
         

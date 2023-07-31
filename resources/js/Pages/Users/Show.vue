@@ -4,7 +4,7 @@
 
    import Layout from '@/Layouts/MainLayout.vue';
    import ProfilePic from '@/Components/ProfilePic.vue';
-   import Card from '@/Components/Card.vue';
+   import Card from '@/Components/VerticalCard.vue';
 
    const props = defineProps({
       userSession: {
