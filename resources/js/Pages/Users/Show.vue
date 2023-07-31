@@ -24,8 +24,6 @@
 
    if(window.location.hash === '')window.location.hash = '#publicacoes'
    const currentUrl = window.location.hash;
-
-   props.user.eventAsParticipant = props.user.eventAsParticipant === undefined ? [] : props.user.eventAsParticipant 
 </script>
 
 <template>
@@ -36,8 +34,8 @@
     >
     <section>
       <div class="flex items-center justify-center mt-8">
-         <main class="md:flex md:w-[70%] gap-3 w-full">
-            <section class="flex items-center justify-center md:w-[30%] w-full">
+         <main class="lg:flex md:w-[70%] gap-3 w-full">
+            <section class="flex items-center justify-center lg:w-[30%] w-full">
                <div class="w-full">
 
                   <section class="w-full flex justify-center items-center">
@@ -75,7 +73,7 @@
                   <!--Quando clicar no perfil acima quero que quando clicar mostre um form pro cara mudar inpage mesmo-->
                </div>
             </section>
-            <section class="border-2 md:w-[70%] w-full px-10 py-3">
+            <section class="border-2 lg:w-[70%] w-full px-10 py-3 overflow-y-auto">
                <section>
                   <div class="flex items-center gap-1 justify-center mt-3">
                      <Link href="#publicacoes"
@@ -95,13 +93,14 @@
                      </Link>
                   </div>
                   <section v-if="currentUrl ==='#publicacoes'"
+                  class="mt-10"
                   >
                      
                   </section>
                   <section v-else
                   class="grid grid-cols-profile gap-3 mt-10"
                   >
-                     <article v-for="event in [...user.events, ...user.eventAsParticipant]"
+                     <article v-for="event in [...user.events, ...user.event_as_participant]"
                      class="shadow-md shadow-black">
                         <Card 
                         type="events"
@@ -109,6 +108,7 @@
                         :owner="event.user_id === user.id" 
                         />
                      </article>
+
                   </section>
                </section>
             </section>
