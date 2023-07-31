@@ -91,8 +91,9 @@
                             <span class="material-symbols-outlined text-yellow-600">
                                 star
                             </span>
-                            
-                            <ProfilePic :profilePic="props.dono.profile_pic" />
+                            <div class="w-[40px]">
+                                <ProfilePic :profilePic="props.dono.profile_pic" />
+                            </div>
 
                             {{ props.dono.name }}
                         </Link>

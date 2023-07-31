@@ -2,7 +2,7 @@
     import { Link, useForm } from '@inertiajs/vue3'
 
     import Layout from '@/Layouts/MainLayout.vue'
-    import EventCard from '@/Components/Card.vue';
+    import EventCard from '@/Components/Events/Card.vue';
     
     const props = defineProps({
         
@@ -58,7 +58,8 @@
                 <div v-if="props.events.length > 0">
                     <EventCard v-for="event in props.events"
                     :event="event" :key="event.id"
-                    type="event"/>
+                    type="events"
+                    />
                 </div>
                 <div v-else>
                     <h2>

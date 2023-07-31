@@ -24,6 +24,8 @@
 
    if(window.location.hash === '')window.location.hash = '#publicacoes'
    const currentUrl = window.location.hash;
+
+   props.user.eventAsParticipant = props.user.eventAsParticipant === undefined ? [] : props.user.eventAsParticipant 
 </script>
 
 <template>
@@ -39,7 +41,7 @@
                <div class="w-full">
 
                   <section class="w-full flex justify-center items-center">
-                     <div class="md:w-full w-[300px]">
+                     <div class="md:w-full max-w-[300px]">
                         <ProfilePic :profilePic="user.profile_pic"/>
                      </div>
                   </section>
@@ -51,6 +53,12 @@
                      </h2>
                   </div>
                   <div class="flex flex-col items-center px-4 md:px-0">
+                     <h3 class="my-3 flex items-center justify-center">
+                        <span class="material-symbols-outlined">
+                           group
+                        </span>
+                        X SEGUIDORES - X Seguindo
+                     </h3>
                      
                      <p class="break-words my-5 w-[300px] md:w-full">
                         {{ 
@@ -63,12 +71,6 @@
                            Editar Perfil
                      </button>
 
-                     <h3 class="my-3 flex items-center justify-center">
-                        <span class="material-symbols-outlined">
-                           group
-                        </span>
-                        X SEGUDORES - X Seguindo
-                     </h3>
                   </div>
                   <!--Quando clicar no perfil acima quero que quando clicar mostre um form pro cara mudar inpage mesmo-->
                </div>
@@ -98,7 +100,20 @@
                   </section>
                   <section v-else
                   >
-                     
+                  <div class="flex items-center justify-center">
+                     <button>
+                        
+                     </button>
+                     <button>
+
+                     </button>
+                  </div>
+                     <div v-for="event in [...user.events, ...user.eventAsParticipant]">
+                        <Card 
+                        type="events"
+                        :event="event" 
+                        />
+                     </div>
                   </section>
                </section>
             </section>

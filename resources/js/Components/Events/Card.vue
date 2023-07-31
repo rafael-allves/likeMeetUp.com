@@ -17,9 +17,9 @@
     <Link
     :href="`/${type}/${event.id}`"
     >
-        <section class="flex gap-1 mb-2 md:px-10">
+        <section class="block md:flex gap-1 mb-2 md:px-10">
             <div class="w-[30%] max-w-[300px] min-w-[200px]">
-                <img :src="event.image" alt="Foto do Evento">
+                <img :src="'/' + event.image" alt="Foto do Evento">
             </div>
             <div class="px-3 py-3 md:px-10">
                 <h2 class="text-lg">
@@ -28,7 +28,7 @@
                         ...
                     </span>
                 </h2>
-                <h3 class="text-textMuted font-bold" v-if="type === 'event'">
+                <h3 class="text-textMuted font-bold" v-if="type === 'events'">
                     {{ `
                     ${ new Date(event.date).getDate().toString().length != 1 ? 
                         new Date(event.date).getDate() :
