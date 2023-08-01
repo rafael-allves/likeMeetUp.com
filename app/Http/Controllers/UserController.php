@@ -56,6 +56,9 @@ class UserController extends Controller
     public function show(User $user): Response
     {
         $user->load(['eventAsParticipant', 'events']);
+        
+        $user->load(['publications']);
+
         return Inertia::render('Users/Show', [
             'user' => $user,
             'userSession' => Auth::user(),

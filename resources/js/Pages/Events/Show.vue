@@ -178,7 +178,9 @@
                     <h2 class="text-2xl font-extrabold">
                         Sobre O Evento:
                     </h2>
-                    {{ props.event.description }}
+                    <p class="w-full break-words">
+                        {{ props.event.description }}
+                    </p>
                 </section>
             </section>
         </main>

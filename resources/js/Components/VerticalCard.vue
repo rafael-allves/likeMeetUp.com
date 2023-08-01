@@ -51,7 +51,7 @@
                         }}
                     </h3>
 
-                    <p>
+                    <p class="w-full break-words">
                         {{ content.description.slice(0, 50) }}
                         <span v-if="content.description.length > 50"
                         class="text-colorSecondary">

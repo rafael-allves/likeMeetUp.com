@@ -9,6 +9,13 @@ class Publication extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'content',
+        'image',
+        'user_id'
+    ];
+
     protected $guarded = [];
 
     public function owner()

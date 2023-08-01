@@ -23,6 +23,8 @@
 
     try {
         const fileContent = await readFileAsText(file);
+        inputFile.value = fileContent;
+
         document.getElementById('imgPreview').setAttribute('src', fileContent);
     } catch (error) {
         console.error('Erro ao ler o arquivo:', error);
@@ -104,7 +106,7 @@
                 </div>
                 <div class="flex items-end justify-end">
                     <button class="text-white bg-green-600 px-1 py-2 mb-2 mr-2 flex items-center justify-center gap-2"
-                    type="submit"
+                    @click="submit"
                     >
                         Publicar
                         <span class="material-symbols-outlined">

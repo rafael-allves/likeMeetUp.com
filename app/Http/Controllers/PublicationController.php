@@ -43,7 +43,7 @@ class PublicationController extends Controller
             $request->file('image')->move(storage_path('/app/public/publications'), "$imageName.$imageExtension");
 
             $image = "/storage/app/public/publications/$imageName.$imageExtension";
-        }else if($request->image != '' && $request->hasFile('image') && !$request->file('image')->isValid()){
+        }else if($request->image != null && $request->hasFile('image') && !$request->file('image')->isValid()){
             session()->flash('status', ['error' => 'Imagem Inválida']);
             return redirect()->back();
         }

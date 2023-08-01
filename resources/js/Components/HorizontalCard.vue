@@ -13,24 +13,25 @@
         }
     })
 
+    if(props.type == 'publication')props.content.description = props.content.content;
 </script>
 
 <template>
     <Link
     :href="`/${type}/${content.id}`"
     >
-        <section class="block md:flex gap-1 mb-2 md:px-10">
-            <div class="w-[30%] max-w-[300px] min-w-[200px]">
-                <img :src="'/' + content.image" alt="Foto do contento">
+        <section class="block md:flex gap-1 mb-2">
+            <div :class="{'w-[30%] max-w-[300px] min-w-[200px] shadow-sm shadow-black': true, 'hidden': props.content.image === null}">
+                <img :src="'/' + content.image" alt="">
             </div>
-            <div class="px-3 py-3 md:px-10 shadow-md w-full">
-                <h2 class="text-lg">
+            <div :class="{'shadow-md': true, 'ml-20':props.content.image === null} ">
+                <h2 class="text-lg font-bold break-words w-full">
                     {{ content.title.slice(0, 22) }}
                     <span v-if="content.title.length > 22">
                         ...
                     </span>
                 </h2>
-                <h3 class="text-textMuted font-bold" v-if="type === 'events'">
+                <h3 class="text-textMuted font-bold break-words" v-if="type === 'events'">
                     {{
                         `
                         ${ new Date(content.date).getDate().toString().length != 1 ? 
@@ -45,8 +46,8 @@
                         `
                     }}
                 </h3>
-                <p class="w-full">
-                    {{ content.description.slice(0, 50)}}
+                <p class="break-words">
+                    {{ content.description.slice(0, 100)}}
                     <span class="text-colorSecondary block">
                         Mostrar Mais
                     </span>
