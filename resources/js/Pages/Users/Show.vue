@@ -133,7 +133,7 @@
                   class="mt-10 w-full overflow-y-auto max-h-[600px]"
                   >
                      <article v-for="publication in props.user.publications"
-                     class="px-5 shadow-md">
+                     class="px-5 shadow-md mt-2">
                         <p class="text-textMuted">
                            Publicado há •
                            {{ timeElapsed(publication) }}

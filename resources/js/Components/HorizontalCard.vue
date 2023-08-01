@@ -21,10 +21,10 @@
     :href="`/${type}/${content.id}`"
     >
         <section class="block md:flex gap-1 mb-2">
-            <div :class="{'w-[30%] max-w-[300px] min-w-[200px] shadow-sm shadow-black': true, 'hidden': props.content.image === null}">
-                <img :src="'/' + content.image" alt="">
+            <div :class="{'w-[30%] h-full max-w-[300px] min-w-[200px] shadow-sm shadow-black': true, 'hidden': content.image === null}">
+                <img :src="'/' + content.image" alt="" class="w-full h-full">
             </div>
-            <div :class="{'shadow-md': true, 'ml-20':props.content.image === null} ">
+            <div :class="{'shadow-md w-[70%]': true, 'ml-20':props.content.image === null} ">
                 <h2 class="text-lg font-bold break-words w-full">
                     {{ content.title.slice(0, 22) }}
                     <span v-if="content.title.length > 22">

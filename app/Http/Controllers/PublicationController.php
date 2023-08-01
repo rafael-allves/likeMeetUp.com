@@ -29,12 +29,13 @@ class PublicationController extends Controller
 
     public function create()
     {
-
+        
     }
-
+    
     public function store(Request $request):RedirectResponse
     {
         $image = null;
+        
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $imageExtension = $request->file('image')->extension();
 
@@ -42,7 +43,7 @@ class PublicationController extends Controller
 
             $request->file('image')->move(storage_path('/app/public/publications'), "$imageName.$imageExtension");
 
-            $image = "/storage/app/public/publications/$imageName.$imageExtension";
+            $image = "storage/publications/$imageName.$imageExtension";
         }else if($request->image != null && $request->hasFile('image') && !$request->file('image')->isValid()){
             session()->flash('status', ['error' => 'Imagem Inválida']);
             return redirect()->back();

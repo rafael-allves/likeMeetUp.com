@@ -9,7 +9,6 @@
     })
 
     const image = ref(false);
-    const inputFile = ref('');
     
     const submit = () => {
         formPublication.post(route('CreatePublication'));
@@ -23,7 +22,6 @@
 
     try {
         const fileContent = await readFileAsText(file);
-        inputFile.value = fileContent;
 
         document.getElementById('imgPreview').setAttribute('src', fileContent);
     } catch (error) {
@@ -37,6 +35,8 @@
         reader.onload = (event) => resolve(event.target.result);
         reader.onerror = (error) => reject(error);
         reader.readAsDataURL(file);
+        
+        formPublication.image = file;
     });
     }
 
@@ -46,7 +46,7 @@
     <section id="bg" class="w-full h-full absolute top-0 z-40 flex justify-center items-center">
         <form 
         @submit.prefent="submit"
-        class="w-[94%] max-w-[500px] px-2 py-2 bg-white h-[55%] rounded-md">
+        class="w-[94%] max-w-[500px] px-2 py-2 bg-white h-[63%] rounded-md">
             <div class="flex items-end justify-end h-auto">
                 <span class="material-symbols-outlined cursor-pointer hover:text-red-600" id="exit"
                 @click="stopNewPost">
@@ -77,7 +77,7 @@
                     </button>
                     <button class="bg-green-600 text-white flex items-center justify-center px-2 py-2 gap-1"
                     type="button"
-                    @click="formPublication.image = inputFile; image = false">
+                    @click="image = false">
                         <span class="material-symbols-outlined">
                             add_a_photo
                         </span>
@@ -86,7 +86,7 @@
                 </div>
             </section>
 
-            <section v-else class="bg-white grid grid-cols-1 mt-2">
+            <section v-else class="bg-white grid grid-cols-1 mt-2 h-[90%]">
                 <div class="w-full h-full flex flex-col gap-2 pt-1">
                     <input type="text" placeholder="Título da publicação"
                     class="w-full"
