@@ -69,18 +69,15 @@
             </Head>
             <section class="flex flex-col items-center mt-10">
                     <header class="flex flex-col gap-2">
-                        <h2 class="text-center text-3xl flex items-center justify-center gap-1">
+                        <h2 class="text-center text-3xl font-bold flex items-center justify-center gap-1">
                             <img width="40" height="40" :src=Logo alt="Logo">
                             Rafa Events
                         </h2>
 
-                        <h1 class="text-3xl text-center">
+                        <h2 class="text-3xl text-center text-[1.5rem]">
                             Bem-vindo
-                        </h1>
+                        </h2>
 
-                        <small class="text-textMuted text-base">
-                            Por Favor, Informe suas credenciais
-                        </small>
                     </header>
                     <section>
                         <section class="flex items-center my-3">
@@ -118,7 +115,9 @@
                                         v-model="formLogin.remember"
                                         :checked="formLogin.remember"
                                         />
-                                        <span class="ml-2 text-sm text-textColor">Lembrar de Mim</span>
+                                        <span class="ml-2 text-sm text-textColor">
+                                            Lembrar
+                                        </span>
                                     </label>
                                 </div>
 

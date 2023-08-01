@@ -29,7 +29,7 @@
             aria-expanded="false"
             >
             </button>
-            <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-50">
+            <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-30">
                 <div id="menu" class="menu absolute max-md:flex h-full max-md:items-center max-md:flex-col">
                     <DropDownAvatar :user="props.user" :responsive="true" v-if="props.authStatus"/>
                     <ul class="flex flex-col w-full px-10 h-full relative mt-8 text-[1rem] font-medium text-2xl">
@@ -50,14 +50,7 @@
                                 Sobre
                             </Link>
                         </li>
-                        <li>
-                            <Link href="/contact" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
-                                <span class="material-symbols-outlined">
-                                    contacts
-                                </span>
-                                Contato
-                            </Link>
-                        </li>
+                     
                         <li>
                             <Link href="/events" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                                 <span class="material-symbols-outlined">

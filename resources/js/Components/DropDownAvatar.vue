@@ -11,25 +11,36 @@
             type: Boolean,
         }
     });
-    
-    const linkEditUser = `users/${props.user.id}/edit`;
+
+    const url = window.location;
 </script>
 
 <template>
         <section id="dropdownAvatar" class="bg-white top-0 divide-gray-100 shadow-md w-full items-center px-10" v-if="props.responsive">
-            <h2 class="text-gray-900 flex gap-1 items-center border-b-2 pb-1 mt-3 font-bold text-2xl">
+            <Link
+            :href="`/users/${user.id}`" 
+            class="text-gray-900 flex gap-1 items-center border-b-2 pb-1 mt-3 font-bold text-2xl"
+            >
                 <div class="w-[40px]">
                     <ProfilePic :profilePic="props.user.profile_pic" />
                 </div>
                 {{ props.user.name }}
-            </h2>
+            </Link>
             <ul class="py-2 text-gray-700 dark:text-gray-200 flex flex-col text-center text-[1rem] mt-5 font-normal text-2xl">
                 <li>
-                    <Link :href="linkEditUser" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                    <Link :href="`/users/${user.id}/edit`" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                         <span class="material-symbols-outlined">
                             person
                         </span>
                         Editar perfil
+                    </Link>
+                </li>
+                <li>
+                    <Link :href="`${url}#newPublication`" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                        Publicação
                     </Link>
                 </li>
                 <li>
@@ -59,11 +70,19 @@
             </h2>
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 flex flex-col gap-1">
                 <li>
-                    <Link :href="linkEditUser" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                    <Link :href="`users/${props.user.id}/edit`" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                         <span class="material-symbols-outlined">
                             person
                         </span>
                         Editar perfil
+                    </Link>
+                </li>
+                <li>
+                    <Link :href="`${url}#newPublication`" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                        Publicação
                     </Link>
                 </li>
                 <li>

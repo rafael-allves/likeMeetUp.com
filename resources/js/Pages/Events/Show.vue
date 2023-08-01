@@ -56,7 +56,7 @@
                     class="object-fit flex justify-center">
                 </section>
                 <section class="lg:w-[50%]">
-                    <h1 class="text-3xl font-bold">
+                    <h1 class="text-3xl font-bold mb-5">
                         {{ props.event.title }}
                     </h1>
                     <h3 class="text-xl flex text-center items-center gap-3 mt-2">
@@ -85,7 +85,7 @@
                         {{ props.event.local }}
                     </h3>
     
-                    <h2 class="text-xl font-bold">
+                    <h2 class="text-xl font-bold mb-5">
                         <Link :href="`/users/${props.dono.id}`"
                         class="mt-3 flex text-center items-center gap-2">
                             <span class="material-symbols-outlined text-yellow-600">

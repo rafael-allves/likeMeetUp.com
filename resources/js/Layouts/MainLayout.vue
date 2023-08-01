@@ -2,6 +2,8 @@
     import {Head} from '@inertiajs/vue3';
 
     import Navbar from '@/Components/Navbar.vue';
+    import NewPublication from '@/Components/NewPublication.vue';
+
     const props = defineProps({
         authStatus:{
             type: Boolean,
@@ -15,6 +17,9 @@
             type: Object,
         }
     });
+
+    const urlHash = window.location.hash;
+
 </script>
 
 <template>
@@ -31,6 +36,8 @@
                 :authStatus="props.authStatus"
                 :user="props.user"
             />
+
+            <NewPublication v-if="urlHash == '#newPublication'" />
 
             <div v-if="props.status != undefined">
                 <p v-if="props.status.error != undefined"
