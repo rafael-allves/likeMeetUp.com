@@ -23,7 +23,7 @@
                 </div>
                 {{ props.user.name }}
             </h2>
-            <ul class="py-2 text-gray-700 dark:text-gray-200 flex flex-col text-center mt-5 font-normal text-2xl">
+            <ul class="py-2 text-gray-700 dark:text-gray-200 flex flex-col text-center text-[1rem] mt-5 font-normal text-2xl">
                 <li>
                     <Link :href="linkEditUser" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                         <span class="material-symbols-outlined">

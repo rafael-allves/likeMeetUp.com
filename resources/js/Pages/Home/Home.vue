@@ -28,10 +28,7 @@
             <UnloggedHome />
         </section>
         <section v-else>
-            <section class="block md:hidden">
-
-            </section>
-            <section class="md:flex hidden">
+            <section class>
 
             </section>
         </section>

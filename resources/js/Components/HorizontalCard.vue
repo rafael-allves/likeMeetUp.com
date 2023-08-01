@@ -69,7 +69,7 @@
                     Dono 
                 </h3>
             </div>
-            <div v-if="$slot">
+            <div v-if="$slots">
                 <slot />
             </div>
         </section>

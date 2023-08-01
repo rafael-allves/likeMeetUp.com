@@ -23,7 +23,7 @@
             <img width="40" height="40" :src=Logo alt="Logo">
         </Link>
         <nav class="flex flex-row">
-            <button class="max-md:block hidden hamburger"
+            <button class="md:hidden block hamburger"
             @click.prevent="dropMenu"
             @touchstart.prevent="dropMenu"
             aria-expanded="false"
@@ -32,7 +32,7 @@
             <section class="menuBg invisible w-full justify-center max-md:items-center max-md:flex-col absolute top-14 right-0 z-50">
                 <div id="menu" class="menu absolute max-md:flex h-full max-md:items-center max-md:flex-col">
                     <DropDownAvatar :user="props.user" :responsive="true" v-if="props.authStatus"/>
-                    <ul class="flex flex-col w-full px-10 h-full relative mt-8 font-medium text-2xl">
+                    <ul class="flex flex-col w-full px-10 h-full relative mt-8 text-[1rem] font-medium text-2xl">
                         <li>
                             <Link href="/users/create" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover"
                             v-if="!props.authStatus">
