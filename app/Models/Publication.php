@@ -9,10 +9,13 @@ class Publication extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function owner()
     {
         return $this->hasOne('App\Models\User');
     }
+ 
     public function likes()
     {
         return $this->hasMany('App\Models\User');

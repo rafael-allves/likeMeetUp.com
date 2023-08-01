@@ -4,7 +4,8 @@
 
    import Layout from '@/Layouts/MainLayout.vue';
    import ProfilePic from '@/Components/ProfilePic.vue';
-   import Card from '@/Components/HorizontalCard.vue';
+   import VerticalCard from '@/Components/VerticalCard.vue';
+   import HorizontalCard from '@/Components/HorizontalCard.vue';
 
    const props = defineProps({
       userSession: {
@@ -102,8 +103,13 @@
                   <section v-if="currentUrl ==='#publicacoes'"
                   class="mt-10"
                   >
-                     
+                     <article v-for="publication in props.user.publications">
+                        <HorizontalCard
+                        :content="publication"
+                        />
+                     </article>
                   </section>
+                  
                   <section v-if="currentUrl ==='#events'"
                   class="mt-10 border-t-2 overflow-y-auto max-h-[600px] px-10"
                   >
@@ -111,7 +117,7 @@
                      class="grid grid-cols-profile gap-3 mt-2 py-1 px-3 shadow">
                         <article v-for="event in events"
                         class="shadow-md shadow-black">
-                           <Card 
+                           <VerticalCard 
                            type="events"
                            :content="event"
                            :owner="event.user_id === user.id" 

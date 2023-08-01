@@ -2,7 +2,7 @@
     import { Link, useForm } from '@inertiajs/vue3'
 
     import Layout from '@/Layouts/MainLayout.vue'
-    import EventCard from '@/Components/VerticalCard.vue';
+    import EventCard from '@/Components/HorizontalCard.vue';
     
     const props = defineProps({
         

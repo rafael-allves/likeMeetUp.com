@@ -7,6 +7,7 @@
         user:{
             type: Object,
         },
+
         responsive:{
             type: Boolean,
         }
@@ -36,19 +37,19 @@
                     </Link>
                 </li>
                 <li>
-                    <Link :href="`${url}#newPublication`" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
-                        <span class="material-symbols-outlined">
-                            add_circle
-                        </span>
-                        Publicação
-                    </Link>
-                </li>
-                <li>
                     <Link href="/events/create" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                         <span class="material-symbols-outlined">
                             group_add
                         </span>
                         Criar um Evento
+                    </Link>
+                </li>
+                <li>
+                    <Link :href="`${url}#newPublication`" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                        Publicação
                     </Link>
                 </li>
                 <li>
@@ -61,13 +62,17 @@
                 </li>
             </ul>
         </section>
+
         <section class="invisible z-50 right-3 bg-white px-7 divide-y divide-gray-100 rounded-lg shadow w-44 absolute align-middle border" v-else>
-            <h2 class="text-sm text-gray-900 flex gap-1 items-center border-b-2 pb-1 mt-3">
+            <Link
+            :href="`/users/${user.id}`" 
+            class="text-gray-900 flex gap-1 items-center border-b-2 pb-1 mt-3 font-bold text-md"
+            >
                 <div class="w-[40px]">
                     <ProfilePic :profilePic="props.user.profile_pic" />
                 </div>
                 {{ props.user.name }}
-            </h2>
+            </Link>
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 flex flex-col gap-1">
                 <li>
                     <Link :href="`users/${props.user.id}/edit`" class="text-black flex items-center gap-2 pb-2 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
@@ -78,19 +83,19 @@
                     </Link>
                 </li>
                 <li>
-                    <Link :href="`${url}#newPublication`" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
-                        <span class="material-symbols-outlined">
-                            add_circle
-                        </span>
-                        Publicação
-                    </Link>
-                </li>
-                <li>
                     <Link href="/events/create" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
                         <span class="material-symbols-outlined">
                             group_add
                         </span>
                         Criar um Evento
+                    </Link>
+                </li>
+                <li>
+                    <Link :href="`${url}#newPublication`" class="text-black flex items-center gap-2 mb-5 hover:border-l-2 border-colorSecondary hover:pl-1 hover:bg-colorHover">
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                        Publicação
                     </Link>
                 </li>
                 <li>

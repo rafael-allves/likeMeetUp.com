@@ -5,7 +5,7 @@
     const formPublication = useForm({
         title: '',
         content: '',
-        image: ref(''),
+        image: '',
     })
 
     const image = ref(false);
@@ -44,14 +44,14 @@
     <section id="bg" class="w-full h-full absolute top-0 z-40 flex justify-center items-center">
         <form 
         @submit.prefent="submit"
-        class="max-w-[300px] bg-white h-[55%]">
+        class="w-[94%] max-w-[500px] px-2 py-2 bg-white h-[55%] rounded-md">
             <div class="flex items-end justify-end h-auto">
                 <span class="material-symbols-outlined cursor-pointer hover:text-red-600" id="exit"
                 @click="stopNewPost">
                     cancel
                 </span>
             </div>
-            <section class="grid grid-cols-1 bg-white relative w-[300px] h-full px-1 py-1" v-if="image">
+            <section class="grid grid-cols-1 bg-white relative w-full h-[90%] px-1 py-1 mt-2" v-if="image">
                 <div class="w-full flex items-center justify-center border-1 z-10 border-black h-full relative bg-white" id="previewDiv">
                     <img class="object-fill cursor-pointer" id="imgPreview"
                     @click="$event.target.nextElementSibling.focus()" />
@@ -84,8 +84,8 @@
                 </div>
             </section>
 
-            <section v-else class="bg-white grid grid-cols-1">
-                <div class="w-full h-full px-2 flex flex-col gap-2 pt-1">
+            <section v-else class="bg-white grid grid-cols-1 mt-2">
+                <div class="w-full h-full flex flex-col gap-2 pt-1">
                     <input type="text" placeholder="Título da publicação"
                     class="w-full"
                     v-model="formPublication.title">
