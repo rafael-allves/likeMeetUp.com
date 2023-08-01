@@ -12,7 +12,7 @@
         }
     });
 
-    const url = window.location;
+    const url = window.location.toString().split('#')[0];
 </script>
 
 <template>

@@ -104,7 +104,7 @@
                   >
                      
                   </section>
-                  <section v-else
+                  <section v-if="currentUrl ==='#events'"
                   class="mt-10 border-t-2 overflow-y-auto max-h-[600px] px-10"
                   >
                      <section 

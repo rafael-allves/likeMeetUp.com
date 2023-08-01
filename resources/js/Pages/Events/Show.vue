@@ -189,4 +189,8 @@
     span{
         font-size: 30px;
     }
+
+    img{
+        object-fit: fill;
+    }
 </style>

@@ -24,8 +24,8 @@
     >
         <section class="h-full relative grid grid-cols-1">
             <section>
-                <div class="max-w-full">
-                    <img :src="'/' + content.image" alt="Image" />
+                <div class="w-full max-h-[200px]">
+                    <img :src="'/' + content.image" alt="Image" class="object-fill w-full h-[200px]" />
                 </div>
                 <div class="pl-3 mt-2">
                     <h2 class="mb-2 font-bold">
@@ -75,3 +75,8 @@
         </section>
     </Link>
 </template>
+<style scoped>
+    img{
+        object-fit: fill;
+    }
+</style>

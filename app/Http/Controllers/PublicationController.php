@@ -4,8 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Inertia\Inertia;
+
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
+
+
 class PublicationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only([
+            'store'
+        ]);
+    }
     public function index()
     {
 
@@ -16,9 +28,10 @@ class PublicationController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
-
+        session()->flash('status', ['okay' => 'Publicação Criada com Sucesso!']);
+        return redirect()->back();
     }
 
     public function show(string $id)

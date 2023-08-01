@@ -5,6 +5,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PublicationController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +30,12 @@ Route::controller(EventController::class)->middleware(['auth'])->group(function 
 });
 
 Route::resource('users', UserController::class)->name('', 'users');
+
+Route::resource('publications', PublicationController::class, [
+    'names' => [
+        'store' => 'CreatePublication'
+    ],
+]);
 
 Route::controller(UserController::class)->middleware(['auth'])->group(function (){
     Route::get('/dashboard', 'dashboard')->name('dashboard');

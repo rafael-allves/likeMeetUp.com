@@ -1,4 +1,5 @@
 <script setup>
+    import { ref } from 'vue';
     import {Head} from '@inertiajs/vue3';
 
     import Navbar from '@/Components/Navbar.vue';
@@ -18,8 +19,7 @@
         }
     });
 
-    const urlHash = window.location.hash;
-
+    const urlHash = ref(window.location.hash);
 </script>
 
 <template>
@@ -39,13 +39,13 @@
 
             <NewPublication v-if="urlHash == '#newPublication'" />
 
-            <div v-if="props.status != undefined">
+            <div v-if="props.status != undefined" class="relative">
                 <p v-if="props.status.error != undefined"
-                class="text-red-950 bg-red-400 w-full text-center">
+                class="text-red-950 bg-red-400 w-full text-center absolute z-50">
                     {{ props.status.error }}
                 </p>
                 <p v-if="props.status.okay != undefined"
-                class="text-green-950 bg-green-600 w-full text-center">
+                class="text-green-950 bg-green-600 w-full text-center absolute z-50">
                     {{ props.status.okay }}
                 </p>
             </div>
