@@ -24,7 +24,7 @@ class PublicationController extends Controller
     }
 
     public function index()
-    {
+    {    
         return Inertia::render('Home/Home', [
             'user' => Auth::user() ?? ['users' => ''],
             'status' => session('status'),

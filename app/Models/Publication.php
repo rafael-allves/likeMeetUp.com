@@ -20,7 +20,7 @@ class Publication extends Model
 
     public function owner()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
  
     public function likes()

@@ -1,12 +1,9 @@
-<script setup>
-    import { Link } from '@inertiajs/vue3';
-    
+<script setup>    
     import Layout from '@/Layouts/MainLayout.vue';
 
-    import Publication from '@/Components/publications/Publication.vue';
-
     import UnloggedHome from './UnloggedHome.vue';
-    
+    import LoggedHome from './LoggedHome.vue';
+
     const props = defineProps({
         user:{
             type: Object,
@@ -34,13 +31,11 @@
         <section v-if="props.user.name == undefined" class="w-full flex flex-col">
             <UnloggedHome />
         </section>
-        <section v-else>
-            <section class="flex justify-center">
-                <Publication v-for="publication in publications"
-                :user="props.user"
-                :publication="publication"
-                />
-            </section>
+
+        <section v-else class="h-[85vh] pt-10 bg-slate-100">
+            <LoggedHome 
+            :publications="props.publications"
+            />
         </section>
     </main>
     </Layout>
