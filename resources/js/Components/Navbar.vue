@@ -75,9 +75,6 @@
                 <Link href="/about" class="flex items-center">
                     Sobre
                 </Link>
-                <Link href="/contact" class="flex items-center">
-                    Contato
-                </Link>
                 <Link href="/events" class="flex items-center">
                     Eventos
                 </Link>

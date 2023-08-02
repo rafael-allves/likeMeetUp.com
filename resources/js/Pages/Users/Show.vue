@@ -4,8 +4,10 @@
 
    import Layout from '@/Layouts/MainLayout.vue';
    import ProfilePic from '@/Components/ProfilePic.vue';
-   import VerticalCard from '@/Components/VerticalCard.vue';
-   import HorizontalCard from '@/Components/HorizontalCard.vue';
+   import VerticalCard from '@/Components/cards/VerticalCard.vue';
+   import HorizontalCard from '@/Components/cards/HorizontalCard.vue';
+
+   import timeElapsed from '@/functions/timeElapsed.js'
 
    const props = defineProps({
       userSession: {
@@ -27,39 +29,19 @@
    if(window.location.hash === '')window.location.hash = '#publicacoes'
    const currentUrl = window.location.hash;
 
+   const eventAsParticipant = props.user.event_as_participant.filter((event) => {
+      let counter = 0;
+      props.user.events.map((ev) => {
+         if(ev.id === event.id)++counter;
+         if(counter === 1)return;
+      })
+      if(counter === 0)return event;
+   });
+
    const events = ref([
       ...props.user.events,
-      ...props.user.event_as_participant
+      ...eventAsParticipant
    ]);
-
-
-
-   function timeElapsed(publication)
-   {
-      const minutes = Math.round((new Date().getTime() - new Date(publication.created_at).getTime()) / (1000 * 60));
-      
-      if(minutes < 60)return `${minutes} min`;
-      const hours = Math.round(minutes / 60);
-      
-      if(hours == 1)return `${hours} hora`
-      if(hours < 24)return `${hours} horas`;
-      const days = Math.round(hours / 24);
-
-      if(days == 1)return `${days} dia`
-      if(days < 7) return `${days} dias`;
-      const weeks = Math.round(days / 7);
-
-      if(weeks == 1)return `${weeks} semana`
-      if(weeks < 4)return `${weeks} semanas`;
-      const mounths = Math.round(days / 30);
-      
-      if(mounths == 1)return `${mounths} mês`
-      if(mounths < 12)return `${mounths} meses`;
-      const years = Math.round(mounths / 12);
-
-      return `${years} anos`
-   }
-
 
 </script>
 
@@ -130,10 +112,10 @@
                      </Link>
                   </div>
                   <section v-if="currentUrl ==='#publicacoes'"
-                  class="mt-10 w-full overflow-y-auto max-h-[600px]"
+                  class="mt-10 border-t-2 w-full overflow-y-auto max-h-[600px]"
                   >
                      <article v-for="publication in props.user.publications"
-                     class="px-5 shadow-md mt-2">
+                     class="px-5 shadow-md pt-5 my-5">
                         <p class="text-textMuted">
                            Publicado há •
                            {{ timeElapsed(publication) }}

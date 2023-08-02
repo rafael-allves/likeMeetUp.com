@@ -1,4 +1,5 @@
-function handleClickOutside(element, buttonDropDown){
+function handleClickOutside(element, buttonDropDown)
+{
     const acceptedClick = document.getElementById('menu');
     if(!acceptedClick.contains(element.target)){
         buttonDropDown.setAttribute('aria-expanded', 'false');
@@ -11,7 +12,8 @@ function handleClickOutside(element, buttonDropDown){
     }
 }
 
-export default function dropMenu(evt){
+export default function dropMenu(evt)
+{
     evt.stopImmediatePropagation();
 
     const expanded = evt.currentTarget.getAttribute('aria-expanded');

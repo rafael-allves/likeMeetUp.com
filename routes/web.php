@@ -7,14 +7,11 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicationController;
 
+use App\Models\Publication;
+
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function (){
-    return Inertia::render('Home/Home', [
-        "user" => Auth::user() ?? ["user" => ""],
-        'status' => session('status'),
-    ]);
-});
+Route::get('/', [PublicationController::class, 'index']);
 
 Route::resource('events', EventController::class, [
     'names' => [

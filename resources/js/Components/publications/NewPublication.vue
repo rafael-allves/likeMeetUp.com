@@ -2,6 +2,8 @@
     import { ref } from 'vue';
     import { useForm } from '@inertiajs/vue3';
 
+    import BgBlack from '../BgBlack.vue';
+
     const formPublication = useForm({
         title: '',
         content: '',
@@ -11,7 +13,9 @@
     const image = ref(false);
     
     const submit = () => {
-        formPublication.post(route('CreatePublication'));
+        formPublication.post(route('CreatePublication'), {
+            onSuccess: () => { formPublication.reset('title', 'content', 'image') }
+        });
     }
 
     const stopNewPost = () => {window.location = window.location.toString().split('#newPublication')[0];}
@@ -30,22 +34,22 @@
     }
 
     function readFileAsText(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (event) => resolve(event.target.result);
-        reader.onerror = (error) => reject(error);
-        reader.readAsDataURL(file);
-        
-        formPublication.image = file;
-    });
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (event) => resolve(event.target.result);
+            reader.onerror = (error) => reject(error);
+            reader.readAsDataURL(file);
+            
+            formPublication.image = file;
+        });
     }
 
 </script>
 
 <template>
-    <section id="bg" class="w-full h-full absolute top-0 z-40 flex justify-center items-center">
+    <BgBlack>
         <form 
-        @submit.prefent="submit"
+        @submit.prevent="submit"
         class="w-[94%] max-w-[500px] px-2 py-2 bg-white h-[63%] rounded-md">
             <div class="flex items-end justify-end h-auto">
                 <span class="material-symbols-outlined cursor-pointer hover:text-red-600" id="exit"
@@ -116,7 +120,7 @@
                 </div>
             </section>
         </form>
-    </section>
+    </BgBlack>
 </template>
 
 <style scoped>

@@ -1,5 +1,4 @@
 <script setup>
-    import { defineProps } from 'vue';
     const props = defineProps({
         profilePic: {
             type: String,
@@ -13,6 +12,3 @@
     class="rounded-full w-full"
     >
 </template>
-
-<style scoped>
-</style>

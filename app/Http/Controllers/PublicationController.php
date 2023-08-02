@@ -22,14 +22,14 @@ class PublicationController extends Controller
             'store'
         ]);
     }
+
     public function index()
     {
-
-    }
-
-    public function create()
-    {
-        
+        return Inertia::render('Home/Home', [
+            'user' => Auth::user() ?? ['users' => ''],
+            'status' => session('status'),
+            'publications' => Publication::with('owner')->get(),
+        ]);
     }
     
     public function store(Request $request):RedirectResponse

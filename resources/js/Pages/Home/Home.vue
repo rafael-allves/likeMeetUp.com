@@ -3,6 +3,8 @@
     
     import Layout from '@/Layouts/MainLayout.vue';
 
+    import Publication from '@/Components/publications/Publication.vue';
+
     import UnloggedHome from './UnloggedHome.vue';
     
     const props = defineProps({
@@ -13,6 +15,11 @@
         
         status:{
             type: Object,
+        },
+
+        publications: {
+            type: Array,
+            required: true,
         }
     })
 </script>
@@ -28,8 +35,11 @@
             <UnloggedHome />
         </section>
         <section v-else>
-            <section class>
-
+            <section class="flex justify-center">
+                <Publication v-for="publication in publications"
+                :user="props.user"
+                :publication="publication"
+                />
             </section>
         </section>
     </main>

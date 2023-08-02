@@ -3,7 +3,7 @@
     import {Head} from '@inertiajs/vue3';
 
     import Navbar from '@/Components/Navbar.vue';
-    import NewPublication from '@/Components/NewPublication.vue';
+    import NewPublication from '@/Components/publications/NewPublication.vue';
 
     const props = defineProps({
         authStatus:{
