@@ -23,7 +23,7 @@
         >
             <section class="px-10">
                 <div class="flex items-center gap-2 mb-2 border-b-[3px] border-gray-100">
-                    <div class="w-[40px]">
+                    <div class="w-[40px] h-[40px]">
                         <ProfilePic 
                         :profilePic="owner.profile_pic"
                         />

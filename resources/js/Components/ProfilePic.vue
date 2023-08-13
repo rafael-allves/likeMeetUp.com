@@ -9,6 +9,6 @@
 
 <template>
     <img :src="props.profilePic"
-    class="rounded-full w-full"
+    class="rounded-full w-full h-full"
     >
 </template>

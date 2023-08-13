@@ -32,7 +32,7 @@
             <UnloggedHome />
         </section>
 
-        <section v-else class="h-[85vh] pt-10 bg-slate-100">
+        <section v-else class="h-[85vh] pt-10 bg-slate-100 overflow-y-auto">
             <LoggedHome 
             :publications="props.publications"
             />
