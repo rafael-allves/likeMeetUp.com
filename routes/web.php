@@ -1,15 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicationController;
-
-use App\Models\Publication;
-
-use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [PublicationController::class, 'index']);
 
@@ -21,12 +16,9 @@ Route::resource('events', EventController::class, [
     ]
 ]);
 
-Route::controller(EventController::class)->middleware(['auth'])->group(function (){
-    Route::post('/events/join/{event}', 'joinEvent')->name('joinEvent');
-    Route::post('/events/leave/{event}', 'leaveEvent')->name('leaveEvent');
-});
-
 Route::resource('users', UserController::class)->name('', 'users');
+
+
 
 Route::resource('publications', PublicationController::class, [
     'names' => [
@@ -34,8 +26,5 @@ Route::resource('publications', PublicationController::class, [
     ],
 ]);
 
-Route::controller(UserController::class)->middleware(['auth'])->group(function (){
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
-});
-
 require __DIR__.'/auth.php';
+require __DIR__.'/relations.php';

@@ -25,6 +25,6 @@ class Publication extends Model
  
     public function likes()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User');
     }
 }
