@@ -1,14 +1,13 @@
 <script setup>
+    import { ref } from 'vue';
+
     import { Link } from '@inertiajs/vue3';
 
     import ProfilePic from '@/Components/ProfilePic.vue';
 
-    import liked from '/@/../public/assets/publications/liked.svg'
-    import unLiked from '/@/../public/assets/publications/unliked.svg'
+    import liked from '/@/../public/assets/publications/liked.svg';
+    import unLiked from '/@/../public/assets/publications/unliked.svg';
 
-
-    
-    
     const props = defineProps({ 
         publication: {
             type: Object,
@@ -19,7 +18,11 @@
     const owner = props.publication.owner;
     
     const lines = props.publication.content.split('\n');
-    
+
+    const showMore = ref(false);
+
+    const textHeigth = document.getElementById('content');
+
     const images = {
         liked: liked,
         unliked: unLiked,
@@ -45,10 +48,16 @@
         image.setAttribute("src", images[alt]);
     }
 
+    function defineShowMore(evt)
+    {
+        textHeigth = evt.target.heigth;
+        console.log(evt);
+    }
+
 </script>
 
 <template>
-    <section class="flex flex-col min-h-[400px] shadow shadow-black py-2 rounded relative">
+    <section class="flex flex-col min-h-[400px] shadow shadow-black relative py-2 rounded">
         <Link
         :href="`users/${owner.id}`" 
         >
@@ -70,32 +79,49 @@
             </section>
         </Link>
 
-        <section v-if="publication.image != null"
-        class="w-full flex items-center justify-center">
-            <div class="w-full max-w-[500px] px-4">
-                <div class="w-full flex items-center justify-center">
-                    <img :src="props.publication.image"  
-                    class="w-full object-fill"
-                    />
+
+        <section>
+            <section v-if="publication.image != null"
+            class="w-full flex items-center justify-center">
+                <div class="w-full max-w-[500px] px-4">
+                    <div class="w-full flex items-center justify-center">
+                        <img :src="props.publication.image"  
+                        class="w-full object-fill"
+                        />
+                    </div>
                 </div>
-            </div>
+            </section>
+            
+            <section class="w-full px-10 mt-5">
+                <div class="w-full flex justify-center">
+                    <h2 class="text-lg text-center font-bold">
+                        {{ 
+                            publication.title     
+                        }}
+                    </h2>
+                </div>
+                
+                <div :class="{'showMore max-h-[200px] overflow-hidden': true, 'max-h-fit': showMore}">
+                    <div id="content">
+                        <p v-for="line in lines"
+                        class="break-words">
+                            {{ 
+                                line                         
+                            }}
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <button class="border-none" v-if="textHeigth > 200"
+                    @click="showMore = !showMore">
+                        Mostrar Mais
+                    </button>
+                </div>
+            </section>
         </section>
-        <section class="w-full px-10 mt-5">
-            <div class="w-full flex justify-center">
-                <h2 class="text-lg text-center font-bold">
-                    {{ 
-                        publication.title     
-                    }}
-                </h2>
-            </div>
-            <p v-for="line in lines"
-            class="break-words">
-                {{ 
-                    line                         
-                }}
-            </p>
-        </section>
-        <section class="flex items-center justify-start px-5 w-full min-h-[50px] border-t-4 border-gray-200 absolute bottom-0 bg-slate-100">
+
+
+        <section class="flex items-center justify-start px-5 w-full min-h-[50px] absolute bottom-0 border-t-4 border-gray-200 bg-slate-100">
             <div class="h-full flex items-center justify-center">
                 <button 
                 class="toggleLike h-full flex items-center justify-center"
